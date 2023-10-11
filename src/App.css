@@ -6,7 +6,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
-  background-color: #11162a;
   font-family: "Poppins", sans-serif;
 }

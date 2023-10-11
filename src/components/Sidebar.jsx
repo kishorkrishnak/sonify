@@ -36,7 +36,7 @@ const Sidebar = () => {
     },
   ];
   return (
-    <nav className="text-white bg-[#2C3856] h-[100vh] w-[215px] px-10 py-16 flex flex-col justify-start gap-28 h-[100vh]">
+    <nav className="hidden bg-r text-white dark:text-black bg-[#2C3856] dark:bg-[#F3F3F5] h-[100vh] w-[235px] gap-28 px-11 py-16 flex flex-col justify-start h-[100vh] sm:flex">
       <ul className="flex flex-col gap-5">
         {topLinks.map((link) => (
           <li>
