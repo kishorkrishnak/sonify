@@ -1,4 +1,3 @@
-import React from "react";
 import { FaBroadcastTower, FaHeart, FaHome, FaSearch } from "react-icons/fa";
 
 const Bottombar = () => {

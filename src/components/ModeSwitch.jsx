@@ -19,9 +19,13 @@ const ModeSwitch = () => {
       className="react-switch"
       uncheckedIcon={false}
       checkedIcon={false}
-      onColor="#fffffff"
-      offColor="#3C3E4D"
-      onHandleColor="#4AB2A9"
+      handleDiameter={18}
+      offColor="#F6F6F6"
+      height={25}
+      width={50}
+      onColor="#3C3E4D"
+      onHandleColor="#F0EF0B"
+      offHandleColor="#4AB2A9"
     />
   );
 };

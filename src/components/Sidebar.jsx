@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Sidebar = () => {
+  const [activeLink, setActiveLink] = useState("Home");
+
   const topLinks = [
     {
       path: "/",
@@ -36,11 +38,17 @@ const Sidebar = () => {
     },
   ];
   return (
-    <nav className="hidden bg-r text-white dark:text-black bg-[#2C3856] dark:bg-[#F3F3F5] h-[100vh] w-[235px] gap-28 px-11 py-16 flex flex-col justify-start h-[100vh] sm:flex">
+    <nav className="hidden dark:text-white text-black dark:bg-[#2C3856] bg-[#F3F3F5] h-[100vh] w-[235px] gap-28 px-11 py-16 flex flex-col justify-start h-[100vh] sm:flex">
       <ul className="flex flex-col gap-5">
         {topLinks.map((link) => (
           <li>
-            <a className="text-md" href={link.path}>
+            <a
+              onClick={() => setActiveLink(link.text)}
+              className={`text-md ${
+                activeLink === link.text ? "text-[#F0EF2A]" : ""
+              }`}
+              href={link.path}
+            >
               {link.text}
             </a>
           </li>
@@ -50,7 +58,13 @@ const Sidebar = () => {
       <ul className="flex flex-col gap-5">
         {bottomLinks.map((link) => (
           <li>
-            <a className="text-md" href={link.path}>
+            <a
+              onClick={() => setActiveLink(link.text)}
+              className={`text-md ${
+                activeLink === link.text ? "text-[#F0EF2A]" : ""
+              }`}
+              href={link.path}
+            >
               {link.text}
             </a>
           </li>
