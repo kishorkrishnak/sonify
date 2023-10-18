@@ -38,10 +38,10 @@ const Sidebar = () => {
     },
   ];
   return (
-    <nav className="hidden dark:text-white text-black dark:bg-[#2C3856] bg-[#F3F3F5] h-[100vh] w-[235px] gap-28 px-11 py-16 flex flex-col justify-start h-[100vh] sm:flex">
+    <nav className="hidden sticky top-0 dark:text-white text-black dark:bg-[#2C3856] bg-[#F3F3F5] h-[100vh] w-[235px] gap-28 px-11 py-16 flex flex-col justify-start h-[100vh] sm:flex">
       <ul className="flex flex-col gap-5">
-        {topLinks.map((link) => (
-          <li>
+        {topLinks.map((link,index) => (
+          <li key={index}>
             <a
               onClick={() => setActiveLink(link.text)}
               className={`text-md ${
@@ -56,8 +56,9 @@ const Sidebar = () => {
       </ul>
 
       <ul className="flex flex-col gap-5">
-        {bottomLinks.map((link) => (
-          <li>
+        {bottomLinks.map((link,index) => (
+          <li key={index}>
+
             <a
               onClick={() => setActiveLink(link.text)}
               className={`text-md ${
