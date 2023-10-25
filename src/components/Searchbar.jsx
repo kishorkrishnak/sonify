@@ -8,8 +8,6 @@ const Searchbar = () => {
         <input
           className="placeholder:text-sm placeholder:text-[grey] pl-2.5 outline-none  dark:bg-[#3C3E4D] bg-[#F6F6F6]"
           placeholder="Search Artist, Albums, Songs"
-          name="srch-term"
-          id="srch-term"
           type="text"
         />
       </div>

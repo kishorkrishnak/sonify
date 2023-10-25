@@ -1,1 +1,1 @@
-## MINIMAL MUSIC PLAYER 
+## Music streaming website using react and spotify API

@@ -1,3 +1,4 @@
 import Worker from "./worker.png";
-
-export { Worker };
+import Logo from './logo.svg'
+import Pop from './pop.jpg'
+export { Worker,Logo,Pop };

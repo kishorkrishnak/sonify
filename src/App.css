@@ -12,25 +12,3 @@ html {
 body {
   font-family: "Poppins", sans-serif;
 }
-/* Example CSS for positioning buttons to the top right */
-.carousel .thumbs-wrapper {
-  display: none; /* Hide thumbnails if necessary */
-}
-
-.carousel .carousel-status {
-  display: none; /* Hide status indicators if necessary */
-}
-
-.carousel .control-arrow {
-  top: 20px; /* Adjust as per your need */
-}
-
-.carousel .control-prev.control-arrow {
-  left: auto;
-  right: 10px; /* Adjust as per your need */
-}
-
-.carousel .control-next.control-arrow {
-  right: 10px; /* Adjust as per your need */
-}
-
