@@ -1,5 +1,5 @@
-import ModeSwitch from "./ModeSwitch";
-import Searchbar from "./Searchbar";
+import ModeSwitch from "../misc/ModeSwitch";
+import Searchbar from "../Searchbar";
 const Header = () => {
   return (
     <header className=" bg-white dark:bg-[#11162a] flex justify-between items-center px-3 sm:px-6 py-6 w-[100%]">

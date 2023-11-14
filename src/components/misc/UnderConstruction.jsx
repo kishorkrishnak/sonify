@@ -1,4 +1,4 @@
-import { Worker } from "../assets/images";
+import { Worker } from "../../assets/images";
 const UnderConstruction = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-6">

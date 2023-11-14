@@ -1,28 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { apiRequest } from "../utils/api";
 
 const TrendingAlbums = () => {
   const [albums, setAlbums] = useState([]);
   useEffect(() => {
-    const fetchAccessToken = async () => {
+    const fetchTrendingAlbums = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3001/token");
-        const accessToken = data;
-
-        const albumsResponse = await axios.get(
-          "https://api.spotify.com/v1/browse/new-releases",
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-        setAlbums(albumsResponse.data.albums.items);
+        const albums = await apiRequest({
+          url: "https://api.spotify.com/v1/browse/new-releases",
+        });
+        setAlbums(albums?.albums?.items);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       }
     };
-    fetchAccessToken();
+    fetchTrendingAlbums();
   }, []);
   return (
     <h1 className="text-black dark:text-white text-3xl ml-3 sm:ml-6 font-bold">

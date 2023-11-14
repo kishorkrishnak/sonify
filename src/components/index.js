@@ -1,8 +1,9 @@
-import Header from "./Header";
-import Bottombar from "./Bottombar";
-import ModeSwitch from "./ModeSwitch";
 import Searchbar from "./Searchbar";
-import Sidebar from "./Sidebar";
-import UnderConstruction from "./UnderConstruction";
+import Bottombar from "./layout/Bottombar";
+import Header from "./layout/Header";
+import Sidebar from "./layout/Sidebar";
+import ModeSwitch from "./misc/ModeSwitch";
+import UnderConstruction from "./misc/UnderConstruction";
 
-export { Header, Bottombar, ModeSwitch, Searchbar, Sidebar, UnderConstruction };
+export { Bottombar, Header, ModeSwitch, Searchbar, Sidebar, UnderConstruction };
+

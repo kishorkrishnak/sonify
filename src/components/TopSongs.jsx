@@ -1,33 +1,23 @@
-import { Link } from "react-router-dom";
-import Song from "./Song";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { MoonLoader } from "react-spinners";
-import { Pop } from "../assets/images";
+import { Link } from "react-router-dom";
+import { apiRequest } from "../utils/api";
+import { Loader } from "./misc";
+import Song from "./Song";
 const TopSongs = () => {
   const [topSongs, setTopSongs] = useState(null);
   useEffect(() => {
-    const fetchAccessToken = async () => {
+    const fetchTopSongs = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3001/token");
-        const accessToken = data;
+        const songs = await apiRequest({
+          url: "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF",
+        });
 
-        const songsResponse = await axios.get(
-          "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF",
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-
-        setTopSongs(songsResponse.data.tracks.items);
+        setTopSongs(songs?.tracks?.items);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
-      } finally {
       }
     };
-    fetchAccessToken();
+    fetchTopSongs();
   }, []);
 
   return (
@@ -55,22 +45,7 @@ const TopSongs = () => {
           {topSongs ? (
             topSongs.slice(0, 6).map((song) => <Song song={song}></Song>)
           ) : (
-            <MoonLoader
-              color={"greenyellow"}
-              loading={true}
-              cssOverride={{
-                position: "absolute",
-                left: 0,
-                right: 0,
-                bottom: 0,
-                top: 0,
-                margin: "auto",
-                borderColor: "red",
-              }}
-              size={40}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
+            <Loader size={40}></Loader>
           )}
         </div>
       </div>

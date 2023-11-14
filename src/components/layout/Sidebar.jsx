@@ -2,7 +2,6 @@ import { useLocation } from "react-router-dom";
 
 const Sidebar = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
   const topLinks = [
     {
       path: "/",

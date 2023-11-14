@@ -1,30 +1,26 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { apiRequest } from "../utils/api";
 
 const Artist = ({ artist }) => {
   const [artistInfo, setArtistInfo] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    const fetchAccessToken = async () => {
+    const fetchArtist = async () => {
+      setLoading(true);
       try {
-        const { data } = await axios.get("http://localhost:3001/token");
-        const accessToken = data;
-        const artistResponse = await axios.get(
-          `https://api.spotify.com/v1/artists/${artist.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-        setArtistInfo(artistResponse.data);
+        const artist = await apiRequest({
+          url: `https://api.spotify.com/v1/artists/${artist.id}`,
+        });
+        setArtistInfo(artist);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
+        setLoading(false);
       }
     };
-    fetchAccessToken();
+    fetchArtist();
   }, []);
   return (
     <>

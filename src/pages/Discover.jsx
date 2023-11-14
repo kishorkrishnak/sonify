@@ -1,64 +1,39 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import PageLayout from "../components/PageLayout";
-import MoonLoader from "react-spinners/MoonLoader";
+import PageLayout from "../components/layout/PageLayout";
+import { Loader } from "../components/misc";
+import { apiRequest } from "../utils/api";
 const Discover = () => {
   const [categories, setCategories] = useState([]);
-  let [loading, setLoading] = useState(true);
-  const override = {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    top: 0,
-    margin: "auto",
-    borderColor: "red",
-  };
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    const fetchAccessToken = async () => {
+    const fetchCategories = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get("http://localhost:3001/token"); // Change URL if hosted differently
-        const accessToken = data;
-   
-        const categoriesResponse = await axios.get(
-          "https://api.spotify.com/v1/browse/categories",
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-  
-        setCategories(categoriesResponse.data.categories.items);
+        const categories = await apiRequest({
+          url: "/browse/categories",
+        });
+
+        setCategories(categories.categories.items);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
         setLoading(false);
       }
     };
-    fetchAccessToken();
+    fetchCategories();
   }, []);
 
   return (
-    <PageLayout >
-      {loading && (
-        <MoonLoader
-          color={"greenyellow"}
-          loading={loading}
-          cssOverride={override}
-          size={80}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      )}
+    <PageLayout>
+      {loading && <Loader size={80}></Loader>}
       <h1 className="text-white text-3xl ml-6 font-bold">Categories</h1>
 
       <div className="p-6 flex flex-wrap gap-x-24 gap-y-10 w">
         {categories.map((category, index) => (
           <Link
-          key={index}
+            key={index}
             to={"/category/" + category.id}
             className="flex flex-col items-center justify-center gap-3 w-[100%] md:w-fit"
           >
