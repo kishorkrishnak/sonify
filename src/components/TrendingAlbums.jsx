@@ -8,7 +8,7 @@ const TrendingAlbums = () => {
       try {
         const { data } = await axios.get("http://localhost:3001/token");
         const accessToken = data;
-        console.log(accessToken);
+
         const albumsResponse = await axios.get(
           "https://api.spotify.com/v1/browse/new-releases",
           {

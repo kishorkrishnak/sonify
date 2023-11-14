@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Sidebar = () => {
-  const [activeLink, setActiveLink] = useState("Home");
-
+  const { pathname } = useLocation();
+  console.log(pathname);
   const topLinks = [
     {
       path: "/",
@@ -40,12 +40,11 @@ const Sidebar = () => {
   return (
     <nav className="hidden sticky top-0 dark:text-white text-black dark:bg-[#2C3856] bg-[#F3F3F5] h-[100vh] w-[235px] gap-28 px-11 py-16 flex flex-col justify-start h-[100vh] sm:flex">
       <ul className="flex flex-col gap-5">
-        {topLinks.map((link,index) => (
+        {topLinks.map((link, index) => (
           <li key={index}>
             <a
-              onClick={() => setActiveLink(link.text)}
               className={`text-md ${
-                activeLink === link.text ? "text-[#F0EF2A]" : ""
+                pathname === link.path ? "text-[#F0EF2A]" : ""
               }`}
               href={link.path}
             >
@@ -56,13 +55,11 @@ const Sidebar = () => {
       </ul>
 
       <ul className="flex flex-col gap-5">
-        {bottomLinks.map((link,index) => (
+        {bottomLinks.map((link, index) => (
           <li key={index}>
-
             <a
-              onClick={() => setActiveLink(link.text)}
               className={`text-md ${
-                activeLink === link.text ? "text-[#F0EF2A]" : ""
+                pathname === link.path ? "text-[#F0EF2A]" : ""
               }`}
               href={link.path}
             >

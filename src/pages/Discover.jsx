@@ -21,7 +21,7 @@ const Discover = () => {
       try {
         const { data } = await axios.get("http://localhost:3001/token"); // Change URL if hosted differently
         const accessToken = data;
-        console.log(accessToken);
+   
         const categoriesResponse = await axios.get(
           "https://api.spotify.com/v1/browse/categories",
           {
@@ -30,7 +30,7 @@ const Discover = () => {
             },
           }
         );
-        console.log(categoriesResponse);
+  
         setCategories(categoriesResponse.data.categories.items);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
@@ -42,7 +42,7 @@ const Discover = () => {
   }, []);
 
   return (
-    <PageLayout>
+    <PageLayout >
       {loading && (
         <MoonLoader
           color={"greenyellow"}
@@ -58,6 +58,7 @@ const Discover = () => {
       <div className="p-6 flex flex-wrap gap-x-24 gap-y-10 w">
         {categories.map((category, index) => (
           <Link
+          key={index}
             to={"/category/" + category.id}
             className="flex flex-col items-center justify-center gap-3 w-[100%] md:w-fit"
           >

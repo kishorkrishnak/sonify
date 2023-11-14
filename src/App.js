@@ -1,9 +1,9 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
+import Artist from "./pages/Artist";
 import Category from "./pages/Category";
 import Discover from "./pages/Discover";
 import Home from "./pages/Home";
-import Artist from "./pages/Artist";
 
 function App() {
   return (
@@ -17,5 +17,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

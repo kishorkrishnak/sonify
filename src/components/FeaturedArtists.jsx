@@ -45,7 +45,7 @@ const FeaturedArtists = () => {
         Featured Artists
       </p>
 
-      <div className="flex w-[100%] flex-wrap gap-5 justify-between sm:justify-start">
+      <div className="flex w-[100%] flex-wrap gap-5 gap-y-10 justify-between sm:justify-start">
         {popularArtists &&
           popularArtists.slice(0, 14).map((artist, index) => {
             return <Artist artist={artist} key={index} />;

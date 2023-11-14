@@ -19,8 +19,7 @@ const Category = () => {
             },
           }
         );
-        console.log(categoryResponse);
-        // setCategory(categoriesResponse.data);
+     
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       }

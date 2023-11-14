@@ -20,7 +20,7 @@ const TopSongs = () => {
             },
           }
         );
-        console.log(songsResponse);
+
         setTopSongs(songsResponse.data.tracks.items);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
