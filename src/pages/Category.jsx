@@ -12,7 +12,7 @@ const Category = () => {
         const category = await apiRequest({
           url: `https://api.spotify.com/v1/browse/categories/${id}/playlists`,
         });
-        console.log(category);
+        
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       }

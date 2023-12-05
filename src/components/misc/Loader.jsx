@@ -1,6 +1,6 @@
 import { MoonLoader } from "react-spinners";
 
-const Loader = ({size}) => {
+const Loader = ({ size }) => {
   const override = {
     position: "absolute",
     left: 0,

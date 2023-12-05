@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { apiRequest } from "../utils/api";
-import { Loader } from "./misc";
 import Song from "./Song";
+import { Loader } from "./misc";
 const TopSongs = () => {
   const [topSongs, setTopSongs] = useState(null);
   useEffect(() => {
@@ -43,7 +43,7 @@ const TopSongs = () => {
         </p>
         <div className="relative flex flex-col h-[100%] gap-1 w-[100%] mx-auto justify-start items-center">
           {topSongs ? (
-            topSongs.slice(0, 6).map((song) => <Song song={song}></Song>)
+            topSongs.slice(0, 6).map((song,index) => <Song key={index} song={song}></Song>)
           ) : (
             <Loader size={40}></Loader>
           )}

@@ -11,6 +11,7 @@ const TrendingAlbums = () => {
           url: "https://api.spotify.com/v1/browse/new-releases",
         });
         setAlbums(albums?.albums?.items);
+        console.log(albums?.albums?.items);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       }

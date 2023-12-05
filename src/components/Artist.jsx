@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { apiRequest } from "../utils/api";
@@ -10,10 +9,10 @@ const Artist = ({ artist }) => {
     const fetchArtist = async () => {
       setLoading(true);
       try {
-        const artist = await apiRequest({
+        const artistInfo = await apiRequest({
           url: `https://api.spotify.com/v1/artists/${artist.id}`,
         });
-        setArtistInfo(artist);
+        setArtistInfo(artistInfo);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
