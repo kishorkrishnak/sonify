@@ -8,6 +8,7 @@ export const API = axios.create({
 });
 
 export const apiRequest = async ({ url, data, method }) => {
+
   try {
     const tokenResponse = await axios.get("http://localhost:3001/token");
     const accessToken = tokenResponse.data;
@@ -23,7 +24,6 @@ export const apiRequest = async ({ url, data, method }) => {
     return result?.data;
   } catch (error) {
     const err = error.response.data;
-    console.log(err);
     return { status: err.success, message: err.message };
   }
 };

@@ -12,3 +12,8 @@ html {
 body {
   font-family: "Poppins", sans-serif;
 }
+
+.playIcon:hover,.pauseIcon:hover{
+  transition: all 100ms ease-in;
+  fill: rgb(175, 171, 171);
+}

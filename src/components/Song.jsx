@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Heart from "react-heart";
 import { FaPause, FaPlay } from "react-icons/fa";
+import { IconContext } from "react-icons";
 const Song = ({ song }) => {
   const [heartActive, setHeartActive] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -34,17 +35,24 @@ const Song = ({ song }) => {
         </p>
         <div className="flex items-center justify-center gap-3">
           {playing ? (
-            <FaPause
-              onClick={() => setPlaying(false)}
-              color="white"
-              className="cursor-pointer"
-            ></FaPause>
+            <IconContext.Provider
+              value={{ color: "white", className: "pauseIcon" }}
+            >
+              <FaPause
+                onClick={() => setPlaying(false)}
+                color="white"
+                className="cursor-pointer"
+              ></FaPause>
+            </IconContext.Provider>
           ) : (
-            <FaPlay
-              onClick={() => setPlaying(true)}
-              color="white"
-              className="cursor-pointer"
-            ></FaPlay>
+            <IconContext.Provider
+              value={{ color: "white", className: "playIcon" }}
+            >
+              <FaPlay
+                onClick={() => setPlaying(true)}
+                className="cursor-pointer"
+              ></FaPlay>
+            </IconContext.Provider>
           )}
           <div style={{ width: "2rem" }}>
             <Heart

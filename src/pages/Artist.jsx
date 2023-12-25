@@ -37,9 +37,8 @@ const Artist = () => {
             alt={artist?.name}
           />
           <div className="flex flex-col">
-             <h1 className="text-white text-3xl font-bold">{artist?.name}</h1>
-             <h1 className="text-white mt-4">{artist?.followers?.total} Fans</h1>
-          
+            <h1 className="text-white text-3xl font-bold">{artist?.name}</h1>
+            <h1 className="text-white mt-4">{artist?.followers?.total} Fans</h1>
           </div>
         </div>
       </div>

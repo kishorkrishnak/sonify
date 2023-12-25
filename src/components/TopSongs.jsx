@@ -32,7 +32,7 @@ const TopSongs = () => {
             backgroundImage:
               "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(pop.jpg)",
           }}
-          className="cursor-pointer hover:backdrop-blur flex items-center justify-center rounded-lg min-h-[300px] h-[100%] w-[100%]"
+          className="cursor-pointer flex items-center justify-center rounded-lg min-h-[300px] h-[100%] w-[100%]"
         >
           <p className="text-white font-bold text-5xl">Pop</p>
         </Link>

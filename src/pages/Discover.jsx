@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PageLayout from "../components/layout/PageLayout";
 import { Loader } from "../components/misc";
 import { apiRequest } from "../utils/api";
+
 const Discover = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
