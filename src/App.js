@@ -5,6 +5,7 @@ import Category from "./pages/Category";
 import Discover from "./pages/Discover";
 import Home from "./pages/Home";
 import Artists from "./pages/Artists";
+import Songs from "./pages/Songs";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/category/:id" element={<Category />}></Route>
         <Route path="/artist/:id" element={<Artist />}></Route>
         <Route path="/artists" element={<Artists />}></Route>
+        <Route path="/songs" element={<Songs />}></Route>
 
       </Routes>
     </Router>

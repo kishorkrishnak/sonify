@@ -6,7 +6,7 @@ const PageLayout = ({ children }) => {
   return (
     <div className="flex">
       <Sidebar></Sidebar>
-      <div className="relative flex flex-col w-[100%] dark:bg-[#11162a] bg-white min-h-[100vh]">
+      <div className="relative flex flex-col w-[100%] dark:bg-[#151515] bg-white min-h-[100vh]">
         <Header></Header>
         {children}
         <Bottombar></Bottombar>

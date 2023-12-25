@@ -37,7 +37,7 @@ const TopSongs = () => {
           <p className="text-white font-bold text-5xl">Pop</p>
         </Link>
       </div>
-      <div className="w-[100%] lg:w-[48%] flex flex-col items-start justify-start gap-8">
+      <div className="w-[100%] lg:w-[48%] flex flex-col items-start justify-start gap-6">
         <p className="text-3xl text-black dark:text-white font-bold ">
           Top Songs
         </p>

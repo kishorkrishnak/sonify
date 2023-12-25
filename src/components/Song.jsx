@@ -11,7 +11,7 @@ const Song = ({ song }) => {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   }
   return (
-    <div className="w-[100%] flex justify-between px-4 py-2 rounded-lg bg-[#F6F6F6] dark:bg-[#3C3E4D]">
+    <div className="w-[100%] flex justify-between pr-4 py-2 rounded-lg ">
       <div className="flex items-center justify-center gap-3">
         <img
           src={song?.track?.album?.images[0]?.url}
