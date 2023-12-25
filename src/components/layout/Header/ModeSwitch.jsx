@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Switch from "react-switch";
-import useDarkMode from "../../hooks/useDarkMode";
+import {useDarkMode} from "../../../hooks";
 
 const ModeSwitch = () => {
   const [colorTheme, setTheme] = useDarkMode();

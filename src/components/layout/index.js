@@ -1,2 +1,7 @@
+import Bottombar from "./Bottombar";
+import Header from "./Header/Header";
 import PageLayout from "./PageLayout";
-export { PageLayout };
+import Sidebar from "./Sidebar";
+
+export { Bottombar, Header, PageLayout, Sidebar };
+

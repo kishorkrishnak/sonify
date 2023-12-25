@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Searchbar from "../Searchbar";
-import ModeSwitch from "../misc/ModeSwitch";
+import ModeSwitch from "../Header/ModeSwitch";
+import Searchbar from "../Header/Searchbar";
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   return (

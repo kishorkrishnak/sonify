@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { PageLayout } from "../components/layout";
 import { useParams } from "react-router-dom";
+import { PageLayout } from "../components/layout";
 import { apiRequest } from "../utils/api";
 
 const Artist = () => {

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { apiRequest } from "../utils/api";
-import Artist from "./Artist";
+import { useEffect, useState } from "react";
+import { apiRequest } from "../../utils/api";
+import { Artist } from "../cards";
 
 const FeaturedArtists = () => {
   const [popularArtists, setPopularArtists] = useState([]);

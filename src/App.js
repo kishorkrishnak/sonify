@@ -1,11 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import Artist from "./pages/Artist";
-import Category from "./pages/Category";
-import Discover from "./pages/Discover";
-import Home from "./pages/Home";
-import Artists from "./pages/Artists";
-import Songs from "./pages/Songs";
+import { Artist, Artists, Category, Discover, Home, Songs } from "./pages";
 
 function App() {
   return (
@@ -17,7 +12,6 @@ function App() {
         <Route path="/artist/:id" element={<Artist />}></Route>
         <Route path="/artists" element={<Artists />}></Route>
         <Route path="/songs" element={<Songs />}></Route>
-
       </Routes>
     </Router>
   );

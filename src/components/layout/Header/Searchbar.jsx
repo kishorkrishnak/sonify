@@ -1,6 +1,6 @@
 import { FaSearch } from "react-icons/fa";
-import SearchSuggestions from "./SearchSuggestions";
 import { IoCloseSharp } from "react-icons/io5";
+import SearchSuggestions from "./SearchSuggestions";
 const Searchbar = ({ searchQuery, setSearchQuery }) => {
   return (
     <div className="flex flex-col relative">

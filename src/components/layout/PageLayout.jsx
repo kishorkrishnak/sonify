@@ -1,5 +1,5 @@
 import Bottombar from "./Bottombar";
-import Header from "./Header";
+import Header from "./Header/Header";
 import Sidebar from "./Sidebar";
 
 const PageLayout = ({ children }) => {

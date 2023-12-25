@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { apiRequest } from "../utils/api";
+import { apiRequest } from "../../../utils";
+import SearchResult from "./SearchResult";
 
 const SearchSuggestions = ({ searchQuery }) => {
   const [suggestions, setSuggestions] = useState(null);
@@ -24,24 +25,17 @@ const SearchSuggestions = ({ searchQuery }) => {
     <>
       {searchQuery && (
         <div className="rounded-b-lg flex mt-8 flex-col bg-[#3C3E4D] w-[365px] min-h-[400px] absolute">
-          
           <div className="pt-4">
             <h1 className="text-white text-lg font-bold ml-1">Songs</h1>
             <div className="border-solid border-t border-[#777883] py-3 flex flex-col gap-1">
               {suggestions?.tracks?.items?.length > 0 ? (
                 suggestions?.tracks?.items?.slice(0, 3).map((track, index) => {
                   return (
-                    <div
-                      className="flex items-center justify-start gap-2 ml-1 cursor-pointer"
+                    <SearchResult
+                      name={track?.name}
                       key={index}
-                    >
-                      <img
-                        className="h-[42px] w-[55px] rounded-md"
-                        src={track?.album?.images[0]?.url}
-                        alt="track"
-                      />
-                      <p className="text-white">{track?.name}</p>
-                    </div>
+                      imageSrc={track?.album?.images[0]?.url}
+                    ></SearchResult>
                   );
                 })
               ) : (
@@ -49,8 +43,8 @@ const SearchSuggestions = ({ searchQuery }) => {
               )}
             </div>
           </div>
-          
-          <div >
+
+          <div>
             <h1 className="text-white text-lg font-bold ml-1">Artists</h1>
             <div className="border-solid border-t border-[#777883] py-3 flex flex-col gap-1">
               {suggestions?.artists?.items?.length > 0 ? (
@@ -58,17 +52,11 @@ const SearchSuggestions = ({ searchQuery }) => {
                   ?.slice(0, 3)
                   .map((artist, index) => {
                     return (
-                      <div
-                        className="flex items-center justify-start gap-2 ml-1 cursor-pointer"
+                      <SearchResult
+                        name={artist?.name}
                         key={index}
-                      >
-                        <img
-                          className="h-[42px] w-[55px] rounded-md"
-                          src={artist?.images[0]?.url}
-                          alt="artist"
-                        />
-                        <p className="text-white">{artist.name}</p>
-                      </div>
+                        imageSrc={artist?.images[0]?.url}
+                      ></SearchResult>
                     );
                   })
               ) : (
@@ -83,17 +71,11 @@ const SearchSuggestions = ({ searchQuery }) => {
               {suggestions?.albums?.items?.length > 0 ? (
                 suggestions?.albums?.items?.slice(0, 3).map((album, index) => {
                   return (
-                    <div
-                      className="flex items-center justify-start gap-2 ml-1 cursor-pointer"
+                    <SearchResult
+                      name={album?.name}
                       key={index}
-                    >
-                      <img
-                        className="h-[42px] w-[55px] rounded-md"
-                        src={album?.images[0]?.url}
-                        alt="album"
-                      />
-                      <p className="text-white ">{album?.name}</p>
-                    </div>
+                      imageSrc={album?.images[0]?.url}
+                    ></SearchResult>
                   );
                 })
               ) : (
@@ -101,8 +83,6 @@ const SearchSuggestions = ({ searchQuery }) => {
               )}
             </div>
           </div>
-
-        
         </div>
       )}
     </>

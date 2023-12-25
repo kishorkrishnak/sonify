@@ -1,7 +1,5 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { apiRequest } from "../utils/api";
-
+import { useEffect, useState } from "react";
+import { apiRequest } from "../../utils/api";
 const TrendingAlbums = () => {
   const [albums, setAlbums] = useState([]);
   useEffect(() => {

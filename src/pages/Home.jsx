@@ -1,7 +1,7 @@
-import FeaturedArtists from "../components/FeaturedArtists";
 import { PageLayout } from "../components/layout";
-import TopSongs from "../components/TopSongs";
-import TrendingAlbums from "../components/TrendingAlbums";
+import FeaturedArtists from "../components/sections/FeaturedArtists";
+import TopSongs from "../components/sections/TopSongs";
+import TrendingAlbums from "../components/sections/TrendingAlbums";
 const Home = () => {
   return (
     <PageLayout>

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { apiRequest } from "../utils/api";
-import Song from "./Song";
-import { Loader } from "./misc";
+import { apiRequest } from "../../utils/api";
+import {Song} from "../cards";
+import { Loader } from "../misc";
 const TopSongs = () => {
   const [topSongs, setTopSongs] = useState(null);
   useEffect(() => {
@@ -29,8 +29,7 @@ const TopSongs = () => {
           style={{
             backgroundPosition: "center",
             backgroundSize: "cover",
-            backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(pop.jpg)",
+            backgroundImage: " url(jin.jpg)",
           }}
           className="cursor-pointer flex items-center justify-center rounded-lg min-h-[300px] h-[100%] w-[100%]"
         >
@@ -43,7 +42,9 @@ const TopSongs = () => {
         </p>
         <div className="relative flex flex-col h-[100%] gap-1 w-[100%] mx-auto justify-start items-center">
           {topSongs ? (
-            topSongs.slice(0, 6).map((song,index) => <Song key={index} song={song}></Song>)
+            topSongs
+              .slice(0, 6)
+              .map((song, index) => <Song key={index} song={song}></Song>)
           ) : (
             <Loader size={40}></Loader>
           )}
