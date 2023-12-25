@@ -5,6 +5,7 @@ import { IoIosRadio, IoMdAlbums } from "react-icons/io";
 import { PiMusicNotesPlus } from "react-icons/pi";
 import { TbMusicHeart } from "react-icons/tb";
 import { useLocation } from "react-router-dom";
+import { Logo } from "../../assets/images";
 const Sidebar = () => {
   const { pathname } = useLocation();
   const topLinks = [
@@ -55,6 +56,12 @@ const Sidebar = () => {
   return (
     <nav className="hidden sticky top-0 dark:text-white text-black dark:bg-[#151515] bg-[#F3F3F5] h-[100vh] w-[235px] gap-28 px-11 py-16 flex flex-col justify-start h-[100vh] sm:flex">
       <ul className="flex flex-col gap-5">
+        <li>
+          <div className="flex justify-start items-center gap-2">
+            <img className="h-[34px] w-[34px]" src={Logo} alt="" />
+            <p>Melomuse</p>
+          </div>
+        </li>
         {topLinks.map((link, index) => (
           <li key={index} className="flex justify-start items-center gap-4">
             {link.icon}

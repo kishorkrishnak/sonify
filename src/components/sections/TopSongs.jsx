@@ -21,7 +21,7 @@ const TopSongs = () => {
   }, []);
 
   return (
-    <div className="popular flex flex-col gap-6 lg:gap-0 lg:flex-row justify-between px-3 sm:px-6">
+    <div className="popular flex flex-col pb-9 gap-6 lg:gap-0 lg:flex-row justify-between px-3 sm:px-6">
       <div className="w-[100%] lg:w-[48%] flex flex-col items-start justify-start gap-8">
         <p className="text-3xl text-black dark:text-white font-bold">Popular</p>
         <Link

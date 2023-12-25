@@ -1,4 +1,5 @@
 import Bottombar from "./Bottombar";
+import Footer from "./Footer";
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar";
 
@@ -10,6 +11,7 @@ const PageLayout = ({ children }) => {
         <Header></Header>
         {children}
         <Bottombar></Bottombar>
+        <Footer></Footer>
       </div>
     </div>
   );

@@ -1,3 +1,3 @@
 import { apiRequest } from "./api";
-
-export {apiRequest}
+import { footerLinks } from "./data";
+export {apiRequest,footerLinks}

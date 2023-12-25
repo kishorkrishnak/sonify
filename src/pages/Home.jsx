@@ -7,6 +7,9 @@ const Home = () => {
     <PageLayout>
       <TrendingAlbums></TrendingAlbums>
       <TopSongs></TopSongs>
+      <TrendingAlbums></TrendingAlbums>
+      <TrendingAlbums></TrendingAlbums>
+
       <FeaturedArtists></FeaturedArtists>
     </PageLayout>
   );

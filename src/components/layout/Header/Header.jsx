@@ -4,7 +4,7 @@ import Searchbar from "../Header/Searchbar";
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   return (
-    <header className=" bg-white dark:bg-[#151515] flex justify-between items-center px-3 sm:px-6 py-6 w-[100%]">
+    <header className="bg-white dark:bg-[#151515] flex justify-between items-center px-3 sm:px-6 py-6 w-[100%]">
       <Searchbar
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
