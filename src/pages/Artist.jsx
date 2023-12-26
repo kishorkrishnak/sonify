@@ -25,7 +25,7 @@ const Artist = () => {
       }
     };
     fetchArtist();
-  }, []);
+  }, [id]);
 
   return (
     <PageLayout>

@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import Heart from "react-heart";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import convertMsToMinSec from "../../utils/convertMsToMinSec";
+import { useAppContext } from "../../App";
 const Song = ({ song }) => {
   const [heartActive, setHeartActive] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  function convertMsToMinSec(duration_ms) {
-    const minutes = Math.floor(duration_ms / 60000);
-    const seconds = ((duration_ms % 60000) / 1000).toFixed(0);
-    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  }
+  const { setPlayingTrack, playingTrack } = useAppContext();
   return (
     <div className="w-[100%] flex justify-between pr-4 py-2 rounded-lg ">
       <div className="flex items-center justify-center gap-3">
@@ -34,22 +31,20 @@ const Song = ({ song }) => {
           {convertMsToMinSec(song.track.duration_ms)}
         </p>
         <div className="flex items-center justify-center gap-3">
-          {playing ? (
+          {song?.track?.id === playingTrack?.id ? (
             <IconContext.Provider
               value={{ color: "white", className: "pauseIcon" }}
             >
-              <FaPause
-                onClick={() => setPlaying(false)}
-                color="white"
-                className="cursor-pointer"
-              ></FaPause>
+              <FaPause color="white" className="cursor-pointer"></FaPause>
             </IconContext.Provider>
           ) : (
             <IconContext.Provider
               value={{ color: "white", className: "playIcon" }}
             >
               <FaPlay
-                onClick={() => setPlaying(true)}
+                onClick={() => {
+                  setPlayingTrack(song.track);
+                }}
                 className="cursor-pointer"
               ></FaPlay>
             </IconContext.Provider>

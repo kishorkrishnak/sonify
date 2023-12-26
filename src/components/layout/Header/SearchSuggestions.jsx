@@ -4,7 +4,6 @@ import SearchResult from "./SearchResult";
 
 const SearchSuggestions = ({ searchQuery }) => {
   const [suggestions, setSuggestions] = useState(null);
-
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
@@ -13,8 +12,7 @@ const SearchSuggestions = ({ searchQuery }) => {
         });
 
         setSuggestions(searchResults);
-        console.log(searchResults);
-      } catch (error) {
+       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       }
     };
@@ -24,7 +22,7 @@ const SearchSuggestions = ({ searchQuery }) => {
   return (
     <>
       {searchQuery && (
-        <div className="rounded-b-lg flex mt-8 flex-col bg-[#3C3E4D] w-[365px] min-h-[400px] absolute">
+        <div className="z-10 rounded-b-lg flex mt-9 flex-col bg-[#2A2A2A] w-[365px] min-h-[400px] absolute">
           <div className="pt-4">
             <h1 className="text-white text-lg font-bold ml-1">Songs</h1>
             <div className="border-solid border-t border-[#777883] py-3 flex flex-col gap-1">
@@ -72,7 +70,7 @@ const SearchSuggestions = ({ searchQuery }) => {
                 suggestions?.albums?.items?.slice(0, 3).map((album, index) => {
                   return (
                     <SearchResult
-                      name={album?.name}
+                      data={album}
                       key={index}
                       imageSrc={album?.images[0]?.url}
                     ></SearchResult>

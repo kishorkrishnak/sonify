@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { apiRequest } from "../../utils/api";
-import {Song} from "../cards";
+import { Song } from "../cards";
 import { Loader } from "../misc";
 const TopSongs = () => {
   const [topSongs, setTopSongs] = useState(null);
@@ -17,6 +17,7 @@ const TopSongs = () => {
         console.error("Error fetching data from Spotify API:", error);
       }
     };
+
     fetchTopSongs();
   }, []);
 

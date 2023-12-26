@@ -8,8 +8,9 @@ export const API = axios.create({
 });
 
 export const apiRequest = async ({ url, data, method }) => {
+
   try {
-    const tokenResponse = await axios.get("http://localhost:5000/token");
+    const tokenResponse = await axios.get("http://localhost:3001/token");
     const accessToken = tokenResponse.data;
     const result = await API(url, {
       method: method || "GET",
