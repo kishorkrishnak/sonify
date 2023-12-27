@@ -12,8 +12,10 @@ const Header = () => {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       ></Searchbar>
-      {!token && <Login />}
+    <div className="flex items-center justify-center gap-3">
+    {!token && <Login />}
       <ModeSwitch />
+    </div>
     </header>
   );
 };

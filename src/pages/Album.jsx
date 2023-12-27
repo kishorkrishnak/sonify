@@ -13,7 +13,6 @@ const Album = () => {
     return total + Number(current.duration_ms);
   }, 0);
 
-  console.log(minutes);
   const { id } = useParams();
   useEffect(() => {
     setLoading(true);
@@ -24,7 +23,7 @@ const Album = () => {
           url: `https://api.spotify.com/v1/albums/${id}`,
         });
         setAlbum(album);
-        console.log(album);
+        
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {

@@ -30,7 +30,8 @@ const SearchSuggestions = ({ searchQuery }) => {
                 suggestions?.tracks?.items?.slice(0, 3).map((track, index) => {
                   return (
                     <SearchResult
-                      name={track?.name}
+                    data={track}
+                  
                       key={index}
                       imageSrc={track?.album?.images[0]?.url}
                     ></SearchResult>
@@ -51,7 +52,8 @@ const SearchSuggestions = ({ searchQuery }) => {
                   .map((artist, index) => {
                     return (
                       <SearchResult
-                        name={artist?.name}
+                      data={artist}
+
                         key={index}
                         imageSrc={artist?.images[0]?.url}
                       ></SearchResult>
