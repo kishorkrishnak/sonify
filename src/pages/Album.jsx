@@ -60,7 +60,7 @@ const Album = () => {
           </div>
         </div>
 
-        <table className="text-white mt-8 ">
+        <table className="text-black dark:text-white mt-8 ">
           <thead className="border-b border-[grey] ">
            <tr>
            <td className="pl-3 sm:pl-6 text-[grey] pb-2">#</td>

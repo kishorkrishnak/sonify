@@ -34,7 +34,7 @@ const FeaturedArtists = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-start px-3 sm:px-6 mt-6 gap-5 mb-24 sm:mb-2">
+    <div className="flex flex-col items-start px-3 sm:px-6 mt-6 gap-5 sm:mb-2 lg:mb-7 ">
       <p className="text-3xl text-black dark:text-white font-bold">
         Featured Artists
       </p>

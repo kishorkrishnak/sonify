@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
 import { apiRequest } from "../../../utils";
 import SearchResult from "./SearchResult";
-
 const SearchSuggestions = ({ searchQuery }) => {
   const [suggestions, setSuggestions] = useState(null);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchSuggestions = async () => {
-      try {
-        const searchResults = await apiRequest({
-          url: `https://api.spotify.com/v1/search?q=${searchQuery}&type=artist,album,track`,
-        });
+      if (searchQuery) {
+        setLoading(true);
+        try {
+          const searchResults = await apiRequest({
+            url: `https://api.spotify.com/v1/search?q=${searchQuery}&type=artist,album,track`,
+          });
 
-        setSuggestions(searchResults);
-       } catch (error) {
-        console.error("Error fetching data from Spotify API:", error);
+          setSuggestions(searchResults);
+        } catch (error) {
+          console.error("Error fetching data from Spotify API:", error);
+        } finally {
+          setLoading(false);
+        }
       }
     };
     fetchSuggestions();
@@ -30,8 +35,8 @@ const SearchSuggestions = ({ searchQuery }) => {
                 suggestions?.tracks?.items?.slice(0, 3).map((track, index) => {
                   return (
                     <SearchResult
-                    data={track}
-                  
+                      loading={loading}
+                      data={track}
                       key={index}
                       imageSrc={track?.album?.images[0]?.url}
                     ></SearchResult>
@@ -52,8 +57,8 @@ const SearchSuggestions = ({ searchQuery }) => {
                   .map((artist, index) => {
                     return (
                       <SearchResult
-                      data={artist}
-
+                        loading={loading}
+                        data={artist}
                         key={index}
                         imageSrc={artist?.images[0]?.url}
                       ></SearchResult>
@@ -72,6 +77,7 @@ const SearchSuggestions = ({ searchQuery }) => {
                 suggestions?.albums?.items?.slice(0, 3).map((album, index) => {
                   return (
                     <SearchResult
+                      loading={loading}
                       data={album}
                       key={index}
                       imageSrc={album?.images[0]?.url}

@@ -1,22 +1,17 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { PageLayout } from "../components/layout";
 import FeaturedArtists from "../components/sections/FeaturedArtists";
-import Login from "../components/sections/Login";
-import Player from "../components/sections/Player";
+import FeaturedPlaylists from "../components/sections/FeaturedPlaylists";
 import TopSongs from "../components/sections/TopSongs";
 import TrendingAlbums from "../components/sections/TrendingAlbums";
 
-const Home = ({setPlayingTrack,playingTrack}) => {
-
+const Home = () => {
   return (
     <PageLayout>
-     
       <TrendingAlbums></TrendingAlbums>
-      <TopSongs playingTrack={playingTrack} setPlayingTrack={setPlayingTrack}></TopSongs>
+      <TopSongs></TopSongs>
+      <FeaturedPlaylists />
       <TrendingAlbums></TrendingAlbums>
       <TrendingAlbums></TrendingAlbums>
-
       <FeaturedArtists></FeaturedArtists>
     </PageLayout>
   );

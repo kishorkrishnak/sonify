@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import Login from "./components/sections/Login";
-import Player from "./components/sections/Player";
+import NowPlaying from "./components/sections/NowPlaying";
 import {
   Album,
   Artist,
@@ -13,19 +13,21 @@ import {
   Home,
   Songs,
 } from "./pages";
+import Playlist from "./pages/Playlist";
 
 const AppContext = createContext();
 
 function App() {
   const [playingTrack, setPlayingTrack] = useState(null);
+  const [play, setPlay] = useState(false);
   const [token, setToken] = useState("");
-
-  useEffect(() => {}, [playingTrack]);
-
+  
   useEffect(() => {
     async function getToken() {
       const response = await axios.get("/auth/token");
-      setToken(response.data.access_token);
+      const accessToken = response.data.access_token;
+      setToken(accessToken);
+      localStorage.setItem("token", accessToken);
     }
 
     getToken();
@@ -35,32 +37,35 @@ function App() {
     playingTrack,
     setPlayingTrack,
     token,
+    setToken,
+    play,
+    setPlay,
+    isLoggedIn: token ? true : false,
   };
 
   return (
     <AppContext.Provider value={contextValues}>
-      <>
-        {token && playingTrack && (
-          <Player accessToken={token} trackUri={playingTrack?.uri} />
-        )}
+      {token && playingTrack && (
+        <NowPlaying accessToken={token} trackUri={playingTrack?.uri} />
+      )}
 
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/discover" element={<Discover />}></Route>
-            <Route path="/category/:id" element={<Category />}></Route>
-            <Route path="/artist/:id" element={<Artist />}></Route>
-            <Route path="/album/:id" element={<Album />}></Route>
-            <Route path="/artists" element={<Artists />}></Route>
-            <Route path="/songs" element={<Songs />}></Route>
-          </Routes>
-        </Router>
-      </>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/discover" element={<Discover />}></Route>
+          <Route path="/artists" element={<Artists />}></Route>
+          <Route path="/songs" element={<Songs />}></Route>
+          <Route path="/category/:id" element={<Category />}></Route>
+          <Route path="/artist/:id" element={<Artist />}></Route>
+          <Route path="/album/:id" element={<Album />}></Route>
+          <Route path="/playlist/:id" element={<Playlist />}></Route>
+        </Routes>
+      </Router>
+      <Toaster />
     </AppContext.Provider>
   );
 }
 
-// Create a custom hook to use the context values
 export const useAppContext = () => useContext(AppContext);
 
 export default App;

@@ -12,9 +12,7 @@ const Searchbar = ({ searchQuery, setSearchQuery }) => {
               className="text-black dark:text-white placeholder:text-sm placeholder:text-[grey] pl-2.5 outline-none  dark:bg-[#2A2A2A] bg-[#F6F6F6]"
               placeholder="Search Artist, Albums, Songs"
               type="text"
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-              }}
+              onChange={(e) => setSearchQuery(e.target.value)}
               value={searchQuery}
             />
           </div>

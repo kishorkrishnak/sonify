@@ -57,16 +57,22 @@ const Sidebar = () => {
     <nav className="hidden sticky top-0 dark:text-white text-black dark:bg-[#151515] bg-[#F3F3F5] h-[100vh] w-[235px] gap-28 px-11 py-16 flex flex-col justify-start h-[100vh] sm:flex">
       <ul className="flex flex-col gap-5">
         <li>
-          <div className="flex justify-start items-center gap-2">
-            <img className="h-[34px] w-[34px]" src={Logo} alt="" />
-            <p>Melomuse</p>
-          </div>
+          <a
+            href="/
+          
+          "
+          >
+            <div className="cursor-pointer flex justify-start items-center gap-2">
+              <img className="h-[34px] w-[34px]" src={Logo} alt="" />
+              <p className="text-lg">Melomuse</p>
+            </div>
+          </a>
         </li>
         {topLinks.map((link, index) => (
           <li key={index} className="flex justify-start items-center gap-4">
             {link.icon}
             <a
-              className={`text-md ${
+              className={`text-sm ${
                 pathname === link.path ? "text-[#F0EF2A]" : ""
               }`}
               href={link.path}
@@ -82,7 +88,7 @@ const Sidebar = () => {
           <li key={index} className="flex justify-start items-center gap-4">
             {link?.icon}
             <a
-              className={`text-md ${
+              className={`text-sm ${
                 pathname === link.path ? "text-[#F0EF2A]" : ""
               }`}
               href={link.path}

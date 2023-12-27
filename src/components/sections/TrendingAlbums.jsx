@@ -58,7 +58,7 @@ const TrendingAlbums = () => {
   return (
     <div className="carousel-container px-7 pb-9 pt-2 flex flex-col justify-center">
       <p className="mb-5 text-3xl text-black dark:text-white font-bold ">
-        Trending Albums
+        Latest Albums
       </p>
       <Slider {...settings}>
         {albums?.map((album, index) => (

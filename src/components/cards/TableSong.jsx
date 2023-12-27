@@ -1,43 +1,52 @@
-import React, { useState } from "react";
-import convertMsToMinSec from "../../utils/convertMsToMinSec";
+import { useState } from "react";
+import Heart from "react-heart";
 import { IconContext } from "react-icons";
 import { FaPause, FaPlay } from "react-icons/fa";
-import Heart from "react-heart";
 import { useAppContext } from "../../App";
+import { notifyLoginRequired } from "../../utils";
+import convertMsToMinSec from "../../utils/convertMsToMinSec";
 
 const TableSong = ({ index, track }) => {
-  const { playingTrack, setPlayingTrack } = useAppContext();
+  const { playingTrack, setPlayingTrack, isLoggedIn, setPlay, play } =
+    useAppContext();
 
-  const [playing, setPlaying] = useState(false);
   const [heartActive, setHeartActive] = useState(false);
+
   return (
-    <tr className="cursor-pointer hover:bg-[#3C3E4D] ">
+    <tr className="cursor-pointer hover:bg-[#3C3E4D]">
       <td className="py-4 rounded-l-sm pl-3 sm:pl-6">{index + 1}</td>
-      <td className="">{track?.name}</td>
+      <td>{track?.name}</td>
       <td className="rounded-r-sm pr-3 sm:pr-6">
         {convertMsToMinSec(track?.duration_ms)}
       </td>
 
       <td>
         <div className="flex items-center justify-center gap-3">
-          {track?.id === playingTrack?.id ? (
+          {play && track?.id === playingTrack?.id ? (
             <IconContext.Provider
               value={{ color: "white", className: "pauseIcon" }}
             >
               <FaPause
-                onClick={() => setPlayingTrack(track)}
+                onClick={() => setPlay(false)}
                 color="white"
                 className="cursor-pointer"
-              ></FaPause>
+              />
             </IconContext.Provider>
           ) : (
             <IconContext.Provider
               value={{ color: "white", className: "playIcon" }}
             >
               <FaPlay
-                onClick={() => setPlayingTrack(track)}
+                onClick={() => {
+                  if (isLoggedIn) {
+                    setPlayingTrack(track);
+                    setPlay(true);
+                  } else {
+                    notifyLoginRequired();
+                  }
+                }}
                 className="cursor-pointer"
-              ></FaPlay>
+              />
             </IconContext.Provider>
           )}
           <div style={{ width: "2rem" }}>
