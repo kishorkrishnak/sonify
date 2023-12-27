@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import SpotifyPlayer from "react-spotify-web-playback";
 import { useAppContext } from "../../App";
 
-const NowPlaying = ({ accessToken, trackUri }) => {
+const NowPlaying = ({ accessToken, playingTrack }) => {
   const { play, setPlay } = useAppContext();
   const playerStyles = {
     activeColor: "#fff",
@@ -13,7 +13,10 @@ const NowPlaying = ({ accessToken, trackUri }) => {
     trackArtistColor: "#ccc",
     trackNameColor: "#fff",
   };
-  useEffect(() => setPlay(true), [trackUri]);
+  useEffect(() => {
+    setPlay(true);
+    localStorage.setItem("recentlyPlayedTrack", JSON.stringify(playingTrack));
+  }, [playingTrack]);
 
   if (!accessToken) return null;
   return (
@@ -26,7 +29,7 @@ const NowPlaying = ({ accessToken, trackUri }) => {
           if (!state.isPlaying && state.isActive) setPlay(false);
         }}
         play={play}
-        uris={trackUri ? [trackUri] : []}
+        uris={playingTrack?.uri ? [playingTrack?.uri] : []}
       />
     </div>
   );

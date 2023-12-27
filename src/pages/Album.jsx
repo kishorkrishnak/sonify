@@ -6,7 +6,6 @@ import { PageLayout } from "../components/layout";
 import { apiRequest } from "../utils";
 import formatMilliseconds from "../utils/formatMilliseconds";
 const Album = () => {
-
   const [album, setAlbum] = useState(null);
   const [loading, setLoading] = useState(true);
   const minutes = album?.tracks?.items?.reduce((total, current) => {
@@ -23,7 +22,7 @@ const Album = () => {
           url: `https://api.spotify.com/v1/albums/${id}`,
         });
         setAlbum(album);
-        
+        console.log(album);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
@@ -44,9 +43,11 @@ const Album = () => {
               alt={album?.name}
             />
             <div className="flex flex-col">
-              <h1 className="text-white text-3xl font-bold">{album?.name}</h1>
+            <h1 className="text-white text-sm">Album</h1>
 
-              <h1 className="text-white ">{album?.artists[0]?.name}</h1>
+              <h1 className="text-white text-4xl font-bold mt-2">{album?.name}</h1>
+
+              <h1 className="text-white mt-2">{album?.artists[0]?.name}</h1>
 
               <div className="flex gap-2 items-center justify-center">
                 {/* {album?.} */}
@@ -55,30 +56,32 @@ const Album = () => {
                 {album?.total_tracks} Songs • {formatMilliseconds(minutes)} mins
               </h1>
 
-              <h1 className="text-white">{album?.followers?.total} Fans</h1>
             </div>
           </div>
         </div>
 
         <table className="text-black dark:text-white mt-8 ">
           <thead className="border-b border-[grey] ">
-           <tr>
-           <td className="pl-3 sm:pl-6 text-[grey] pb-2">#</td>
-            <td className="text-[grey]">Title</td>
-            <td className="pr-3 sm:pr-6 text-[grey]"> <CiClock2 color="grey"/></td>
-            <td></td>
-           </tr>
+            <tr>
+              <td className="pl-3 sm:pl-6 text-[grey] pb-2">#</td>
+              <td className="text-[grey]">Title</td>
+              <td className="pr-3 sm:pr-6 text-[grey]">
+                {" "}
+                <CiClock2 color="grey" />
+              </td>
+              <td></td>
+            </tr>
           </thead>
 
-     <tbody>
-     {album?.tracks?.items?.map((track, index) => {
-            return <TableSong track={track}  index={index} key={index}></TableSong>;
-          })}
-     </tbody>
+          <tbody>
+            {album?.tracks?.items?.map((track, index) => {
+              return (
+                <TableSong track={track} index={index} key={index}></TableSong>
+              );
+            })}
+          </tbody>
         </table>
-        <div>
-            
-        </div>
+        <div></div>
       </div>
     </PageLayout>
   );

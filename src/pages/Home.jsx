@@ -1,18 +1,22 @@
 import { PageLayout } from "../components/layout";
 import FeaturedArtists from "../components/sections/FeaturedArtists";
 import FeaturedPlaylists from "../components/sections/FeaturedPlaylists";
+import RecentlyPlayed from "../components/sections/RecentlyPlayed";
+import RomancePlaylists from "../components/sections/RomancePlaylists";
+import TopPlaylists from "../components/sections/TopPlaylists";
 import TopSongs from "../components/sections/TopSongs";
 import TrendingAlbums from "../components/sections/TrendingAlbums";
 
 const Home = () => {
   return (
     <PageLayout>
-      <TrendingAlbums></TrendingAlbums>
-      <TopSongs></TopSongs>
+      <TrendingAlbums />
+      <TopSongs />
+      <RecentlyPlayed/>
       <FeaturedPlaylists />
-      <TrendingAlbums></TrendingAlbums>
-      <TrendingAlbums></TrendingAlbums>
-      <FeaturedArtists></FeaturedArtists>
+      <RomancePlaylists />
+      <TopPlaylists />
+      <FeaturedArtists />
     </PageLayout>
   );
 };

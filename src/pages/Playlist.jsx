@@ -8,10 +8,9 @@ import formatMilliseconds from "../utils/formatMilliseconds";
 const Playlist = () => {
   const [playlist, setPlaylist] = useState(null);
   const [loading, setLoading] = useState(true);
-    const minutes = playlist?.tracks?.items?.reduce((total, current) => {
-      return total + Number(current.duration_ms);
+    const minutes = playlist?.tracks?.items?.reduce((total, {track}) => {
+      return total + Number(track.duration_ms);
     }, 0);
-
   const { id } = useParams();
   useEffect(() => {
     setLoading(true);
@@ -43,20 +42,22 @@ const Playlist = () => {
               alt={playlist?.name}
             />
             <div className="flex flex-col">
-              <h1 className="text-white text-3xl font-bold">
+            <h1 className="text-white text-sm">Playlist</h1>
+
+              <h1 className="texy-black dark:text-white text-3xl font-bold mt-2">
                 {playlist?.name}
               </h1>
 
-              <h1 className="text-white ">{playlist?.description}</h1>
+              <h1 className="text-white mt-3">{playlist?.description}</h1>
 
               <div className="flex gap-2 items-center justify-center">
                 {/* {album?.} */}
               </div>
-              <h1 className="text-white">
+              <h1 className="text-white text-sm">
                 {playlist?.tracks?.total} Songs • {formatMilliseconds(minutes)} mins
               </h1>
 
-              <h1 className="text-white">{playlist?.followers?.total} Fans</h1>
+              <h1 className="text-white text-sm">{playlist?.followers?.total} Followers</h1>
             </div>
           </div>
         </div>

@@ -46,7 +46,7 @@ function App() {
   return (
     <AppContext.Provider value={contextValues}>
       {token && playingTrack && (
-        <NowPlaying accessToken={token} trackUri={playingTrack?.uri} />
+        <NowPlaying accessToken={token} playingTrack={playingTrack} />
       )}
 
       <Router>

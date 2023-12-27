@@ -17,6 +17,7 @@ const TopSongs = () => {
         });
 
         setTopSongs(response?.tracks?.items);
+        console.log(response?.tracks?.items);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
@@ -34,7 +35,7 @@ const TopSongs = () => {
 
     return topSongs
       .slice(0, 6)
-      .map((song, index) => <Song loading={loading} key={index} song={song} />);
+      .map((song, index) => <Song loading={loading} key={index} song={song.track} />);
   };
 
   return (
@@ -51,7 +52,7 @@ const TopSongs = () => {
           }}
           className="cursor-pointer flex items-center justify-center rounded-lg min-h-[300px] h-[100%] w-full"
         >
-          <p className="text-white font-bold text-5xl">Pop</p>
+          <p className="text-white font-bold text-5xl">K-Pop</p>
         </Link>
       </div>
 
