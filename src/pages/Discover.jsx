@@ -15,6 +15,7 @@ const Discover = () => {
         const categories = await apiRequest({
           url: "/browse/categories",
         });
+        console.log(categories);
 
         setCategories(categories.categories.items);
       } catch (error) {

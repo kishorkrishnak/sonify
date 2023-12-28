@@ -20,7 +20,7 @@ const NowPlaying = ({ accessToken, playingTrack }) => {
 
   if (!accessToken) return null;
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40">
+    <div className="fixed bottom-[73px] sm:bottom-0 left-0 right-0 z-40">
       <SpotifyPlayer
         token={accessToken}
         styles={playerStyles}

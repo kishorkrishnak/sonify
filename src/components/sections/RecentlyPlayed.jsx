@@ -23,7 +23,7 @@ const RecentlyPlayed = () => {
     <>
       {recentlyPlayedTrack ? (
         <div className="carousel-container px-3 sm:px-6 pb-9 pt-2 flex flex-col justify-center">
-          <p className="mb-5 text-3xl text-black dark:text-white font-bold ">
+          <p className="mb-5 text-2xl text-black dark:text-white font-bold ">
             Recently Played
           </p>
 

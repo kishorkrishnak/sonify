@@ -1,5 +1,5 @@
+import { AiFillHome } from "react-icons/ai";
 import { BiSolidPlaylist } from "react-icons/bi";
-import { FaHome } from "react-icons/fa";
 import { FaUserCheck, FaUserNinja } from "react-icons/fa6";
 import { IoIosRadio, IoMdAlbums } from "react-icons/io";
 import { PiMusicNotesPlus } from "react-icons/pi";
@@ -12,7 +12,7 @@ const Sidebar = () => {
     {
       path: "/",
       text: "Home",
-      icon: <FaHome color="white" size={23} />,
+      icon: <AiFillHome color="white" size={23} />,
     },
     {
       path: "/discover",
@@ -54,13 +54,11 @@ const Sidebar = () => {
     },
   ];
   return (
-    <nav className="hidden sticky top-0 dark:text-white text-black dark:bg-[#151515] bg-[#F3F3F5] h-[100vh] w-[290px] gap-28 px-11 py-16 flex flex-col justify-start h-[100vh] sm:flex">
-      <ul className="flex flex-col gap-5">
+    <nav className="rounded-lg mt-[6px] hidden sticky top-0 dark:text-white text-black dark:bg-[#151515] bg-[#F3F3F5] h-[100vh] w-[290px] gap-28 px-11 py-16 flex flex-col justify-start h-[100vh] sm:flex">
+      <ul className="flex flex-col gap-5 ">
         <li>
           <a
-            href="/
-          
-          "
+            href="/ "
           >
             <div className="cursor-pointer flex justify-start items-center gap-2">
               <img className="h-[34px] w-[34px]" src={Logo} alt="" />
@@ -72,7 +70,7 @@ const Sidebar = () => {
           <li key={index} className="flex justify-start items-center gap-4">
             {link.icon}
             <a
-              className={`text-sm ${
+              className={`text-md ${
                 pathname === link.path ? "text-[#F0EF2A]" : ""
               }`}
               href={link.path}
@@ -88,7 +86,7 @@ const Sidebar = () => {
           <li key={index} className="flex justify-start items-center gap-4">
             {link?.icon}
             <a
-              className={`text-sm ${
+              className={`text-md ${
                 pathname === link.path ? "text-[#F0EF2A]" : ""
               }`}
               href={link.path}

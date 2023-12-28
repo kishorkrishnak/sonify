@@ -52,7 +52,7 @@ const Song = ({ song }) => {
 
 
   return (
-    <div className="w-full flex justify-between pr-4 py-2">
+    <div className="w-full flex justify-between sm:pr-4 py-2">
       <div className="flex items-center justify-center gap-3">
         <img
           src={song?.album?.images[0]?.url}

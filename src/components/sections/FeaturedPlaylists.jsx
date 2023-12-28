@@ -37,15 +37,18 @@ const FeaturedPlaylists = () => {
   }, []);
 
   return (
-    <div className="carousel-container px-7 pb-9 pt-2 flex flex-col justify-center">
-      <p className="mb-5 text-3xl text-black dark:text-white font-bold ">
+    <div className="carousel-container pb-8 flex flex-col justify-center">
+      <p className="mb-5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
         Featured Playlists
       </p>
+      <div className="px-7">
       <Slider {...settings}>
         {playlists.map((playlist, index) => (
           <Playlist key={index} playlist={playlist} />
         ))}
       </Slider>
+      </div>
+    
     </div>
   );
 };

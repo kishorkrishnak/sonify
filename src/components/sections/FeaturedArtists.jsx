@@ -35,7 +35,7 @@ const FeaturedArtists = () => {
 
   return (
     <div className="flex flex-col items-start px-3 sm:pr-6 pl-7 mt-6 gap-5 sm:mb-2 lg:mb-7 ">
-      <p className="text-3xl text-black dark:text-white font-bold">
+      <p className="text-2xl text-black dark:text-white font-bold">
         Featured Artists
       </p>
 

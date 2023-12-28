@@ -61,7 +61,7 @@ const TopSongs = () => {
         <p className="text-3xl text-black dark:text-white font-bold">
           Top Songs
         </p>
-        <div className="flex flex-col justify-start items-center gap-1 relative h-full w-full mx-auto">
+        <div className="flex flex-col justify-start items-center gap-1 relative h-full w-full">
           {renderTopSongs()}
         </div>
       </div>

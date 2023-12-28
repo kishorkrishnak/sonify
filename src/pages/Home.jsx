@@ -1,21 +1,36 @@
 import { PageLayout } from "../components/layout";
 import FeaturedArtists from "../components/sections/FeaturedArtists";
 import FeaturedPlaylists from "../components/sections/FeaturedPlaylists";
-import RecentlyPlayed from "../components/sections/RecentlyPlayed";
-import RomancePlaylists from "../components/sections/RomancePlaylists";
-import TopPlaylists from "../components/sections/TopPlaylists";
-import TopSongs from "../components/sections/TopSongs";
 import TrendingAlbums from "../components/sections/LatestAlbums";
+import PlaylistCarousel from "../components/sections/PlaylistCarousel";
+import RecentlyPlayed from "../components/sections/RecentlyPlayed";
+import TopSongs from "../components/sections/TopSongs";
 
 const Home = () => {
+  const playlistCategories = [
+    {id:"0JQ5DAqbMKFHOzuVTgTizF",title:"EDM"},
+    { id: "toplists", title: "Top Playlists" },
+    { id: "0JQ5DAqbMKFHCxg5H5PtqW", title: "Top Bollywood" },
+    { id: "romance", title: "Romance" },
+    { id: "0JQ5DAqbMKFzHmL4tf05da", title: "Mood" },
+    { id: "0JQ5DAqbMKFCWjUTdzaG0e", title: "Indie Playlists" },
+    { id: "0JQ5DAqbMKFCfObibaOZbv", title: "Gaming Mode" },
+    { id: "0JQ5DAqbMKFKSopHMaeIeI", title: "Punjabi Playlists" },
+    { id: "0JQ5DAqbMKFAXlCG6QvYQ4", title: "Workout" },
+  ];
   return (
     <PageLayout>
       <TopSongs />
-      <RecentlyPlayed/>
+      <RecentlyPlayed />
       <TrendingAlbums />
       <FeaturedPlaylists />
-      <RomancePlaylists />
-      <TopPlaylists />
+      {playlistCategories.map((playlistCategory,index) => (
+        <PlaylistCarousel
+        key={index}
+          id={playlistCategory.id}
+          title={playlistCategory.title}
+        />
+      ))}
       <FeaturedArtists />
     </PageLayout>
   );

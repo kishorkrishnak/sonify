@@ -57,15 +57,17 @@ const LatestAlbums = () => {
     fetchLatestAlbums();
   }, []);
   return (
-    <div className="carousel-container px-7 pb-9 pt-2 flex flex-col justify-center">
-      <p className="mb-5 text-3xl text-black dark:text-white font-bold ">
+    <div className="carousel-container pb-8 flex flex-col justify-center">
+      <p className="mb-5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
         Latest Albums
       </p>
-      <Slider {...settings}>
+     <div className="px-7">
+     <Slider {...settings}>
         {albums?.map((album, index) => (
           <Album key={index} album={album}></Album>
         ))}
       </Slider>
+     </div>
     </div>
   );
 };

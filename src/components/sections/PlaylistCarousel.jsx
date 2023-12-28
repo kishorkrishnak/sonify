@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { apiRequest } from "../../utils/api";
 import Playlist from "../cards/Playlist";
 
-const RomancePlaylists = () => {
+const PlaylistCarousel = ({ id, title }) => {
   const settings = {
     infinite: true,
     speed: 500,
@@ -20,10 +20,10 @@ const RomancePlaylists = () => {
   const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
-    const fetchRomancePlaylists = async () => {
+    const fetchPlaylists = async () => {
       try {
         const response = await apiRequest({
-          url: "https://api.spotify.com/v1/browse/categories/romance/playlists",
+          url: `https://api.spotify.com/v1/browse/categories/${id}/playlists`,
         });
 
         setPlaylists(response?.playlists?.items || []);
@@ -32,21 +32,23 @@ const RomancePlaylists = () => {
       }
     };
 
-    fetchRomancePlaylists();
+    fetchPlaylists();
   }, []);
 
   return (
-    <div className="carousel-container px-7 pb-9 pt-2 flex flex-col justify-center">
-      <p className="mb-5 text-3xl text-black dark:text-white font-bold ">
-        Romance
+    <div className="carousel-container pb-8 flex flex-col justify-center">
+      <p className="mb-5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
+        {title}
       </p>
-      <Slider {...settings}>
-        {playlists.map((playlist, index) => (
-          <Playlist key={index} playlist={playlist} />
-        ))}
-      </Slider>
+      <div className="px-7">
+        <Slider {...settings}>
+          {playlists.map((playlist, index) => (
+            <Playlist key={index} playlist={playlist} />
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };
 
-export default RomancePlaylists;
+export default PlaylistCarousel;
