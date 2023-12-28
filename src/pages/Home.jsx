@@ -10,9 +10,9 @@ import TrendingAlbums from "../components/sections/LatestAlbums";
 const Home = () => {
   return (
     <PageLayout>
-      <TrendingAlbums />
       <TopSongs />
       <RecentlyPlayed/>
+      <TrendingAlbums />
       <FeaturedPlaylists />
       <RomancePlaylists />
       <TopPlaylists />

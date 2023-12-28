@@ -34,14 +34,14 @@ const FeaturedArtists = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-start px-3 sm:px-6 mt-6 gap-5 sm:mb-2 lg:mb-7 ">
+    <div className="flex flex-col items-start px-3 sm:pr-6 pl-7 mt-6 gap-5 sm:mb-2 lg:mb-7 ">
       <p className="text-3xl text-black dark:text-white font-bold">
         Featured Artists
       </p>
 
-      <div className="flex w-[100%] flex-wrap gap-5 gap-y-10 justify-between sm:justify-start">
+      <div className="flex w-[100%] flex-wrap gap-x-6 gap-y-10 justify-between sm:justify-start">
         {popularArtists &&
-          popularArtists.slice(0, 14).map((artist, index) => {
+          popularArtists.slice(0, 12).map((artist, index) => {
             return <Artist artist={artist} key={index} />;
           })}
       </div>

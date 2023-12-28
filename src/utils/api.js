@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_SPOTIFY_API_URL;
+const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
 
 export const API = axios.create({
   baseURL: API_URL,
@@ -9,7 +10,7 @@ export const API = axios.create({
 
 export const apiRequest = async ({ url, data, method }) => {
   try {
-    const tokenResponse = await axios.get("http://localhost:5000/token");
+    const tokenResponse = await axios.get(`${BACKEND_API_URL}/token`);
     const accessToken = tokenResponse.data;
     const result = await API(url, {
       method: method || "GET",
