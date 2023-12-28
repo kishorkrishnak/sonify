@@ -3,12 +3,12 @@ import convertMsToMinSec from "./convertMsToMinSec";
 import { footerLinks } from "./data";
 import formatMilliseconds from "./formatMilliseconds";
 import { notifyLoginRequired } from "./notifyLoginRequired";
-import { useOutsideAlerter } from "./useOutsideAlerter";
+import { useOutsideAlerter } from "../hooks/useOutsideAlerter";
 export {
-  useOutsideAlerter,
   apiRequest,
   convertMsToMinSec,
   footerLinks,
   formatMilliseconds,
-  notifyLoginRequired,
+  notifyLoginRequired, useOutsideAlerter
 };
+

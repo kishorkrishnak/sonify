@@ -5,7 +5,6 @@ import TableSong from "../components/cards/TableSong";
 import { PageLayout } from "../components/layout";
 import { apiRequest } from "../utils";
 import formatMilliseconds from "../utils/formatMilliseconds";
-import { Loader } from "../components/misc";
 const Album = () => {
   const [album, setAlbum] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -52,7 +51,6 @@ const Album = () => {
 
               <h1 className="text-white mt-2">{album?.artists[0]?.name}</h1>
 
-          
               <h1 className="text-white">
                 {album?.total_tracks} Songs • {formatMilliseconds(minutes)} mins
               </h1>

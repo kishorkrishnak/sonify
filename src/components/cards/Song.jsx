@@ -6,6 +6,23 @@ import { useAppContext } from "../../App";
 import { convertMsToMinSec, notifyLoginRequired } from "../../utils";
 
 const Song = ({ song }) => {
+  const handleHeartClick = (song) => {
+    const previousFavorites =
+      JSON.parse(localStorage.getItem("favoriteSongs")) || [];
+  
+    if (heartActive) {
+      const updatedFavorites = previousFavorites.filter(
+        (favorite) => favorite.id !== song.id
+      );
+      localStorage.setItem("favoriteSongs", JSON.stringify(updatedFavorites));
+      setHeartActive(false);
+    } else {
+      previousFavorites.push(song);
+      localStorage.setItem("favoriteSongs", JSON.stringify(previousFavorites));
+      setHeartActive(true);
+    }
+  };
+  
   const [heartActive, setHeartActive] = useState(false);
   const {
     setPlayingTrack,
@@ -32,25 +49,7 @@ const Song = ({ song }) => {
     }
   };
 
-  const handleHeartClick = () => {
-    const previousFavorites =
-      JSON.parse(localStorage.getItem("favoriteSongs")) || [];
 
-    if (heartActive) {
-      const updatedFavorites = previousFavorites.filter(
-        (favorite) => favorite.id !== song.id
-      );
-      localStorage.setItem("favoriteSongs", JSON.stringify(updatedFavorites));
-      setHeartActive(false);
-    } else {
-      previousFavorites.push(song);
-      localStorage.setItem(
-        "favoriteSongs",
-        JSON.stringify(previousFavorites)
-      );
-      setHeartActive(true);
-    }
-  };
 
   return (
     <div className="w-full flex justify-between pr-4 py-2">
@@ -102,7 +101,7 @@ const Song = ({ song }) => {
                 border: "none",
               }}
               isActive={heartActive}
-              onClick={handleHeartClick}
+              onClick={()=>{handleHeartClick(song)}}
             />
           </div>
         </div>

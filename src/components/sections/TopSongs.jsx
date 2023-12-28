@@ -35,7 +35,7 @@ const TopSongs = () => {
 
     return topSongs
       .slice(0, 6)
-      .map((song, index) => <Song loading={loading} key={index} song={song.track} />);
+      .map((song, index) => <Song key={index} song={song.track} />);
   };
 
   return (

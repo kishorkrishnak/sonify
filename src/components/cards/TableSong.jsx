@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Heart from "react-heart";
 import { IconContext } from "react-icons";
 import { FaPause, FaPlay } from "react-icons/fa";
@@ -7,6 +7,33 @@ import { notifyLoginRequired } from "../../utils";
 import convertMsToMinSec from "../../utils/convertMsToMinSec";
 
 const TableSong = ({ index, track }) => {
+  const handleHeartClick = (song) => {
+    const previousFavorites =
+      JSON.parse(localStorage.getItem("favoriteSongs")) || [];
+  
+    if (heartActive) {
+      const updatedFavorites = previousFavorites.filter(
+        (favorite) => favorite.id !== song.id
+      );
+      localStorage.setItem("favoriteSongs", JSON.stringify(updatedFavorites));
+      setHeartActive(false);
+    } else {
+      previousFavorites.push(song);
+      localStorage.setItem("favoriteSongs", JSON.stringify(previousFavorites));
+      setHeartActive(true);
+    }
+  };
+  
+
+  
+  useEffect(() => {
+    const isFavorite = (
+      JSON.parse(localStorage.getItem("favoriteSongs")) || []
+    ).some((favoriteSong) => favoriteSong.id === track.id);
+
+    if (isFavorite) setHeartActive(true);
+  }, [track.id]);
+
   console.log(track);
   const { playingTrack, setPlayingTrack, isLoggedIn, setPlay, play } =
     useAppContext();
@@ -77,7 +104,9 @@ const TableSong = ({ index, track }) => {
                 border: "none",
               }}
               isActive={heartActive}
-              onClick={() => setHeartActive(!heartActive)}
+              onClick={() => {
+                handleHeartClick(track);
+              }}
             />
           </div>
         </div>

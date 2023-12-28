@@ -31,16 +31,16 @@ const Discover = () => {
       {loading && <Loader size={80}></Loader>}
       <h1 className="text-white text-3xl ml-6 font-bold">Categories</h1>
 
-      <div className="p-6 flex flex-wrap gap-x-24 gap-y-10 w">
+      <div className="p-6 flex justify-center flex-wrap gap-x-3 md:gap-x-10 gap-y-10 w">
         {categories.map((category, index) => (
           <Link
             key={index}
             to={"/category/" + category.id}
-            className="flex flex-col items-center justify-center gap-3 w-[100%] md:w-fit"
+            className="flex flex-col items-center justify-center gap-3 w-[30%] md:w-fit"
           >
             <div
               style={{ backgroundImage: `url(${category.icons[0].url})` }}
-              className={`bg-no-repeat bg-cover bg-center rounded-lg flex items-center justify-center w-[100%] md:w-[320px] h-[200px]`}
+              className={`bg-no-repeat bg-cover bg-center rounded-lg flex items-center justify-center w-[100%] h-[150px] md:w-[210px] md:h-[210px]`}
             ></div>
             <p className="text-2xl text-white">{category.name}</p>
           </Link>

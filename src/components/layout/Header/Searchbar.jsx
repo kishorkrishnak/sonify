@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
-import { useOutsideAlerter } from "../../../utils";
+import { useOutsideAlerter } from "../../../hooks";
 import SearchSuggestions from "./SearchSuggestions";
 
 const Searchbar = ({ searchQuery, setSearchQuery }) => {
