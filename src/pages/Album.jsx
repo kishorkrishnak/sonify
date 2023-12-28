@@ -5,6 +5,7 @@ import TableSong from "../components/cards/TableSong";
 import { PageLayout } from "../components/layout";
 import { apiRequest } from "../utils";
 import formatMilliseconds from "../utils/formatMilliseconds";
+import { Loader } from "../components/misc";
 const Album = () => {
   const [album, setAlbum] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -43,19 +44,18 @@ const Album = () => {
               alt={album?.name}
             />
             <div className="flex flex-col">
-            <h1 className="text-white text-sm">Album</h1>
+              <h1 className="text-white text-sm">Album</h1>
 
-              <h1 className="text-white text-4xl font-bold mt-2">{album?.name}</h1>
+              <h1 className="text-white text-4xl font-bold mt-2">
+                {album?.name}
+              </h1>
 
               <h1 className="text-white mt-2">{album?.artists[0]?.name}</h1>
 
-              <div className="flex gap-2 items-center justify-center">
-                {/* {album?.} */}
-              </div>
+          
               <h1 className="text-white">
                 {album?.total_tracks} Songs • {formatMilliseconds(minutes)} mins
               </h1>
-
             </div>
           </div>
         </div>

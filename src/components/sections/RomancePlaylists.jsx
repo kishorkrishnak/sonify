@@ -13,7 +13,7 @@ const RomancePlaylists = () => {
       { breakpoint: 968, settings: { slidesToShow: 3 } },
       { breakpoint: 1100, settings: { slidesToShow: 4 } },
       { breakpoint: 1370, settings: { slidesToShow: 5 } },
-      { breakpoint: 2000, settings: { slidesToShow: 7 } },
+      { breakpoint: 2000, settings: { slidesToShow: 6 } },
     ],
   };
 
@@ -25,7 +25,7 @@ const RomancePlaylists = () => {
         const response = await apiRequest({
           url: "https://api.spotify.com/v1/browse/categories/romance/playlists",
         });
-        
+
         setPlaylists(response?.playlists?.items || []);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
@@ -38,7 +38,7 @@ const RomancePlaylists = () => {
   return (
     <div className="carousel-container px-7 pb-9 pt-2 flex flex-col justify-center">
       <p className="mb-5 text-3xl text-black dark:text-white font-bold ">
-       Romance
+        Romance
       </p>
       <Slider {...settings}>
         {playlists.map((playlist, index) => (

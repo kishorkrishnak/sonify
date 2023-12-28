@@ -5,7 +5,7 @@ import RecentlyPlayed from "../components/sections/RecentlyPlayed";
 import RomancePlaylists from "../components/sections/RomancePlaylists";
 import TopPlaylists from "../components/sections/TopPlaylists";
 import TopSongs from "../components/sections/TopSongs";
-import TrendingAlbums from "../components/sections/TrendingAlbums";
+import TrendingAlbums from "../components/sections/LatestAlbums";
 
 const Home = () => {
   return (

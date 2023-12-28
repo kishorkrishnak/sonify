@@ -23,15 +23,18 @@ const Artist = ({ artist }) => {
     <>
       {artistInfo && (
         <Link
-          style={{
-            backgroundImage: `url(${artistInfo.images[0]?.url || "default_image_url"})`,
-          }}
-          className={`top-0 duration-200 hover:relative hover:top-[-10px] transition-all flex justify-center items-end bg-cover bg-center h-[140px] w-[29%] sm:h-[195px] sm:w-[160px] rounded-md`}
+          className={`px-4 py-5 flex flex-col justify-center items-center text-black dark:text-white gap-1 h-[160px] w-[29%] sm:h-[220px] sm:w-[162px] rounded-md bg-[#212121] hover:bg-[#333333]`}
           to={`/artist/${artistInfo.id}`}
         >
-          <h1 className="backdrop-blur py-0.5 rounded-b-lg w-[100%] flex justify-center items-center text-white font-medium">
-            {artistInfo.name}
-          </h1>
+          <img
+            className="rounded-full h-[80px] w-[80px] sm:h-[130px] sm:w-[130px]"
+            src={artistInfo.images[0]?.url}
+            alt="artist"
+          />
+          <h1 className="flex justify-start w-full text-sm sm:text-md">{artistInfo.name}</h1>
+          <p className="flex justify-start w-full text-xs sm:text-sm text-[#A6A6A6]">
+            Artist
+          </p>
         </Link>
       )}
     </>

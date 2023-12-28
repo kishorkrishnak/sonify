@@ -14,6 +14,7 @@ import {
   Songs,
 } from "./pages";
 import Playlist from "./pages/Playlist";
+import ScrollToTop from "./components/misc/ScrollToTop";
 
 const AppContext = createContext();
 
@@ -50,6 +51,8 @@ function App() {
       )}
 
       <Router>
+      <ScrollToTop> 
+
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/discover" element={<Discover />}></Route>
@@ -59,8 +62,12 @@ function App() {
           <Route path="/artist/:id" element={<Artist />}></Route>
           <Route path="/album/:id" element={<Album />}></Route>
           <Route path="/playlist/:id" element={<Playlist />}></Route>
+          
         </Routes>
+      </ScrollToTop>
+
       </Router>
+      
       <Toaster />
     </AppContext.Provider>
   );

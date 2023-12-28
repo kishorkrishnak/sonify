@@ -7,15 +7,33 @@ import { notifyLoginRequired } from "../../utils";
 import convertMsToMinSec from "../../utils/convertMsToMinSec";
 
 const TableSong = ({ index, track }) => {
+  console.log(track);
   const { playingTrack, setPlayingTrack, isLoggedIn, setPlay, play } =
     useAppContext();
-
+  const artists = [];
+  track?.artists?.forEach((artist) => artists.push(artist.name));
+  const artistsJoined = artists.join(", ");
   const [heartActive, setHeartActive] = useState(false);
 
   return (
     <tr className="cursor-pointer hover:bg-[#3C3E4D]">
-      <td className="py-4 rounded-l-sm pl-3 sm:pl-6">{index + 1}</td>
-      <td>{track?.name}</td>
+      <td className="py-4 rounded-l-sm pl-3 sm:pl-6 w-[60px]">{index + 1}</td>
+      <td>
+        <div className="flex items-center gap-3">
+          {track?.album?.images[0] && (
+            <img
+              className="h-[37px] w-[37px] rounded-md"
+              src={track.album.images[0].url}
+              alt="album"
+            />
+          )}
+
+          <div>
+            {track?.name}
+            <p className="text-[#A6A6A6] text-xs">{artistsJoined}</p>
+          </div>
+        </div>
+      </td>
       <td className="rounded-r-sm pr-3 sm:pr-6">
         {convertMsToMinSec(track?.duration_ms)}
       </td>

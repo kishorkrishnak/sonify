@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="overflow-x-hidden -mb-0.5"></div>
 
       <div className="bg-white dark:bg-[#151515] ">
-        <div className="container pt-20 pb-10 mx-auto flex justify-between flex-col lg:flex-row pr-10">
+        <div className="border-[#444444] border-b container pt-20 pb-10 mx-auto flex justify-between flex-col lg:flex-row pr-10">
           <div className="w-fit flex gap-20 justify-start -mb-10 -px-4">
             {footerLinks.map(({ id, title, links }) => (
               <div className="w-auto px-4 " key={id + title}>
@@ -63,30 +63,7 @@ const Footer = () => {
           </span>
         </div>
 
-        <div className="border-b border-[#2A2A2A]">
-          <p className="container px-5 mx-auto text-black dark:text-white mt-2">
-            Subscribe to our Newsletter
-          </p>
-
-          <div className="container mx-auto px-5 pt-1 pb-8 flex flex-wrap items-center justify-between ">
-            <div className="w-full md:w-2/4 lg:w-1/3 h-16 flex items-center justify-center md:justify-start ">
-              <TextInput
-                styles="w-full flex-grow md:w-40 2xl:w-64 bg-gray-100 sm:mr-4 md-2"
-                type="email"
-                placeholder="Email Address"
-              />
-
-              <CustomButton
-                title="Subscribe"
-                containerStyles={
-                  "block bg-[#263238] text-white px-5 py-2.5 text-md rounded hover:bg-[#212121] focus:potline-none flex-col items-center mt-2"
-                }
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-[#151515]">
+        <div className="bg-white dark:bg-[#151515] mb-[80px]">
           <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <p className="text-black dark:text-gray-300 text-sm text-center sm:text-left">
               © 2023 Melomuse

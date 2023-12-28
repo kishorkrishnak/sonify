@@ -8,12 +8,13 @@ const FeaturedPlaylists = () => {
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
+    
     responsive: [
       { breakpoint: 768, settings: { slidesToShow: 2 } },
       { breakpoint: 968, settings: { slidesToShow: 3 } },
       { breakpoint: 1100, settings: { slidesToShow: 4 } },
       { breakpoint: 1370, settings: { slidesToShow: 5 } },
-      { breakpoint: 2000, settings: { slidesToShow: 7 } },
+      { breakpoint: 2000, settings: { slidesToShow: 6 } },
     ],
   };
 
