@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import { apiRequest } from "../../../utils";
 import SearchResult from "./SearchResult";
 
-
 const SearchSuggestions = ({ searchQuery }) => {
-
-
   const [suggestions, setSuggestions] = useState(null);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -31,7 +28,7 @@ const SearchSuggestions = ({ searchQuery }) => {
   return (
     <>
       {searchQuery && (
-        <div  className="z-10 rounded-b-lg flex mt-9 flex-col bg-[#2A2A2A] w-[365px] min-h-[400px] absolute">
+        <div className="z-10 rounded-b-lg flex mt-9 flex-col bg-[#2A2A2A] w-[365px] min-h-[400px] absolute">
           <div className="pt-4">
             <h1 className="text-white text-lg font-bold ml-1">Songs</h1>
             <div className="py-3 flex flex-col gap-1">

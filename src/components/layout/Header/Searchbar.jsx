@@ -5,11 +5,12 @@ import { useOutsideAlerter } from "../../../hooks";
 import SearchSuggestions from "./SearchSuggestions";
 
 const Searchbar = ({ searchQuery, setSearchQuery }) => {
-  const clearSearchbar = () => {
-    setSearchQuery("");
-  };
+  const clearSearchbar = () => setSearchQuery("");
+
   const wrapperRef = useRef(null);
+
   useOutsideAlerter(wrapperRef, clearSearchbar);
+
   return (
     <div ref={wrapperRef} className="flex flex-col relative">
       <div className="rounded-lg container w-fit sm:w-[365px] dark:bg-[#2A2A2A] bg-[#F6F6F6]  py-2 px-3">

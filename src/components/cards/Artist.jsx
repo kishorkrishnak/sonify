@@ -31,7 +31,9 @@ const Artist = ({ artist }) => {
             src={artistInfo.images[0]?.url}
             alt="artist"
           />
-          <h1 className="flex justify-start w-full text-sm sm:text-md mt-2">{artistInfo.name}</h1>
+          <h1 className="flex justify-start w-full text-sm sm:text-md mt-2">
+            {artistInfo.name}
+          </h1>
           <p className="flex justify-start w-full text-xs sm:text-sm text-[#A6A6A6]">
             Artist
           </p>

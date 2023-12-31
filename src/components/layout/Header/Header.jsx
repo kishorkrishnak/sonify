@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useAppContext } from "../../../App";
 import Login from "../../sections/Login";
+import Logout from "../../sections/Logout";
 import ModeSwitch from "../Header/ModeSwitch";
 import Searchbar from "../Header/Searchbar";
-import Logout from "../../sections/Logout";
+
 const Header = () => {
   const { token } = useAppContext();
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,8 +16,7 @@ const Header = () => {
       ></Searchbar>
       <div className="flex items-center justify-center gap-3">
         <ModeSwitch />
-        {!token ? <Login />: <Logout/>}
-
+        {!token ? <Login /> : <Logout />}
       </div>
     </header>
   );

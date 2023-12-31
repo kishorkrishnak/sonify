@@ -8,10 +8,17 @@ export const API = axios.create({
   responseType: "json",
 });
 
-export const apiRequest = async ({ url, data, method }) => {
+export const apiRequest = async ({ url, data, method, authFlow }) => {
   try {
-    const tokenResponse = await axios.get(`${BACKEND_API_URL}/token`);
-    const accessToken = tokenResponse.data;
+    let accessToken = "";
+    if (authFlow) {
+      const tokenResponse = await axios.get(`${BACKEND_API_URL}/auth/token`);
+      accessToken = tokenResponse.data.access_token;
+    } else {
+      const tokenResponse = await axios.get(`${BACKEND_API_URL}/token`);
+      accessToken = tokenResponse.data;
+    }
+
     const result = await API(url, {
       method: method || "GET",
       data: data,

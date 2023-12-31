@@ -1,20 +1,16 @@
-import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
-import { footerLinks } from "../../utils";
 import { Link } from "react-router-dom";
-import TextInput from "./TextInput";
-import CustomButton from "./CustomButton";
+import { footerLinks } from "../../utils";
 
 const Footer = () => {
   return (
-    <footer className="text-black ">
-      <div className="overflow-x-hidden -mb-0.5"></div>
-
+    <footer className="text-black">
       <div className="bg-white dark:bg-[#151515] ">
-        <div className="border-[#444444] border-b container pt-20 pb-10 mx-auto flex justify-between flex-col lg:flex-row pr-10">
+        <div className="border-b border-[#444444] container pt-20 pb-10 mx-auto flex justify-between flex-col lg:flex-row pr-10">
           <div className="w-fit flex gap-20 justify-start -mb-10 -px-4">
             {footerLinks.map(({ id, title, links }) => (
-              <div className="w-auto px-4 " key={id + title}>
+              <div className="w-auto px-4" key={id + title}>
                 <h2 className="font-medium text-black dark:text-white tracking-widest text-sm mb-3">
                   {title}
                 </h2>
@@ -24,7 +20,7 @@ const Footer = () => {
                     <Link
                       key={link + index}
                       to="/"
-                      className="text-black dark:text-gray-300 text-sm hover:text-white "
+                      className="text-black dark:text-gray-300 text-sm hover:text-black dark:hover:text-white"
                     >
                       {link}
                     </Link>
@@ -64,7 +60,7 @@ const Footer = () => {
         </div>
 
         <div className="bg-white dark:bg-[#151515] mb-[80px]">
-          <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+          <div className="container mx-auto py-4 px-4 flex flex-wrap flex-col sm:flex-row">
             <p className="text-black dark:text-gray-300 text-sm text-center sm:text-left">
               © 2023 Melomuse
             </p>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Pop } from "../../assets/images";
 import { apiRequest } from "../../utils/api";
 import { Song } from "../cards";
 import { Loader } from "../misc";
-
 const TopSongs = () => {
   const [topSongs, setTopSongs] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,6 @@ const TopSongs = () => {
         });
 
         setTopSongs(response?.tracks?.items);
-        console.log(response?.tracks?.items);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
@@ -44,11 +43,13 @@ const TopSongs = () => {
       <div className="w-full lg:w-[48%] flex flex-col items-start justify-start gap-8">
         <p className="text-3xl text-black dark:text-white font-bold">Popular</p>
         <Link
-          to={"/category/pop"}
+          to={"/category/0JQ5DAqbMKFGvOw3O4nLAf"}
+          state={{title:"K-Pop"}}
+          
           style={{
             backgroundPosition: "center",
             backgroundSize: "cover",
-            backgroundImage: "url(pop.jpg)",
+            backgroundImage: `url(${Pop})`,
           }}
           className="cursor-pointer flex items-center justify-center rounded-lg min-h-[300px] h-[100%] w-full"
         >

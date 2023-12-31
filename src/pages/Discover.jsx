@@ -5,8 +5,8 @@ import { Loader } from "../components/misc";
 import { apiRequest } from "../utils/api";
 
 const Discover = () => {
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -37,6 +37,7 @@ const Discover = () => {
           <Link
             key={index}
             to={"/category/" + category.id}
+            state={{title:category.name}}
             className="flex flex-col items-center justify-center gap-3 w-[30%] md:w-fit"
           >
             <div

@@ -1,20 +1,20 @@
-import React from "react";
+import { Song } from "../components/cards";
 import { PageLayout } from "../components/layout";
 import { Loader } from "../components/misc";
-import { Song } from "../components/cards";
 
 const Songs = () => {
-  const favoriteSongs = JSON.parse(localStorage.getItem('favoriteSongs'))|| [];
+  const favoriteSongs = JSON.parse(localStorage.getItem("favoriteSongs")) || [];
   console.log(favoriteSongs);
   const renderFavoriteSongs = () => {
     if (!favoriteSongs) {
       return <Loader size={40} />;
     }
 
-    return favoriteSongs
-      .map((song, index) => (
-        <div className="rounded-md px-3 bg-[#333333] w-full"><Song key={index} song={song} /></div>
-      ));
+    return favoriteSongs.map((song, index) => (
+      <div className="rounded-md px-3 bg-[#333333] w-full">
+        <Song key={index} song={song} />
+      </div>
+    ));
   };
 
   return (
