@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CiClock2 } from "react-icons/ci";
 import { useParams } from "react-router-dom";
+import LoadingBar from "react-top-loading-bar";
 import TableSong from "../components/cards/TableSong";
 import { PageLayout } from "../components/layout";
 import { apiRequest } from "../utils";
 import formatMilliseconds from "../utils/formatMilliseconds";
-import TaskList from "../components/loaders/ListLoading";
+import { useAppContext } from "../App";
 const Playlist = () => {
   const [playlist, setPlaylist] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -13,12 +14,13 @@ const Playlist = () => {
     return total + Number(track.duration_ms);
   }, 0);
   const { id } = useParams();
-
+  const { loadingRef } = useAppContext();
   useEffect(() => {
     setLoading(true);
     const fetchPlaylist = async () => {
       setLoading(true);
       try {
+        loadingRef.current?.continuousStart();
         const playlist = await apiRequest({
           url: `playlists/${id}`,
         });
@@ -27,12 +29,12 @@ const Playlist = () => {
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
+        loadingRef.current?.complete();
         setLoading(false);
       }
     };
     fetchPlaylist();
   }, [id]);
-
   return (
     <PageLayout>
       {playlist && (
@@ -89,9 +91,6 @@ const Playlist = () => {
                 );
               })}
             </tbody>
-          </table>
-          <table className="flex justify-stretch px-3 bg-[#434343] w-[100%]">
-            <TaskList />
           </table>
         </div>
       )}

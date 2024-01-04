@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import PageLayout from "../components/layout/PageLayout";
 import { Loader } from "../components/misc";
 import { apiRequest } from "../utils/api";
+import { useAppContext } from "../App";
 
 const Discover = () => {
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
-
+  const { loadingRef } = useAppContext();
   useEffect(() => {
     const fetchCategories = async () => {
+      loadingRef.current?.continuousStart();
+
       setLoading(true);
       try {
         const categories = await apiRequest({
@@ -21,6 +24,8 @@ const Discover = () => {
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
+        loadingRef.current?.complete();
+
         setLoading(false);
       }
     };

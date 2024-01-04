@@ -3,7 +3,7 @@ const LoginButton = () => {
   return (
     <a
       href={`${backendUrl}/auth/login`}
-      className="bg-yellow-400 w-fit px-3 py-1 rounded-md"
+      className="bg-[#251F1F] text-white w-fit px-3 py-1 rounded-md"
     >
       {" "}
       Login

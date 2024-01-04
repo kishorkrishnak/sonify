@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CiClock2 } from "react-icons/ci";
 import { useParams } from "react-router-dom";
 import TableSong from "../components/cards/TableSong";
 import { PageLayout } from "../components/layout";
 import { apiRequest } from "../utils";
 import formatMilliseconds from "../utils/formatMilliseconds";
-import TaskList from "../components/loaders/ListLoading";
+import LoadingBar from "react-top-loading-bar";
+import { useAppContext } from "../App";
 const Album = () => {
   const [album, setAlbum] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -13,12 +14,16 @@ const Album = () => {
     return total + Number(current.duration_ms);
   }, 0);
 
+  const { loadingRef } = useAppContext();
+
   const { id } = useParams();
   useEffect(() => {
     setLoading(true);
     const fetchArtist = async () => {
       setLoading(true);
       try {
+        loadingRef.current?.continuousStart();
+
         const album = await apiRequest({
           url: `https://api.spotify.com/v1/albums/${id}`,
         });
@@ -27,6 +32,7 @@ const Album = () => {
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
+        loadingRef.current?.complete();
         setLoading(false);
       }
     };
@@ -78,12 +84,8 @@ const Album = () => {
                 <TableSong track={track} index={index} key={index}></TableSong>
               );
             })}
-              <div className="pl-4 flex justify-stretch bg-red-400 w-[100%]">
-           <TaskList/>
-            </div>
           </tbody>
         </table>
-        <div></div>
       </div>
     </PageLayout>
   );

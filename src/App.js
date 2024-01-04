@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
@@ -21,6 +21,8 @@ import SpotifyStats from "./pages/SpotifyStats/SpotifyStats";
 import TopArtists from "./pages/SpotifyStats/TopArtists";
 import TopGenres from "./pages/SpotifyStats/TopGenres";
 import TopTracks from "./pages/SpotifyStats/TopTracks";
+import UserProfile from "./pages/UserProfile";
+import LoadingBar from "react-top-loading-bar";
 
 const AppContext = createContext();
 
@@ -43,6 +45,7 @@ function App() {
 
     getToken();
   }, []);
+  const loadingRef = useRef(null);
 
   const contextValues = {
     playingTrack,
@@ -54,6 +57,7 @@ function App() {
     colorTheme,
     setColorTheme,
     isLoggedIn: token ? true : false,
+    loadingRef,
   };
 
   return (
@@ -61,6 +65,8 @@ function App() {
       {token && playingTrack ? (
         <NowPlaying accessToken={token} playingTrack={playingTrack} />
       ) : null}
+
+      <LoadingBar color="#f11946" ref={loadingRef} />
 
       <Router>
         <ScrollToTop>
@@ -76,7 +82,7 @@ function App() {
             <Route path="/stats" element={<SpotifyStats />}></Route>
             <Route path="/stats/toptracks" element={<TopTracks />}></Route>
             <Route path="/stats/topartists" element={<TopArtists />}></Route>
-            <Route path="/profile" element={<TopGenres />}></Route>
+            <Route path="/profile" element={<UserProfile />}></Route>
             <Route path="/stats/topgenres" element={<TopGenres />}></Route>
             <Route
               path="/playlistbuilder"

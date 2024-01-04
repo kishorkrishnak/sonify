@@ -20,7 +20,7 @@ const SpotifyStats = () => {
 
   return (
     <PageLayout>
-      <div className="bg-[#212121] gap-3 py-14 flex flex-col items-center justify-center">
+      <div className="border-b border-[#a7a7a7] gap-3 py-14 flex flex-col items-center justify-center">
         <p className="text-3xl text-black dark:text-white font-bold ">
           Stats for Spotify
         </p>

@@ -18,7 +18,7 @@ const Searchbar = ({ searchQuery, setSearchQuery }) => {
           <div className="z-30 flex items-center justify-center">
             <FaSearch color="white" />
             <input
-              className="text-black dark:text-white placeholder:text-sm placeholder:text-[grey] pl-2.5 outline-none  dark:bg-[#2A2A2A] bg-[#F6F6F6]"
+              className=" text-black dark:text-white placeholder:text-sm placeholder:text-[grey] pl-2.5 outline-none  dark:bg-[#2A2A2A] bg-[#F6F6F6] w-[100%] sm:w-[300px]"
               placeholder="Search Artist, Albums, Songs"
               type="text"
               onChange={(e) => setSearchQuery(e.target.value)}

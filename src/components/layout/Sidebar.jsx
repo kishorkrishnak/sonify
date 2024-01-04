@@ -24,15 +24,14 @@ const Sidebar = () => {
       icon: <PiMusicNotesPlus color={iconColor} size={23} />,
     },
     {
-      path: "/radio",
-      text: "Radio",
-      icon: <IoIosRadio color={iconColor} size={23} />,
+      path: "/artists",
+      text: "Favorite Artists",
+      icon: <FaUserNinja color={iconColor} size={23} />,
     },
-
     {
-      path: "/foryou",
-      text: "For you",
-      icon: <FaUserCheck color={iconColor} size={23} />,
+      path: "/songs",
+      text: "Favorite Songs",
+      icon: <TbMusicHeart color={iconColor} size={23} />,
     },
   ];
   const bottomLinks = [
@@ -51,31 +50,22 @@ const Sidebar = () => {
       text: "Playlist Builder",
       icon: <BiSolidPlaylist color={iconColor} size={23} />,
     },
-    {
-      path: "/artists",
-      text: "Favorite Artists",
-      icon: <FaUserNinja color={iconColor} size={23} />,
-    },
-    {
-      path: "/songs",
-      text: "Favorite Songs",
-      icon: <TbMusicHeart color={iconColor} size={23} />,
-    },
+  
   ];
   return (
     <nav className="ml-[6px] flex flex-col rounded-lg hidden sticky top-0 dark:text-[#a7a7a7] text-black bg-black h-[100vh] w-[290px]  h-[100vh] sm:flex">
-      <nav className="gap-28 px-11 py-16 dark:bg-[#151515] bg-[#F3F3F5] rounded-md">
-        <ul className="flex flex-col gap-5 ">
+      <nav className="gap-28 px-7 py-6 dark:bg-[#151515] bg-[#F3F3F5] rounded-md">
+        <ul className="flex flex-col gap-5">
           <li>
             <a href="/ ">
               <div className="cursor-pointer flex justify-start items-center gap-2">
-                <img className="h-[34px] w-[34px]" src={Logo} alt="" />
+                <img className="h-[34px] w-[34px]" src={Logo} alt="logo" />
                 <p className="text-lg">Melomuse</p>
               </div>
             </a>
           </li>
           {topLinks.map((link, index) => (
-            <li key={index} className="flex justify-start items-center gap-4">
+            <li key={index} className="flex justify-start items-center gap-5">
               {link.icon}
               <a
                 className={`text-md ${
@@ -90,10 +80,10 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      <nav className="gap-28 px-11 py-16 dark:bg-[#151515] bg-[#F3F3F5] rounded-md h-[100%] mt-[6px]">
+      <nav className="gap-28  px-7 py-6 dark:bg-[#151515] bg-[#F3F3F5] rounded-md h-[100%] mt-[6px]">
         <ul className="flex flex-col gap-5">
           {bottomLinks.map((link, index) => (
-            <li key={index} className="flex justify-start items-center gap-4">
+            <li key={index} className="flex justify-start items-center gap-5">
               {link?.icon}
               <a
                 className={`text-md ${

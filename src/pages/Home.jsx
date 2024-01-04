@@ -20,9 +20,10 @@ const Home = () => {
   ];
   return (
     <PageLayout>
+           <TrendingAlbums />
       <TopSongs />
       <RecentlyPlayed />
-      <TrendingAlbums />
+ 
       <FeaturedPlaylists />
       {playlistCategories.map((playlistCategory,index) => (
         <PlaylistCarousel
