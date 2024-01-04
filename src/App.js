@@ -3,8 +3,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import ScrollToTop from "./components/misc/ScrollToTop";
-import NowPlaying from "./components/sections/NowPlaying";
+import { ScrollToTop } from "./components/misc";
+import { NowPlaying } from "./components/sections";
 import {
   Album,
   Artist,
@@ -17,10 +17,10 @@ import {
 import Playlist from "./pages/Playlist";
 import PlaylistBuilder from "./pages/PlaylistBuilder";
 import PlaylistBuilderResults from "./pages/PlaylistBuilderResults";
-import SpotifyStats from "./pages/StatsForSpotify/SpotifyStats";
-import TopArtists from "./pages/StatsForSpotify/TopArtists";
-import TopGenres from "./pages/StatsForSpotify/TopGenres";
-import TopTracks from "./pages/StatsForSpotify/TopTracks";
+import SpotifyStats from "./pages/SpotifyStats/SpotifyStats";
+import TopArtists from "./pages/SpotifyStats/TopArtists";
+import TopGenres from "./pages/SpotifyStats/TopGenres";
+import TopTracks from "./pages/SpotifyStats/TopTracks";
 
 const AppContext = createContext();
 
@@ -28,6 +28,7 @@ function App() {
   const [playingTrack, setPlayingTrack] = useState(null);
   const [play, setPlay] = useState(false);
   const [token, setToken] = useState("");
+  const [colorTheme, setColorTheme] = useState("dark");
 
   useEffect(() => {
     const getToken = async () => {
@@ -35,7 +36,6 @@ function App() {
         const response = await axios.get("/auth/token");
         const accessToken = response.data.access_token;
         setToken(accessToken);
-        localStorage.setItem("token", accessToken);
       } catch (error) {
         console.error("Error fetching token:", error);
       }
@@ -51,6 +51,8 @@ function App() {
     setToken,
     play,
     setPlay,
+    colorTheme,
+    setColorTheme,
     isLoggedIn: token ? true : false,
   };
 
@@ -74,6 +76,7 @@ function App() {
             <Route path="/stats" element={<SpotifyStats />}></Route>
             <Route path="/stats/toptracks" element={<TopTracks />}></Route>
             <Route path="/stats/topartists" element={<TopArtists />}></Route>
+            <Route path="/profile" element={<TopGenres />}></Route>
             <Route path="/stats/topgenres" element={<TopGenres />}></Route>
             <Route
               path="/playlistbuilder"

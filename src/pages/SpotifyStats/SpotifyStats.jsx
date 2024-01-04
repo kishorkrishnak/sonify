@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { PageLayout } from "../../components/layout";
 import { FaChartBar } from "react-icons/fa";
-import { TbPlayerTrackPrevFilled } from "react-icons/tb";
 import { MdOutlineFeaturedPlayList } from "react-icons/md";
+import { TbPlayerTrackPrevFilled } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { PageLayout } from "../../components/layout";
 const Intro = ({ image, title, description }) => {
   return (
     <div className="flex justify-center items-center gap-5">
@@ -49,7 +49,7 @@ const SpotifyStats = () => {
         </div>
       </div>
 
-      <div className="flex flex-col px-6 justify-center items-center gap-14 mt-10">
+      <div className="flex flex-col px-6 justify-center items-center gap-14 mt-10 py-9">
         <Intro
           image={<FaChartBar color="white" size={100} />}
           title={"Your own charts"}

@@ -7,29 +7,32 @@ import { TbMusicHeart } from "react-icons/tb";
 import { useLocation } from "react-router-dom";
 import { Logo } from "../../assets/images";
 import { FaChartBar } from "react-icons/fa";
+import { useAppContext } from "../../App";
 const Sidebar = () => {
+  const { colorTheme } = useAppContext();
+  const iconColor = colorTheme === "dark" ? "#a7a7a7" : "black";
   const { pathname } = useLocation();
   const topLinks = [
     {
       path: "/",
       text: "Home",
-      icon: <AiFillHome color="white" size={23} />,
+      icon: <AiFillHome color={iconColor} size={23} />,
     },
     {
       path: "/discover",
       text: "Discover",
-      icon: <PiMusicNotesPlus color="white" size={23} />,
+      icon: <PiMusicNotesPlus color={iconColor} size={23} />,
     },
     {
       path: "/radio",
       text: "Radio",
-      icon: <IoIosRadio color="white" size={23} />,
+      icon: <IoIosRadio color={iconColor} size={23} />,
     },
 
     {
       path: "/foryou",
       text: "For you",
-      icon: <FaUserCheck color="white" size={23} />,
+      icon: <FaUserCheck color={iconColor} size={23} />,
     },
   ];
   const bottomLinks = [
@@ -41,27 +44,27 @@ const Sidebar = () => {
     {
       path: "/stats",
       text: "Spotify Stats",
-      icon: <FaChartBar color="white" size={23} />,
+      icon: <FaChartBar color={iconColor} size={23} />,
     },
     {
       path: "/playlistbuilder",
       text: "Playlist Builder",
-      icon: <BiSolidPlaylist color="white" size={23} />,
+      icon: <BiSolidPlaylist color={iconColor} size={23} />,
     },
     {
       path: "/artists",
       text: "Favorite Artists",
-      icon: <FaUserNinja color="white" size={23} />,
+      icon: <FaUserNinja color={iconColor} size={23} />,
     },
     {
       path: "/songs",
       text: "Favorite Songs",
-      icon: <TbMusicHeart color="white" size={23} />,
+      icon: <TbMusicHeart color={iconColor} size={23} />,
     },
   ];
   return (
-    <nav className="flex flex-col rounded-lg mt-[6px] hidden sticky top-0 dark:text-white text-black bg-black h-[100vh] w-[290px]  h-[100vh] sm:flex">
-      <nav className="gap-28 px-11 py-16 dark:bg-[#151515] bg-[#F3F3F5]">
+    <nav className="ml-[6px] flex flex-col rounded-lg hidden sticky top-0 dark:text-[#a7a7a7] text-black bg-black h-[100vh] w-[290px]  h-[100vh] sm:flex">
+      <nav className="gap-28 px-11 py-16 dark:bg-[#151515] bg-[#F3F3F5] rounded-md">
         <ul className="flex flex-col gap-5 ">
           <li>
             <a href="/ ">
@@ -76,7 +79,7 @@ const Sidebar = () => {
               {link.icon}
               <a
                 className={`text-md ${
-                  pathname === link.path ? "text-[#F0EF2A]" : ""
+                  pathname === link.path ? "text-white" : ""
                 }`}
                 href={link.path}
               >
@@ -87,14 +90,14 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      <nav className="gap-28 px-11 py-16 dark:bg-[#151515] bg-[#F3F3F5] h-[100%] mt-[6px]">
+      <nav className="gap-28 px-11 py-16 dark:bg-[#151515] bg-[#F3F3F5] rounded-md h-[100%] mt-[6px]">
         <ul className="flex flex-col gap-5">
           {bottomLinks.map((link, index) => (
             <li key={index} className="flex justify-start items-center gap-4">
               {link?.icon}
               <a
                 className={`text-md ${
-                  pathname === link.path ? "text-[#F0EF2A]" : ""
+                  pathname === link.path ? "text-white" : ""
                 }`}
                 href={link.path}
               >

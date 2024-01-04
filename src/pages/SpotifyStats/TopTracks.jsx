@@ -92,9 +92,10 @@ const TopTracks = () => {
           </TabPanel>
         </Tabs>
       </div>
-              
-              <button className="bg-green-600 hover:bg-green-800 text-white w-fit mx-auto mt-2 p-4 py-2 rounded-md">Create Playlist</button>
 
+      <button className="bg-green-600 hover:bg-green-800 text-white w-fit mx-auto mt-3 p-4 py-2 rounded-md">
+        Create Playlist
+      </button>
     </PageLayout>
   );
 };

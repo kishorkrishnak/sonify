@@ -5,6 +5,7 @@ import TableSong from "../components/cards/TableSong";
 import { PageLayout } from "../components/layout";
 import { apiRequest } from "../utils";
 import formatMilliseconds from "../utils/formatMilliseconds";
+import TaskList from "../components/loaders/ListLoading";
 const Album = () => {
   const [album, setAlbum] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -77,6 +78,9 @@ const Album = () => {
                 <TableSong track={track} index={index} key={index}></TableSong>
               );
             })}
+              <div className="pl-4 flex justify-stretch bg-red-400 w-[100%]">
+           <TaskList/>
+            </div>
           </tbody>
         </table>
         <div></div>

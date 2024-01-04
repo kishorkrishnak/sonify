@@ -4,12 +4,13 @@ import { IconContext } from "react-icons";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { useAppContext } from "../../App";
 import { convertMsToMinSec, notifyLoginRequired } from "../../utils";
+import { Link } from "react-router-dom";
 
 const Song = ({ song }) => {
   const handleHeartClick = (song) => {
     const previousFavorites =
       JSON.parse(localStorage.getItem("favoriteSongs")) || [];
-  
+
     if (heartActive) {
       const updatedFavorites = previousFavorites.filter(
         (favorite) => favorite.id !== song.id
@@ -22,15 +23,10 @@ const Song = ({ song }) => {
       setHeartActive(true);
     }
   };
-  
+
   const [heartActive, setHeartActive] = useState(false);
-  const {
-    setPlayingTrack,
-    playingTrack,
-    isLoggedIn,
-    setPlay,
-    play,
-  } = useAppContext();
+  const { setPlayingTrack, playingTrack, isLoggedIn, setPlay, play } =
+    useAppContext();
 
   useEffect(() => {
     const isFavorite = (
@@ -49,8 +45,6 @@ const Song = ({ song }) => {
     }
   };
 
-
-
   return (
     <div className="w-full flex justify-between sm:pr-4 py-2">
       <div className="flex items-center justify-center gap-3">
@@ -63,7 +57,12 @@ const Song = ({ song }) => {
           <p className="text-black dark:text-[white] text-md font-semibold">
             {song?.name}
           </p>
-          <p className="text-[#A6A6A6] text-xs">{song?.artists[0]?.name}</p>
+          <Link
+            to={`artist/${song?.artists[0]?.id}`}
+            className="text-[#A6A6A6] text-xs cursor-pointer"
+          >
+            {song?.artists[0]?.name}
+          </Link>
         </div>
       </div>
 
@@ -101,7 +100,7 @@ const Song = ({ song }) => {
                 border: "none",
               }}
               isActive={heartActive}
-              onClick={()=>{handleHeartClick(song)}}
+              onClick={() => handleHeartClick(song)}
             />
           </div>
         </div>

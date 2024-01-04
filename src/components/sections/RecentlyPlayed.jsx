@@ -5,11 +5,13 @@ import { IconContext } from "react-icons";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { notifyLoginRequired } from "../../utils";
 import Heart from "react-heart";
+import { Link } from "react-router-dom";
 
 const RecentlyPlayed = () => {
   const [heartActive, setHeartActive] = useState(false);
-   
-    const { play, setPlay, playingTrack, isLoggedIn, setPlayingTrack } = useAppContext();
+
+  const { play, setPlay, playingTrack, isLoggedIn, setPlayingTrack } =
+    useAppContext();
 
   const [recentlyPlayedTrack, setRecenlyPlayedTrack] = useState();
   useEffect(() => {
@@ -22,12 +24,12 @@ const RecentlyPlayed = () => {
   return (
     <>
       {recentlyPlayedTrack ? (
-        <div className="carousel-container px-3 sm:px-6 pb-9 pt-2 flex flex-col justify-center">
+        <div className="px-3 sm:px-6 pb-9 pt-2 flex flex-col justify-center">
           <p className="mb-5 text-2xl text-black dark:text-white font-bold ">
             Recently Played
           </p>
 
-          <div className="rounded-md p-2 flex items-center justify-between gap-3 bg-[#1B1B1B] w-[100%] sm:w-[500px]">
+          <div className="rounded-md p-2 flex items-center justify-between gap-3 bg-[#F6F6F6] dark:bg-[#212121] hover:bg-[#999999] dark:hover:bg-[#333333] w-[100%] sm:w-[500px]">
             <div className="flex items-center justify-center gap-2">
               <img
                 className="rounded-md h-[50px] w-[50px]"
@@ -38,9 +40,12 @@ const RecentlyPlayed = () => {
                 <p className="text-black dark:text-white text-md font-semibold">
                   {recentlyPlayedTrack?.name}
                 </p>
-                <p className="text-[#EF6A61] text-xs">
+                <Link
+                  to={`/artist/${recentlyPlayedTrack?.artists[0]?.id}`}
+                  className="text-black dark:text-[#EF6A61] text-xs"
+                >
                   {recentlyPlayedTrack?.artists[0]?.name}
-                </p>
+                </Link>
               </div>
             </div>
 

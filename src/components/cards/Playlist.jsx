@@ -9,7 +9,7 @@ const Playlist = ({ playlist }) => {
   };
 
   return (
-    <div className="flex items-center justify-center w-fit p-4 pb-6  bg-[#212121] hover:bg-[#333333] rounded-md cursor-pointer">
+    <div className="grow flex items-center justify-center w-[100%] sm:w-fit p-4 pb-6 bg-[#F6F6F6] dark:bg-[#212121] hover:bg-[#999999] dark:hover:bg-[#333333] rounded-md cursor-pointer">
       <div
         onClick={handlePlaylistClick}
         className="flex flex-col justify-center items-start gap-2 w-[145px] duration-200 transition-all z-20"

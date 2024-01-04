@@ -8,7 +8,7 @@ const Album = ({ album }) => {
   };
 
   return (
-    <div className="flex items-center justify-center w-fit p-4 pb-6 bg-[#212121] hover:bg-[#333333] rounded-md cursor-pointer">
+    <div className="flex items-center justify-center w-fit p-4 pb-6 bg-[#F6F6F6] dark:bg-[#212121] hover:bg-[#999999] dark:hover:bg-[#333333] rounded-md cursor-pointer">
       <div
         onClick={handleAlbumClick}
         className="flex flex-col justify-center items-start gap-2 w-[145px] duration-200 transition-all z-20"
@@ -22,10 +22,12 @@ const Album = ({ album }) => {
           {album.name.substring(0, 15)} {album.name.length >= 10 && "..."}
         </p>
 
-        <p className="text-[#A6A6A6] text-xs">
+        <p className="text-black dark:text-[#A6A6A6]  text-xs">
           {album?.release_date?.substring(0, 4)}
         </p>
-        <p className="text-[#A6A6A6] text-xs">{album?.artists[0]?.name}</p>
+        <p className="text-black dark:text-[#A6A6A6] text-xs">
+          {album?.artists[0]?.name}
+        </p>
       </div>
     </div>
   );

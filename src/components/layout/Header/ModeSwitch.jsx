@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Switch from "react-switch";
 import { useDarkMode } from "../../../hooks";
+import { useAppContext } from "../../../App";
 
 const ModeSwitch = () => {
+  const { setColorTheme } = useAppContext();
   const [colorTheme, setTheme] = useDarkMode();
   const [darkSide, setDarkSide] = useState(
     colorTheme === "light" ? true : false
@@ -10,6 +12,7 @@ const ModeSwitch = () => {
 
   const toggleDarkMode = (checked) => {
     setTheme(colorTheme);
+    setColorTheme(colorTheme);
     setDarkSide(checked);
   };
   return (

@@ -8,7 +8,7 @@ const FeaturedPlaylists = () => {
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    
+
     responsive: [
       { breakpoint: 768, settings: { slidesToShow: 2 } },
       { breakpoint: 968, settings: { slidesToShow: 3 } },
@@ -42,13 +42,12 @@ const FeaturedPlaylists = () => {
         Featured Playlists
       </p>
       <div className="px-7">
-      <Slider {...settings}>
-        {playlists.map((playlist, index) => (
-          <Playlist key={index} playlist={playlist} />
-        ))}
-      </Slider>
+        <Slider {...settings}>
+          {playlists.map((playlist, index) => (
+            <Playlist key={index} playlist={playlist} />
+          ))}
+        </Slider>
       </div>
-    
     </div>
   );
 };

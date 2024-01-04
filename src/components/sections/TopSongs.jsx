@@ -44,14 +44,11 @@ const TopSongs = () => {
         <p className="text-3xl text-black dark:text-white font-bold">Popular</p>
         <Link
           to={"/category/0JQ5DAqbMKFGvOw3O4nLAf"}
-          state={{title:"K-Pop"}}
-          
+          state={{ title: "K-Pop" }}
           style={{
-            backgroundPosition: "center",
-            backgroundSize: "cover",
             backgroundImage: `url(${Pop})`,
           }}
-          className="cursor-pointer flex items-center justify-center rounded-lg min-h-[300px] h-[100%] w-full"
+          className="flex items-center justify-center cursor-pointer bg-cover bg-center rounded-lg min-h-[300px] h-[100%] w-full"
         >
           <p className="text-white font-bold text-5xl">K-Pop</p>
         </Link>
