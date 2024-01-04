@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { useAppContext } from "../App";
 import PageLayout from "../components/layout/PageLayout";
 import { Loader } from "../components/misc";
 import { apiRequest } from "../utils/api";
-import { useAppContext } from "../App";
 
 const Discover = () => {
   const [loading, setLoading] = useState(true);
@@ -38,9 +39,9 @@ const Discover = () => {
       <h1 className="text-white text-3xl ml-6 font-bold">Categories</h1>
       <div className="grid grid-cols-2 justify-items-center pt-5 px-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-10">
         {/* <div className="p-6 flex justify-center flex-wrap gap-x-3 md:gap-x-10 gap-y-10 w"> */}
-        {categories.map((category, index) => (
+        {categories.map((category) => (
           <Link
-            key={index}
+            key={uuidv4()}
             to={"/category/" + category.id}
             state={{ title: category.name }}
             className="flex flex-col grow w-[100%] items-center justify-center gap-3"

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { v4 as uuidv4 } from "uuid";
 import { apiRequest } from "../../utils/api";
 import { Album } from "../cards";
+
 const LatestAlbums = () => {
   const settings = {
     infinite: true,
@@ -63,8 +65,8 @@ const LatestAlbums = () => {
       </p>
      <div className="px-7">
      <Slider {...settings}>
-        {albums?.map((album, index) => (
-          <Album key={index} album={album}></Album>
+        {albums?.map((album) => (
+          <Album key={uuidv4()} album={album}></Album>
         ))}
       </Slider>
      </div>

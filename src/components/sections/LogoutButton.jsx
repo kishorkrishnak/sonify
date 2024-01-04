@@ -37,7 +37,7 @@ const LogoutButton = () => {
           error: <b>Could not logout.</b>,
         })
       }
-      className="bg-yellow-400 w-fit px-3 py-1 rounded-md"
+      className="bg-[#3C3E4D] text-white w-fit px-3 py-1 rounded-md"
     >
       {" "}
       Logout

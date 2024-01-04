@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { apiRequest } from "../../utils/api";
 import Playlist from "../cards/Playlist";
+import { v4 as uuidv4 } from "uuid";
 
 const PlaylistCarousel = ({ id, title }) => {
   const settings = {
@@ -17,7 +18,7 @@ const PlaylistCarousel = ({ id, title }) => {
     ],
   };
 
-  const [playlists, setPlaylists] = useState([]);
+  const [playlists, setPlaylists] = useState(null);
 
   useEffect(() => {
     const fetchPlaylists = async () => {
@@ -36,18 +37,22 @@ const PlaylistCarousel = ({ id, title }) => {
   }, []);
 
   return (
-    <div className="carousel-container pb-8 flex flex-col justify-center">
-      <p className="mb-5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
-        {title}
-      </p>
-      <div className="px-7">
-        <Slider {...settings}>
-          {playlists.map((playlist, index) => (
-            <Playlist key={index} playlist={playlist} />
-          ))}
-        </Slider>
-      </div>
-    </div>
+    <>
+      {playlists && (
+        <div className="carousel-container pb-8 flex flex-col justify-center">
+          <p className="mb-5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
+            {title}
+          </p>
+          <div className="px-7">
+            <Slider {...settings}>
+              {playlists.map((playlist) => (
+                <Playlist key={uuidv4()} playlist={playlist} />
+              ))}
+            </Slider>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

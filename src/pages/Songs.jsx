@@ -1,6 +1,7 @@
 import { Song } from "../components/cards";
 import { PageLayout } from "../components/layout";
 import { Loader } from "../components/misc";
+import { v4 as uuidv4 } from "uuid";
 
 const Songs = () => {
   const favoriteSongs = JSON.parse(localStorage.getItem("favoriteSongs")) || [];
@@ -12,7 +13,7 @@ const Songs = () => {
 
     return favoriteSongs.map((song, index) => (
       <div className="rounded-md px-3 bg-[#333333] w-full">
-        <Song key={index} song={song} />
+        <Song key={uuidv4()} song={song} />
       </div>
     ));
   };

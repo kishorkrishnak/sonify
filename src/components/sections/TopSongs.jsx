@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { useAppContext } from "../../App";
 import { Pop } from "../../assets/images";
 import { apiRequest } from "../../utils/api";
 import { Song } from "../cards";
 import { Loader } from "../misc";
-import LoadingBar from "react-top-loading-bar";
-import { useAppContext } from "../../App";
 const TopSongs = () => {
   const [topSongs, setTopSongs] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -39,7 +39,7 @@ const TopSongs = () => {
 
     return topSongs
       .slice(0, 6)
-      .map((song, index) => <Song key={index} song={song.track} />);
+      .map((song) => <Song key={uuidv4()} song={song.track} />);
   };
 
   return (

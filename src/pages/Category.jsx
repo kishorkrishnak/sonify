@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { useAppContext } from "../App";
 import Playlist from "../components/cards/Playlist";
 import PageLayout from "../components/layout/PageLayout";
-import TaskList from "../components/loaders/ListLoading";
 import { apiRequest } from "../utils/api";
-import { useAppContext } from "../App";
 
 const Category = () => {
   const [category, setCategory] = useState(null);
@@ -35,8 +35,8 @@ const Category = () => {
       <h1 className="text-white text-3xl ml-6 font-bold">{title}</h1>
       <div className="grid grid-cols-2 justify-items-center pt-5 px-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 gap-y-10">
         {category &&
-          category.map((playlist, index) => (
-            <Playlist playlist={playlist} key={index} />
+          category.map((playlist) => (
+            <Playlist playlist={playlist} key={uuidv4()} />
           ))}
       </div>
     </PageLayout>

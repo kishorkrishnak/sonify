@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { v4 as uuidv4 } from "uuid";
+import { useAppContext } from "../../App";
 import TopTracksSong from "../../components/cards/TopTracksSong";
 import { PageLayout } from "../../components/layout";
 import { apiRequest } from "../../utils";
@@ -22,7 +24,7 @@ const TopTracksSongList = ({ tracks }) => {
     <table className="text-black dark:text-white mt-2 w-[100%]">
       <tbody className="w-[100%]">
         {tracks?.map((track, index) => (
-          <TopTracksSong track={track} index={index} key={index} />
+          <TopTracksSong track={track} index={index} key={uuidv4} />
         ))}
       </tbody>
     </table>
@@ -33,8 +35,11 @@ const TopTracks = () => {
   const [loading, setLoading] = useState(false);
   const [tracks, setTracks] = useState([]);
   const [timeFrame, setTimeframe] = useState(TIMEFRAMES.SHORT_TERM);
+  const { loadingRef } = useAppContext();
 
   const fetchTopTracks = async () => {
+    loadingRef.current?.continuousStart();
+
     setLoading(true);
     try {
       const tracks = await apiRequest({
@@ -45,6 +50,8 @@ const TopTracks = () => {
     } catch (error) {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
+      loadingRef.current?.complete();
+
       setLoading(false);
     }
   };

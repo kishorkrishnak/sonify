@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { PageLayout } from "../components/layout";
 import FeaturedArtists from "../components/sections/FeaturedArtists";
 import FeaturedPlaylists from "../components/sections/FeaturedPlaylists";
@@ -27,7 +28,7 @@ const Home = () => {
       <FeaturedPlaylists />
       {playlistCategories.map((playlistCategory,index) => (
         <PlaylistCarousel
-        key={index}
+        key={uuidv4()}
           id={playlistCategory.id}
           title={playlistCategory.title}
         />

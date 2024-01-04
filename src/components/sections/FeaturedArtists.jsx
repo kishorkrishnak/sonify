@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { apiRequest } from "../../utils/api";
 import { Artist } from "../cards";
 
@@ -41,8 +42,8 @@ const FeaturedArtists = () => {
 
       <div className="flex w-[100%] flex-wrap gap-x-6 gap-y-10 sm:justify-start">
         {popularArtists &&
-          popularArtists.slice(0, 12).map((artist, index) => {
-            return <Artist artist={artist} key={index} />;
+          popularArtists.slice(0, 12).map((artist) => {
+            return <Artist artist={artist} key={uuidv4()} />;
           })}
       </div>
     </div>

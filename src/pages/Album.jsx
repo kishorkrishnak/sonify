@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CiClock2 } from "react-icons/ci";
 import { useParams } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import TableSong from "../components/cards/TableSong";
 import { PageLayout } from "../components/layout";
 import { apiRequest } from "../utils";
 import formatMilliseconds from "../utils/formatMilliseconds";
-import LoadingBar from "react-top-loading-bar";
+
 import { useAppContext } from "../App";
 const Album = () => {
   const [album, setAlbum] = useState(null);
@@ -79,9 +80,9 @@ const Album = () => {
           </thead>
 
           <tbody>
-            {album?.tracks?.items?.map((track, index) => {
+            {album?.tracks?.items?.map((track,index) => {
               return (
-                <TableSong track={track} index={index} key={index}></TableSong>
+                <TableSong track={track} index={index} key={uuidv4()}></TableSong>
               );
             })}
           </tbody>

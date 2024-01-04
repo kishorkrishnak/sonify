@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { v4 as uuidv4 } from "uuid";
 import { apiRequest } from "../../utils/api";
 import Playlist from "../cards/Playlist";
 
@@ -43,8 +44,8 @@ const FeaturedPlaylists = () => {
       </p>
       <div className="px-7">
         <Slider {...settings}>
-          {playlists.map((playlist, index) => (
-            <Playlist key={index} playlist={playlist} />
+          {playlists.map((playlist) => (
+            <Playlist key={uuidv4()} playlist={playlist} />
           ))}
         </Slider>
       </div>

@@ -1,11 +1,12 @@
 import { AiFillHome } from "react-icons/ai";
 import { BiSolidPlaylist } from "react-icons/bi";
-import { FaUserCheck, FaUserNinja } from "react-icons/fa6";
-import { IoIosRadio, IoMdAlbums } from "react-icons/io";
+import { FaUserNinja } from "react-icons/fa6";
 import { PiMusicNotesPlus } from "react-icons/pi";
 import { TbMusicHeart } from "react-icons/tb";
 import { useLocation } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import { Logo } from "../../assets/images";
+
 import { FaChartBar } from "react-icons/fa";
 import { useAppContext } from "../../App";
 const Sidebar = () => {
@@ -35,11 +36,6 @@ const Sidebar = () => {
     },
   ];
   const bottomLinks = [
-    // {
-    //   path: "/albums",
-    //   text: "Albums",
-    //   icon: <IoMdAlbums color="white" size={23} />,
-    // },
     {
       path: "/stats",
       text: "Spotify Stats",
@@ -50,7 +46,6 @@ const Sidebar = () => {
       text: "Playlist Builder",
       icon: <BiSolidPlaylist color={iconColor} size={23} />,
     },
-  
   ];
   return (
     <nav className="ml-[6px] flex flex-col rounded-lg hidden sticky top-0 dark:text-[#a7a7a7] text-black bg-black h-[100vh] w-[290px]  h-[100vh] sm:flex">
@@ -64,8 +59,11 @@ const Sidebar = () => {
               </div>
             </a>
           </li>
-          {topLinks.map((link, index) => (
-            <li key={index} className="flex justify-start items-center gap-5">
+          {topLinks.map((link) => (
+            <li
+              key={uuidv4()}
+              className="flex justify-start items-center gap-5"
+            >
               {link.icon}
               <a
                 className={`text-md ${
@@ -82,8 +80,11 @@ const Sidebar = () => {
 
       <nav className="gap-28  px-7 py-6 dark:bg-[#151515] bg-[#F3F3F5] rounded-md h-[100%] mt-[6px]">
         <ul className="flex flex-col gap-5">
-          {bottomLinks.map((link, index) => (
-            <li key={index} className="flex justify-start items-center gap-5">
+          {bottomLinks.map((link) => (
+            <li
+              key={uuidv4()}
+              className="flex justify-start items-center gap-5"
+            >
               {link?.icon}
               <a
                 className={`text-md ${

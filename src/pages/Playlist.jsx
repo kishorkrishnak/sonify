@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CiClock2 } from "react-icons/ci";
 import { useParams } from "react-router-dom";
-import LoadingBar from "react-top-loading-bar";
+import { v4 as uuidv4 } from "uuid";
 import TableSong from "../components/cards/TableSong";
 import { PageLayout } from "../components/layout";
+
+import { useAppContext } from "../App";
 import { apiRequest } from "../utils";
 import formatMilliseconds from "../utils/formatMilliseconds";
-import { useAppContext } from "../App";
 const Playlist = () => {
   const [playlist, setPlaylist] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -86,7 +87,7 @@ const Playlist = () => {
                   <TableSong
                     track={track.track}
                     index={index}
-                    key={index}
+                    key={uuidv4()}
                   ></TableSong>
                 );
               })}
