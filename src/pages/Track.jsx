@@ -1,13 +1,13 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { PageLayout } from "../components/layout";
 import { apiRequest } from "../utils/api";
 import { useAppContext } from "../App";
 
-const Artist = () => {
+const Track = () => {
   const [artist, setArtist] = useState(null);
   const [loading, setLoading] = useState(true);
-  const {loadingRef} = useAppContext()
+  const { loadingRef } = useAppContext();
   const { id } = useParams();
   useEffect(() => {
     const fetchArtist = async () => {
@@ -20,10 +20,11 @@ const Artist = () => {
           url: `https://api.spotify.com/v1/artists/${id}`,
         });
         setArtist(artist);
+        console.log(artist);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
-      loadingRef.current?.complete();
+        loadingRef.current?.complete();
 
         setLoading(false);
       }
@@ -50,4 +51,4 @@ const Artist = () => {
   );
 };
 
-export default Artist;
+export default Track;

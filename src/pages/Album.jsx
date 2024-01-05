@@ -80,9 +80,13 @@ const Album = () => {
           </thead>
 
           <tbody>
-            {album?.tracks?.items?.map((track,index) => {
+            {album?.tracks?.items?.map((track, index) => {
               return (
-                <TableSong track={track} index={index} key={uuidv4()}></TableSong>
+                <TableSong
+                  track={track}
+                  index={index}
+                  key={uuidv4()}
+                ></TableSong>
               );
             })}
           </tbody>

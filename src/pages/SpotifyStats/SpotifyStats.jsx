@@ -1,11 +1,9 @@
-import React, { useState } from "react";
 import { FaChartBar } from "react-icons/fa";
 import { MdOutlineFeaturedPlayList } from "react-icons/md";
 import { TbPlayerTrackPrevFilled } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
-import { PageLayout } from "../../components/layout";
 import { useAppContext } from "../../App";
-import toast from "react-hot-toast";
+import { PageLayout } from "../../components/layout";
 import { notifyLoginRequired } from "../../utils";
 const Intro = ({ image, title, description }) => {
   return (
@@ -19,16 +17,15 @@ const Intro = ({ image, title, description }) => {
   );
 };
 const SpotifyStats = () => {
-  const {isLoggedIn} = useAppContext()
+  const { isLoggedIn } = useAppContext();
 
-  const [query, setQuery] = useState("");
-  const navigate = useNavigate()
-  const handleButtonClick = (e,path) =>{
-e.preventDefault();
-if(!isLoggedIn) return notifyLoginRequired()
+  const navigate = useNavigate();
+  const handleButtonClick = (e, path) => {
+    e.preventDefault();
+    if (!isLoggedIn) return notifyLoginRequired();
 
-navigate(`/stats/${path}`)
-  }
+    navigate(`/stats/${path}`);
+  };
   return (
     <PageLayout>
       <div className="border-b border-[#a7a7a7] gap-3 py-14 flex flex-col items-center justify-center">
@@ -40,21 +37,19 @@ navigate(`/stats/${path}`)
         </p>
         <div className="flex flex-col items-center justify-center gap-3 mt-7">
           <Link
-          onClick={(e)=>handleButtonClick(e,"toptracks")}
+            onClick={(e) => handleButtonClick(e, "toptracks")}
             className="rounded-md bg-green-700 p-2 text-white w-[300px] flex justify-center items-center"
           >
             Top Tracks
           </Link>
           <Link
-                    onClick={(e)=>handleButtonClick(e,"topartists")}
-
+            onClick={(e) => handleButtonClick(e, "topartists")}
             className="rounded-md bg-green-700 p-2 text-white w-[300px] flex justify-center items-center"
           >
             Top Artists
           </Link>
           <Link
-                      onClick={(e)=>handleButtonClick(e,"topgenres")}
-
+            onClick={(e) => handleButtonClick(e, "topgenres")}
             className="rounded-md bg-green-700 p-2 text-white w-[300px] flex justify-center items-center"
           >
             Top Genres

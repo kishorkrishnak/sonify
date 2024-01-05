@@ -11,7 +11,6 @@ const FeaturedArtists = () => {
   const isVisible = useIsVisible(elemRef);
   useEffect(() => {
     const fetchFeaturedArtists = async () => {
-      console.log("yoyo");
       setLoading(true);
       try {
         const artists = await apiRequest({
@@ -27,7 +26,7 @@ const FeaturedArtists = () => {
           return acc;
         }, []);
 
-        setPopularArtists(popularArtists);
+        setPopularArtists(popularArtists.slice(0, 12));
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
@@ -40,16 +39,15 @@ const FeaturedArtists = () => {
   return (
     <div
       ref={elemRef}
-      className="flex flex-col items-start px-3 sm:pr-6 pl-6 sm:pl-7 mt-6 gap-5 sm:mb-2 lg:mb-7 "
+      className="flex flex-col items-start px-3 sm:px-6 mt-6 gap-5 sm:mb-2 lg:mb-7"
     >
       {isVisible && popularArtists && (
         <>
           <p className="text-2xl text-black dark:text-white font-bold">
             Featured Artists
           </p>
-
-          <div className="flex w-[100%] flex-wrap gap-x-6 gap-y-10 sm:justify-start">
-            {popularArtists?.slice(0, 12)?.map((artist) => {
+          <div className="w-[100%] grid grid-cols-2 justify-items-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-y-10">
+            {popularArtists?.map((artist) => {
               return <Artist artist={artist} key={uuidv4()} />;
             })}
           </div>

@@ -79,7 +79,7 @@ const TopArtists = () => {
           <TabPanel className="w-[90%]">
             <table className="text-black dark:text-white mt-2 w-[100%] ">
               <tbody className="w-[100%]">
-               <FeaturedArtists/>
+                <FeaturedArtists />
               </tbody>
             </table>
           </TabPanel>

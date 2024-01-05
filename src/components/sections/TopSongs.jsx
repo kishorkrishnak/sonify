@@ -19,7 +19,7 @@ const TopSongs = () => {
           url: "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF",
         });
 
-        setTopSongs(response?.tracks?.items);
+        setTopSongs(response?.tracks?.items?.slice(0, 6));
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
@@ -37,14 +37,11 @@ const TopSongs = () => {
       return <Loader size={40} />;
     }
 
-    return topSongs
-      .slice(0, 6)
-      .map((song) => <Song key={uuidv4()} song={song.track} />);
+    return topSongs?.map((song) => <Song key={uuidv4()} song={song.track} />);
   };
 
   return (
     <div className="popular flex flex-col pb-9 gap-6 lg:gap-0 lg:flex-row justify-between px-3 sm:px-6">
-      {/* Section 1: Popular */}
       <div className="w-full lg:w-[48%] flex flex-col items-start justify-start gap-5">
         <p className="text-2xl text-black dark:text-white font-bold">Popular</p>
         <Link
@@ -59,7 +56,6 @@ const TopSongs = () => {
         </Link>
       </div>
 
-      {/* Section 2: Top Songs */}
       <div className="w-full lg:w-[48%] flex flex-col items-start justify-start gap-4">
         <p className="text-2xl text-black dark:text-white font-bold">
           Top Songs

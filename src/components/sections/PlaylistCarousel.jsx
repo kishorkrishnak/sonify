@@ -1,25 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import Slider from "react-slick";
-import { apiRequest } from "../../utils/api";
-import Playlist from "../cards/Playlist";
+import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import useIsVisible from "../../hooks/useIsVisible";
+import { apiRequest } from "../../utils/api";
+import Playlist from "../cards/Playlist";
 
 const PlaylistCarousel = ({ id, title }) => {
   const elemRef = useRef();
   const isVisible = useIsVisible(elemRef);
-  const settings = {
-    infinite: true,
-    speed: 500,
-    slidesToScroll: 1,
-    responsive: [
-      { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 968, settings: { slidesToShow: 3 } },
-      { breakpoint: 1100, settings: { slidesToShow: 4 } },
-      { breakpoint: 1370, settings: { slidesToShow: 5 } },
-      { breakpoint: 2000, settings: { slidesToShow: 6 } },
-    ],
-  };
 
   const [playlists, setPlaylists] = useState(null);
 
@@ -41,21 +29,19 @@ const PlaylistCarousel = ({ id, title }) => {
 
   return (
     <>
-      <div
-        ref={elemRef}
-        className="carousel-container pb-8 flex flex-col justify-center"
-      >
+      <div ref={elemRef} className="pb-4 flex flex-col justify-center">
         {isVisible && playlists && (
           <>
-            <p className="mb-5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
-              {title}
+            <p className="flex justify-between items-end mb-2.5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
+              <span>{title}</span>
+              <Link className="text-[#B3B3B3] text-xs" to={"/view/all"}>
+                View All
+              </Link>
             </p>
-            <div className="px-7">
-              <Slider {...settings}>
-                {playlists.map((playlist) => (
-                  <Playlist key={uuidv4()} playlist={playlist} />
-                ))}
-              </Slider>
+            <div className="h-[290px] overflow-hidden px-3 sm:px-6 grid grid-cols-2 justify-items-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-4">
+              {playlists.map((playlist) => (
+                <Playlist key={uuidv4()} playlist={playlist} />
+              ))}
             </div>
           </>
         )}
