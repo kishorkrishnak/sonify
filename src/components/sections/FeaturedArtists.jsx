@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { apiRequest } from "../../utils/api";
 import { Artist } from "../cards";
+import useIsVisible from "../../hooks/useIsVisible";
 
 const FeaturedArtists = () => {
   const [popularArtists, setPopularArtists] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const elemRef = useRef();
+  const isVisible = useIsVisible(elemRef);
   useEffect(() => {
     const fetchFeaturedArtists = async () => {
+      console.log("yoyo");
       setLoading(true);
       try {
         const artists = await apiRequest({
@@ -31,21 +34,27 @@ const FeaturedArtists = () => {
         setLoading(false);
       }
     };
-    fetchFeaturedArtists();
-  }, []);
+    if (isVisible) fetchFeaturedArtists();
+  }, [isVisible]);
 
   return (
-    <div className="flex flex-col items-start px-3 sm:pr-6 pl-6 sm:pl-7 mt-6 gap-5 sm:mb-2 lg:mb-7 ">
-      <p className="text-2xl text-black dark:text-white font-bold">
-        Featured Artists
-      </p>
+    <div
+      ref={elemRef}
+      className="flex flex-col items-start px-3 sm:pr-6 pl-6 sm:pl-7 mt-6 gap-5 sm:mb-2 lg:mb-7 "
+    >
+      {isVisible && popularArtists && (
+        <>
+          <p className="text-2xl text-black dark:text-white font-bold">
+            Featured Artists
+          </p>
 
-      <div className="flex w-[100%] flex-wrap gap-x-6 gap-y-10 sm:justify-start">
-        {popularArtists &&
-          popularArtists.slice(0, 12).map((artist) => {
-            return <Artist artist={artist} key={uuidv4()} />;
-          })}
-      </div>
+          <div className="flex w-[100%] flex-wrap gap-x-6 gap-y-10 sm:justify-start">
+            {popularArtists?.slice(0, 12)?.map((artist) => {
+              return <Artist artist={artist} key={uuidv4()} />;
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 };

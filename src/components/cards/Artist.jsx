@@ -23,7 +23,7 @@ const Artist = ({ artist }) => {
     <>
       {artistInfo && (
         <Link
-          className={`px-4 py-4 pb-7 flex flex-col justify-center items-center text-black dark:text-white gap-1 w-[29%] sm:h-fit sm:w-fit rounded-md bg-[#F6F6F6] dark:bg-[#212121] hover:bg-[#999999] dark:hover:bg-[#333333]`}
+          className={`transition all px-4 py-4 pb-7 flex flex-col justify-center items-center text-black dark:text-white gap-1 w-[29%] sm:h-fit sm:w-fit rounded-md bg-[#F6F6F6] dark:bg-[#212121] hover:bg-[#999999] dark:hover:bg-[#333333]`}
           to={`/artist/${artistInfo.id}`}
         >
           <img

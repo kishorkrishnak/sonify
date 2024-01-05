@@ -1,6 +1,6 @@
 import { toast } from "react-hot-toast";
 export const notifyLoginRequired = () =>
-  toast("Login to enjoy music streaming!", {
+  toast("Login required for this feature", {
     duration: 1600,
-    icon: "🧑🏻‍🎤",
+    icon: "🔐",
   });

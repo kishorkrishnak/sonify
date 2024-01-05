@@ -2,15 +2,18 @@ import  { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { PageLayout } from "../components/layout";
 import { apiRequest } from "../utils/api";
+import { useAppContext } from "../App";
 
 const Artist = () => {
   const [artist, setArtist] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const {loadingRef} = useAppContext()
   const { id } = useParams();
   useEffect(() => {
-    setLoading(true);
     const fetchArtist = async () => {
+      setLoading(true);
+      loadingRef.current?.continuousStart();
+
       setLoading(true);
       try {
         const artist = await apiRequest({
@@ -21,6 +24,8 @@ const Artist = () => {
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
+      loadingRef.current?.complete();
+
         setLoading(false);
       }
     };

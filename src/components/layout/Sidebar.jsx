@@ -26,12 +26,12 @@ const Sidebar = () => {
     },
     {
       path: "/artists",
-      text: "Favorite Artists",
+      text: "Liked Artists",
       icon: <FaUserNinja color={iconColor} size={23} />,
     },
     {
       path: "/songs",
-      text: "Favorite Songs",
+      text: "Liked Songs",
       icon: <TbMusicHeart color={iconColor} size={23} />,
     },
   ];

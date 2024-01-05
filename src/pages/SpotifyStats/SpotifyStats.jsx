@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { FaChartBar } from "react-icons/fa";
 import { MdOutlineFeaturedPlayList } from "react-icons/md";
 import { TbPlayerTrackPrevFilled } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PageLayout } from "../../components/layout";
+import { useAppContext } from "../../App";
+import toast from "react-hot-toast";
+import { notifyLoginRequired } from "../../utils";
 const Intro = ({ image, title, description }) => {
   return (
     <div className="flex justify-center items-center gap-5">
@@ -16,8 +19,16 @@ const Intro = ({ image, title, description }) => {
   );
 };
 const SpotifyStats = () => {
-  const [query, setQuery] = useState("");
+  const {isLoggedIn} = useAppContext()
 
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate()
+  const handleButtonClick = (e,path) =>{
+e.preventDefault();
+if(!isLoggedIn) return notifyLoginRequired()
+
+navigate(`/stats/${path}`)
+  }
   return (
     <PageLayout>
       <div className="border-b border-[#a7a7a7] gap-3 py-14 flex flex-col items-center justify-center">
@@ -29,19 +40,21 @@ const SpotifyStats = () => {
         </p>
         <div className="flex flex-col items-center justify-center gap-3 mt-7">
           <Link
-            to={"/stats/toptracks"}
+          onClick={(e)=>handleButtonClick(e,"toptracks")}
             className="rounded-md bg-green-700 p-2 text-white w-[300px] flex justify-center items-center"
           >
             Top Tracks
           </Link>
           <Link
-            to={"/stats/topartists"}
+                    onClick={(e)=>handleButtonClick(e,"topartists")}
+
             className="rounded-md bg-green-700 p-2 text-white w-[300px] flex justify-center items-center"
           >
             Top Artists
           </Link>
           <Link
-            to={"/stats/topgenres"}
+                      onClick={(e)=>handleButtonClick(e,"topgenres")}
+
             className="rounded-md bg-green-700 p-2 text-white w-[300px] flex justify-center items-center"
           >
             Top Genres

@@ -35,10 +35,10 @@ const Discover = () => {
 
   return (
     <PageLayout>
-      {loading && <Loader size={80}></Loader>}
-      <h1 className="text-white text-3xl ml-6 font-bold">Categories</h1>
+      <h1 className="text-black dark:text-white text-3xl ml-6 font-bold">
+        Categories
+      </h1>
       <div className="grid grid-cols-2 justify-items-center pt-5 px-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-10">
-        {/* <div className="p-6 flex justify-center flex-wrap gap-x-3 md:gap-x-10 gap-y-10 w"> */}
         {categories.map((category) => (
           <Link
             key={uuidv4()}
@@ -50,7 +50,9 @@ const Discover = () => {
               style={{ backgroundImage: `url(${category.icons[0].url})` }}
               className={`bg-no-repeat bg-cover bg-center rounded-lg flex items-center justify-center w-[100%] h-[170px]`}
             ></div>
-            <p className="text-2xl text-white">{category.name}</p>
+            <p className="text-black dark:text-white text-2xl">
+              {category.name}
+            </p>
           </Link>
         ))}
       </div>

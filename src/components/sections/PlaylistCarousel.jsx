@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { apiRequest } from "../../utils/api";
 import Playlist from "../cards/Playlist";
 import { v4 as uuidv4 } from "uuid";
+import useIsVisible from "../../hooks/useIsVisible";
 
 const PlaylistCarousel = ({ id, title }) => {
+  const elemRef = useRef();
+  const isVisible = useIsVisible(elemRef);
   const settings = {
     infinite: true,
     speed: 500,
@@ -33,25 +36,30 @@ const PlaylistCarousel = ({ id, title }) => {
       }
     };
 
-    fetchPlaylists();
-  }, []);
+    if (isVisible) fetchPlaylists();
+  }, [isVisible]);
 
   return (
     <>
-      {playlists && (
-        <div className="carousel-container pb-8 flex flex-col justify-center">
-          <p className="mb-5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
-            {title}
-          </p>
-          <div className="px-7">
-            <Slider {...settings}>
-              {playlists.map((playlist) => (
-                <Playlist key={uuidv4()} playlist={playlist} />
-              ))}
-            </Slider>
-          </div>
-        </div>
-      )}
+      <div
+        ref={elemRef}
+        className="carousel-container pb-8 flex flex-col justify-center"
+      >
+        {isVisible && playlists && (
+          <>
+            <p className="mb-5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
+              {title}
+            </p>
+            <div className="px-7">
+              <Slider {...settings}>
+                {playlists.map((playlist) => (
+                  <Playlist key={uuidv4()} playlist={playlist} />
+                ))}
+              </Slider>
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 };
