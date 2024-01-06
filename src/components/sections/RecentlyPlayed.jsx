@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Song } from "../cards";
-import { useAppContext } from "../../App";
+import Heart from "react-heart";
 import { IconContext } from "react-icons";
 import { FaPause, FaPlay } from "react-icons/fa";
-import { notifyLoginRequired } from "../../utils";
-import Heart from "react-heart";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../../App";
+import { notifyLoginRequired } from "../../utils";
 
 const RecentlyPlayed = () => {
   const [heartActive, setHeartActive] = useState(false);
@@ -37,12 +36,15 @@ const RecentlyPlayed = () => {
                 alt="track"
               />
               <div className="flex flex-col items-start justify-center ml-1">
-                <p className="text-black dark:text-white text-md font-semibold">
+                <Link
+                  to={`/track/${recentlyPlayedTrack?.id}`}
+                  className="text-black dark:text-white text-md font-semibold"
+                >
                   {recentlyPlayedTrack?.name}
-                </p>
+                </Link>
                 <Link
                   to={`/artist/${recentlyPlayedTrack?.artists[0]?.id}`}
-                  className="text-black dark:text-[#EF6A61] text-xs"
+                  className="text-black dark:text-[#A6A6A6] text-xs"
                 >
                   {recentlyPlayedTrack?.artists[0]?.name}
                 </Link>

@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import { CiClock2 } from "react-icons/ci";
-import { useParams } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import TableSong from "../components/cards/TableSong";
+import { Link, useParams } from "react-router-dom";
+import { useAppContext } from "../App";
 import { PageLayout } from "../components/layout";
+import SongsTable from "../components/sections/SongsTable";
 import { apiRequest } from "../utils";
 import formatMilliseconds from "../utils/formatMilliseconds";
-
-import { useAppContext } from "../App";
 const Album = () => {
   const [album, setAlbum] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -42,56 +39,38 @@ const Album = () => {
 
   return (
     <PageLayout>
-      <div className="flex flex-col">
-        <div className="popular flex flex-col gap-6 lg:gap-0 justify-between px-3 sm:px-6">
-          <div className="flex items-center gap-5">
-            <img
-              src={album?.images[0]?.url}
-              className="h-[180px] w-[170px] rounded-lg"
-              alt={album?.name}
-            />
-            <div className="flex flex-col">
-              <h1 className="text-white text-sm">Album</h1>
+      {album && (
+        <div className="flex flex-col">
+          <div className="popular flex flex-col py-6  gap-6 lg:gap-0 justify-between px-3 sm:px-6">
+            <div className="flex items-center gap-5">
+              <img
+                src={album?.images[0]?.url}
+                className="h-[180px] w-[170px] rounded-lg"
+                alt={album?.name}
+              />
+              <div className="flex flex-col">
+                <h1 className="text-white text-sm">Album</h1>
+                <h1 className="text-white text-4xl font-bold mt-2">
+                  {album?.name}
+                </h1>
 
-              <h1 className="text-white text-4xl font-bold mt-2">
-                {album?.name}
-              </h1>
+                <Link
+                  to={`/artist/${album?.artists[0]?.id}`}
+                  className="text-white mt-2"
+                >
+                  {album?.artists[0]?.name}
+                </Link>
 
-              <h1 className="text-white mt-2">{album?.artists[0]?.name}</h1>
-
-              <h1 className="text-white">
-                {album?.total_tracks} Songs • {formatMilliseconds(minutes)} mins
-              </h1>
+                <h1 className="text-white">
+                  {album?.total_tracks} Songs • {formatMilliseconds(minutes)}{" "}
+                  mins
+                </h1>
+              </div>
             </div>
           </div>
+          <SongsTable songs={album?.tracks?.items} />
         </div>
-
-        <table className="text-black dark:text-white mt-8 ">
-          <thead className="border-b border-[grey] ">
-            <tr>
-              <td className="pl-3 sm:pl-6 text-[grey] pb-2">#</td>
-              <td className="text-[grey]">Title</td>
-              <td className="pr-3 sm:pr-6 text-[grey]">
-                {" "}
-                <CiClock2 color="grey" />
-              </td>
-              <td></td>
-            </tr>
-          </thead>
-
-          <tbody>
-            {album?.tracks?.items?.map((track, index) => {
-              return (
-                <TableSong
-                  track={track}
-                  index={index}
-                  key={uuidv4()}
-                ></TableSong>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      )}
     </PageLayout>
   );
 };

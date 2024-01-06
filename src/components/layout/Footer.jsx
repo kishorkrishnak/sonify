@@ -2,21 +2,38 @@ import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { footerLinks } from "../../utils";
 
 const Footer = () => {
+  const footerLinks = [
+    {
+      id: "01",
+      title: "Company",
+      links: ["Home", "About Us", "Services", "Our Team"],
+    },
+    {
+      id: "02",
+      title: "Policy",
+      links: ["Policies", "Contact", "FAQ"],
+    },
+    {
+      id: "03",
+      title: "Support",
+      links: ["Account", "Support Center", "Feedback", "Accessibility"],
+    },
+  ];
+
   return (
     <footer className="text-black">
       <div className="bg-white dark:bg-[#151515] ">
         <div className="border-b border-[#444444] container pt-20 pb-10 mx-auto flex justify-between flex-col lg:flex-row pr-10">
-          <div className="w-fit flex gap-20 justify-start -mb-10 -px-4">
+          <div className="w-fit flex gap-20 justify-start -mb-10 -px-4 flex-wrap">
             {footerLinks.map(({ id, title, links }) => (
               <div className="w-auto px-4" key={uuidv4()}>
                 <h2 className="font-medium text-black dark:text-white tracking-widest text-sm mb-3">
                   {title}
                 </h2>
 
-                <div className="mb-10 flex flex-col gap-3 ">
+                <div className="mb-10 flex flex-col gap-3">
                   {links.map((link, index) => (
                     <Link
                       key={uuidv4()}

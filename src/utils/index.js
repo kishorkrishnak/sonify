@@ -1,15 +1,13 @@
+import { useOutsideAlerter } from "../hooks/useOutsideAlerter";
 import { apiRequest } from "./api";
+import cleanHtmlTags from "./cleanHtmlTags";
 import convertMsToMinSec from "./convertMsToMinSec";
-import { footerLinks } from "./data";
 import formatMilliseconds from "./formatMilliseconds";
 import { notifyLoginRequired } from "./notifyLoginRequired";
-import { useOutsideAlerter } from "../hooks/useOutsideAlerter";
-import cleanHtmlTags from "./cleanHtmlTags";
 export {
-  apiRequest,
-  convertMsToMinSec,
-  footerLinks,
+  apiRequest, cleanHtmlTags, convertMsToMinSec,
+
   formatMilliseconds,
-  notifyLoginRequired, useOutsideAlerter,cleanHtmlTags
+  notifyLoginRequired, useOutsideAlerter
 };
 

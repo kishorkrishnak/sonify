@@ -7,6 +7,7 @@ import { PageLayout } from "../components/layout";
 import { useAppContext } from "../App";
 import { apiRequest } from "../utils";
 import formatMilliseconds from "../utils/formatMilliseconds";
+import SongsTable from "../components/sections/SongsTable";
 const Playlist = () => {
   const [playlist, setPlaylist] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -39,8 +40,8 @@ const Playlist = () => {
     <PageLayout>
       {playlist && (
         <div className="rounded-md flex flex-col">
-          <div className="popular mx-4 rounded-md py-6 flex flex-col gap-6 lg:gap-0 justify-between px-3">
-            <div className="flex items-center gap-5">
+          <div className="rounded-md px-3 sm:px-6 py-6 flex flex-col gap-6 lg:gap-0 justify-between">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-5">
               <img
                 src={playlist?.images[0]?.url}
                 className="h-[180px] w-[180px] rounded-lg"
@@ -49,7 +50,7 @@ const Playlist = () => {
               <div className="flex flex-col">
                 <h1 className="text-white text-sm">Playlist</h1>
 
-                <h1 className="texy-black dark:text-white text-5xl font-bold mt-2">
+                <h1 className="texy-black dark:text-white text-xl md:text-5xl font-bold mt-2">
                   {playlist?.name}
                 </h1>
 
@@ -67,31 +68,7 @@ const Playlist = () => {
             </div>
           </div>
 
-          <table className="text-black dark:text-white mt-8 ">
-            <thead className="border-b border-[grey]">
-              <tr className="mb-3">
-                <td className="pl-3 sm:pl-6 text-[grey] pb-1">#</td>
-                <td className="text-[grey]">Title</td>
-                <td className="pr-3 sm:pr-6 text-[grey]">
-                  {" "}
-                  <CiClock2 color="grey" />
-                </td>
-                <td></td>
-              </tr>
-            </thead>
-
-            <tbody>
-              {playlist?.tracks?.items?.map((track, index) => {
-                return (
-                  <TableSong
-                    track={track.track}
-                    index={index}
-                    key={uuidv4()}
-                  ></TableSong>
-                );
-              })}
-            </tbody>
-          </table>
+          <SongsTable songs={playlist?.tracks?.items} />
         </div>
       )}
     </PageLayout>

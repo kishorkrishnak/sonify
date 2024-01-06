@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Heart from "react-heart";
 import { IconContext } from "react-icons";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { useAppContext } from "../../App";
 import { notifyLoginRequired } from "../../utils";
 import convertMsToMinSec from "../../utils/convertMsToMinSec";
+import { Link } from "react-router-dom";
+import HeartButton from "../sections/HeartButton";
 
 const TopTracksSong = ({ index, track }) => {
   const handleHeartClick = (song) => {
@@ -54,9 +56,17 @@ const TopTracksSong = ({ index, track }) => {
           )}
 
           <div>
-            
-            <p className="text-sm sm:text-md">{track?.name}</p>
-            <p className="text-[#A6A6A6] text-xs">{artistsJoined}</p>
+            <Link to={`/track/${track?.id}`} className="text-sm sm:text-md">
+              {track?.name}
+            </Link>
+            <p className="text-[#A6A6A6] text-xs">
+              {track?.artists?.map((artist, index) => (
+                <React.Fragment key={artist?.id}>
+                  <Link to={`/artist/${artist?.id}`}>{artist?.name}</Link>
+                  {index !== track.artists.length - 1 && ", "}
+                </React.Fragment>
+              ))}
+            </p>
           </div>
         </div>
       </td>
@@ -94,21 +104,10 @@ const TopTracksSong = ({ index, track }) => {
               />
             </IconContext.Provider>
           )}
-          <div style={{ width: "2rem" }}>
-            <Heart
-              animationScale={1.25}
-              inactiveColor="white"
-              style={{
-                height: "17px",
-                fill: heartActive ? "red" : "white",
-                border: "none",
-              }}
-              isActive={heartActive}
-              onClick={() => {
-                handleHeartClick(track);
-              }}
-            />
-          </div>
+          <HeartButton
+            heartActive={heartActive}
+            handleHeartClick={() => handleHeartClick(track)}
+          />
         </div>
       </td>
     </tr>

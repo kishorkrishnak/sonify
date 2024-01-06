@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { PageLayout } from "../../components/layout";
-import { apiRequest } from "../../utils";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { PageLayout } from "../../components/layout";
 import FeaturedArtists from "../../components/sections/FeaturedArtists";
+import { apiRequest } from "../../utils";
 const TopArtists = () => {
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);

@@ -28,25 +28,23 @@ const PlaylistCarousel = ({ id, title }) => {
   }, [isVisible]);
 
   return (
-    <>
-      <div ref={elemRef} className="pb-4 flex flex-col justify-center">
-        {isVisible && playlists && (
-          <>
-            <p className="flex justify-between items-end mb-2.5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
-              <span>{title}</span>
-              <Link className="text-[#B3B3B3] text-xs" to={"/view/all"}>
-                View All
-              </Link>
-            </p>
-            <div className="h-[290px] overflow-hidden px-3 sm:px-6 grid grid-cols-2 justify-items-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-4">
-              {playlists.map((playlist) => (
-                <Playlist key={uuidv4()} playlist={playlist} />
-              ))}
-            </div>
-          </>
-        )}
-      </div>
-    </>
+    <div ref={elemRef} className="pb-4 flex flex-col justify-center">
+      {isVisible && playlists && (
+        <>
+          <p className="flex justify-between items-end mb-2.5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
+            <span>{title}</span>
+            <Link className="text-black dark:text-[#B3B3B3] text-xs" to={"/view/all"}>
+              View All
+            </Link>
+          </p>
+          <div className="h-[285px] overflow-hidden px-3 sm:px-6 grid grid-cols-2 justify-items-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-4">
+            {playlists.map((playlist) => (
+              <Playlist key={uuidv4()} playlist={playlist} />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 

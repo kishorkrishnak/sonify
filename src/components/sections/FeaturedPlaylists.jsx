@@ -42,7 +42,7 @@ const FeaturedPlaylists = () => {
     <div className="carousel-container pb-2 flex flex-col justify-center">
       <p className="flex justify-between items-end mb-2.5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
         <span>Featured Playlists</span>
-        <Link className="text-[#B3B3B3] text-xs" to={"/view/all"}>
+        <Link className="text-black dark:text-[#B3B3B3] text-xs" to={"/view/all"}>
           View All
         </Link>
       </p>

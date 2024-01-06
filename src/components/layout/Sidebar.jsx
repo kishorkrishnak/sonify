@@ -5,7 +5,6 @@ import { PiMusicNotesPlus } from "react-icons/pi";
 import { TbMusicHeart } from "react-icons/tb";
 import { useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { Logo } from "../../assets/images";
 
 import { FaChartBar } from "react-icons/fa";
 import { useAppContext } from "../../App";
@@ -48,17 +47,10 @@ const Sidebar = () => {
     },
   ];
   return (
-    <nav className="ml-[6px] flex flex-col rounded-lg hidden sticky top-0 dark:text-[#a7a7a7] text-black bg-black h-[100vh] w-[290px]  h-[100vh] sm:flex">
+    <nav className="ml-[6px] flex flex-col rounded-lg hidden sticky top-0 dark:text-[#a7a7a7] text-black bg-black h-[100vh] w-[290px] h-[100vh] lg:flex">
       <nav className="gap-28 px-7 py-6 dark:bg-[#151515] bg-[#F3F3F5] rounded-md">
         <ul className="flex flex-col gap-5">
-          <li>
-            <a href="/ ">
-              <div className="cursor-pointer flex justify-start items-center gap-2">
-                <img className="h-[34px] w-[34px]" src={Logo} alt="logo" />
-                <p className="text-lg">Melomuse</p>
-              </div>
-            </a>
-          </li>
+          <li></li>
           {topLinks.map((link) => (
             <li
               key={uuidv4()}
@@ -66,8 +58,10 @@ const Sidebar = () => {
             >
               {link.icon}
               <a
-                className={`text-md ${
-                  pathname === link.path ? "text-white" : ""
+                className={`text-sm font-bold ${
+                  pathname === link.path && !colorTheme === "light"
+                    ? "text-white"
+                    : ""
                 }`}
                 href={link.path}
               >
@@ -87,7 +81,7 @@ const Sidebar = () => {
             >
               {link?.icon}
               <a
-                className={`text-md ${
+                className={`text-sm font-bold ${
                   pathname === link.path ? "text-white" : ""
                 }`}
                 href={link.path}

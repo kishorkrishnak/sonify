@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Heart from "react-heart";
 import { IconContext } from "react-icons";
 import { FaPause, FaPlay } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { useAppContext } from "../../App";
 import { convertMsToMinSec, notifyLoginRequired } from "../../utils";
-import { Link } from "react-router-dom";
+import HeartButton from "../sections/HeartButton";
 
 const Song = ({ song }) => {
+  const { colorTheme } = useAppContext();
+  const iconColor = colorTheme === "dark" ? "white" : "black";
   const handleHeartClick = (song) => {
     const previousFavorites =
       JSON.parse(localStorage.getItem("favoriteSongs")) || [];
 
     if (heartActive) {
       const updatedFavorites = previousFavorites.filter(
-        (favorite) => favorite.id !== song.id
+        (favorite) => favorite?.id !== song?.id
       );
       localStorage.setItem("favoriteSongs", JSON.stringify(updatedFavorites));
       setHeartActive(false);
@@ -31,7 +34,7 @@ const Song = ({ song }) => {
   useEffect(() => {
     const isFavorite = (
       JSON.parse(localStorage.getItem("favoriteSongs")) || []
-    ).some((favoriteSong) => favoriteSong.id === song.id);
+    ).some((favoriteSong) => favoriteSong?.id === song?.id);
 
     if (isFavorite) setHeartActive(true);
   }, [song.id]);
@@ -54,12 +57,15 @@ const Song = ({ song }) => {
           className="h-[38px] w-[38px] rounded-md"
         />
         <div className="flex flex-col items-start justify-center ml-1">
-          <p className="text-black dark:text-[white] text-md font-semibold">
+          <Link
+            to={`track/${song?.id}`}
+            className="text-black dark:text-[white] text-md font-semibold"
+          >
             {song?.name}
-          </p>
+          </Link>
           <Link
             to={`artist/${song?.artists[0]?.id}`}
-            className="text-[#A6A6A6] text-xs cursor-pointer"
+            className="text-black dark:text-[#A6A6A6] text-xs cursor-pointer"
           >
             {song?.artists[0]?.name}
           </Link>
@@ -73,7 +79,7 @@ const Song = ({ song }) => {
         <div className="flex items-center justify-center gap-3">
           {play && song?.id === playingTrack?.id ? (
             <IconContext.Provider
-              value={{ color: "white", className: "pauseIcon" }}
+              value={{ color: iconColor, className: "pauseIcon" }}
             >
               <FaPause
                 onClick={handlePlayPauseClick}
@@ -82,7 +88,7 @@ const Song = ({ song }) => {
             </IconContext.Provider>
           ) : (
             <IconContext.Provider
-              value={{ color: "white", className: "playIcon" }}
+              value={{ color: iconColor, className: "playIcon" }}
             >
               <FaPlay
                 onClick={handlePlayPauseClick}
@@ -90,19 +96,10 @@ const Song = ({ song }) => {
               />
             </IconContext.Provider>
           )}
-          <div style={{ width: "2rem" }}>
-            <Heart
-              animationScale={1.25}
-              inactiveColor="white"
-              style={{
-                height: "17px",
-                fill: heartActive ? "red" : "white",
-                border: "none",
-              }}
-              isActive={heartActive}
-              onClick={() => handleHeartClick(song)}
-            />
-          </div>
+          <HeartButton
+            heartActive={heartActive}
+            handleHeartClick={() => handleHeartClick(song)}
+          />
         </div>
       </div>
     </div>

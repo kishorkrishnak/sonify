@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Heart from "react-heart";
 import { IconContext } from "react-icons";
 import { FaPause, FaPlay } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { useAppContext } from "../../App";
 import { notifyLoginRequired } from "../../utils";
 import convertMsToMinSec from "../../utils/convertMsToMinSec";
+import AudioSpinner from "../loaders/AudioSpinner";
+import HeartButton from "../sections/HeartButton";
 
 const TableSong = ({ index, track }) => {
   const handleHeartClick = (song) => {
     const previousFavorites =
       JSON.parse(localStorage.getItem("favoriteSongs")) || [];
-  
+
     if (heartActive) {
       const updatedFavorites = previousFavorites.filter(
         (favorite) => favorite.id !== song.id
@@ -23,9 +26,7 @@ const TableSong = ({ index, track }) => {
       setHeartActive(true);
     }
   };
-  
 
-  
   useEffect(() => {
     const isFavorite = (
       JSON.parse(localStorage.getItem("favoriteSongs")) || []
@@ -34,17 +35,26 @@ const TableSong = ({ index, track }) => {
     if (isFavorite) setHeartActive(true);
   }, [track.id]);
 
-  console.log(track);
   const { playingTrack, setPlayingTrack, isLoggedIn, setPlay, play } =
     useAppContext();
-  const artists = [];
-  track?.artists?.forEach((artist) => artists.push(artist.name));
-  const artistsJoined = artists.join(", ");
+
   const [heartActive, setHeartActive] = useState(false);
 
   return (
-    <tr className="cursor-pointer hover:bg-[#3C3E4D]">
-      <td className="py-4 rounded-l-sm pl-3 sm:pl-6 w-[60px]">{index + 1}</td>
+    <tr className="cursor-pointer hover:bg-[#E0E0E0] dark:hover:bg-[#3C3E4D]">
+      <td className="py-4 rounded-l-md pl-3 sm:pl-6 w-[60px]">
+        {play && track?.id === playingTrack?.id ? (
+          <AudioSpinner
+            height={20}
+            width={20}
+            color={"#AFB42B"}
+            radius={9}
+            wrapperStyle={{ marginLeft: -4 }}
+          />
+        ) : (
+          index + 1
+        )}
+      </td>
       <td>
         <div className="flex items-center gap-3">
           {track?.album?.images[0] && (
@@ -56,12 +66,22 @@ const TableSong = ({ index, track }) => {
           )}
 
           <div>
-            {track?.name}
-            <p className="text-[#A6A6A6] text-xs">{artistsJoined}</p>
+            <Link to={`/track/${track?.id}`} className="text-sm sm:text-md">
+              {track?.name}
+            </Link>
+
+            <p className="text-black dark:text-[#A6A6A6] text-xs">
+              {track?.artists?.map((artist, index) => (
+                <React.Fragment key={artist?.id}>
+                  <Link to={`/artist/${artist?.id}`}>{artist?.name}</Link>
+                  {index !== track.artists.length - 1 && ", "}
+                </React.Fragment>
+              ))}
+            </p>
           </div>
         </div>
       </td>
-      <td className="rounded-r-sm pr-3 sm:pr-6">
+      <td className="text-sm sm:text-md rounded-r-sm pr-3 sm:pr-6 ">
         {convertMsToMinSec(track?.duration_ms)}
       </td>
 
@@ -94,21 +114,10 @@ const TableSong = ({ index, track }) => {
               />
             </IconContext.Provider>
           )}
-          <div style={{ width: "2rem" }}>
-            <Heart
-              animationScale={1.25}
-              inactiveColor="white"
-              style={{
-                height: "17px",
-                fill: heartActive ? "red" : "white",
-                border: "none",
-              }}
-              isActive={heartActive}
-              onClick={() => {
-                handleHeartClick(track);
-              }}
-            />
-          </div>
+          <HeartButton
+            heartActive={heartActive}
+            handleHeartClick={() => handleHeartClick(track)}
+          />
         </div>
       </td>
     </tr>

@@ -35,7 +35,7 @@ const Discover = () => {
       <h1 className="text-black dark:text-white text-2xl ml-6 font-bold">
         Categories
       </h1>
-      <div className="grid grid-cols-2 justify-items-center pt-5 px-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-10">
+      <div className="grid grid-cols-2 justify-items-center pt-5 px-3 sm:px-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-10">
         {categories.map((category) => (
           <Link
             key={uuidv4()}
@@ -47,7 +47,7 @@ const Discover = () => {
               style={{ backgroundImage: `url(${category.icons[0].url})` }}
               className={`bg-no-repeat bg-cover bg-center rounded-lg flex items-center justify-center w-[100%] h-[170px] md:h-[240px]`}
             ></div>
-            <p className="text-black dark:text-white text-2xl">
+            <p className="text-black dark:text-white text-md md:text-xl">
               {category.name}
             </p>
           </Link>

@@ -14,7 +14,6 @@ export const apiRequest = async ({ url, data, method, authFlow }) => {
     if (authFlow) {
       const tokenResponse = await axios.get(`${BACKEND_API_URL}/auth/token`);
       accessToken = tokenResponse.data.access_token;
-      
     } else {
       const tokenResponse = await axios.get(`${BACKEND_API_URL}/token`);
       accessToken = tokenResponse.data.access_token;

@@ -5,5 +5,5 @@ import Category from "./Category";
 import Discover from "./Discover";
 import Home from "./Home";
 import Songs from "./Songs";
-export { Album, Artist, Artists, Category, Discover, Home, Songs };
-
+import Track from "./Track";
+export { Album, Artist, Artists, Category, Discover, Home, Songs, Track };

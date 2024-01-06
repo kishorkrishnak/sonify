@@ -50,7 +50,7 @@ const TopSongs = () => {
           style={{
             backgroundImage: `url(${Pop})`,
           }}
-          className="flex items-center justify-center cursor-pointer bg-cover bg-center rounded-lg min-h-[300px] h-[100%] w-full"
+          className="flex items-center justify-center cursor-pointer bg-cover bg-center rounded-lg min-h-[300px] sm:min-h-[500px] lg:min-h-[300px] h-[100%] w-full"
         >
           <p className="text-white font-bold text-5xl">K-Pop</p>
         </Link>

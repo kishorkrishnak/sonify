@@ -13,7 +13,7 @@ const Profile = () => {
           authFlow: true,
         });
         if (response && !response.status) setProfile(response);
-        console.log(response);
+        else setProfile(null);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       }
@@ -25,7 +25,7 @@ const Profile = () => {
       {profile && (
         <ToolTip tip={profile?.display_name}>
           <Link
-            state={{ profile:profile}}
+            state={{ profile: profile }}
             to={"/profile"}
             className="scale-100 hover:scale-105 cursor-pointer"
           >

@@ -7,12 +7,12 @@ const Artist = ({ artist }) => {
 
   useEffect(() => {
     const fetchArtist = async () => {
-      console.log(artist);
       try {
         const artistInfo = await apiRequest({
-          url: `https://api.spotify.com/v1/artists/${artist?.id}`,
+          url: `/artists/${artist?.id}`,
         });
         setArtistInfo(artistInfo);
+        console.log(artistInfo);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       }
@@ -24,11 +24,11 @@ const Artist = ({ artist }) => {
     <>
       {artistInfo && (
         <Link
-          className={`grow px-4 py-4 pb-7 flex flex-col justify-center items-center text-black dark:text-white gap-1 w-[100%] rounded-md bg-[#F6F6F6] dark:bg-[#212121] hover:bg-[#999999] dark:hover:bg-[#333333]`}
-          to={`/artist/${artistInfo.id}`}
+          className={`grow h-[260px] sm:h-fit px-4 py-4 pb-7 flex flex-col justify-center items-center text-black dark:text-white gap-1 w-[100%] rounded-md bg-[#F6F6F6] dark:bg-[#212121] hover:bg-[#999999] dark:hover:bg-[#333333]`}
+          to={`/artist/${artistInfo?.id}`}
         >
           <img
-            className="rounded-full h-[80px] w-[80px] sm:h-[145px] sm:w-[145px]"
+            className="h-[145px] w-[145px] rounded-full"
             src={artistInfo?.images[0]?.url}
             alt="artist"
           />
