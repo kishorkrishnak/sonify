@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { apiRequest } from "../../services/api";
 
 const Artist = ({ artist }) => {
+  console.log(artist);
   const [artistInfo, setArtistInfo] = useState(null);
 
   useEffect(() => {

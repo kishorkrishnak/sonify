@@ -69,7 +69,7 @@ const Album = () => {
               </div>
             </div>
           </div>
-          <SongsTable songs={album?.tracks?.items} />
+          <SongsTable songs={album?.tracks?.items}  showHead />
         </div>
       )}
     </PageLayout>

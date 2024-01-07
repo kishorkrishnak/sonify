@@ -35,8 +35,10 @@ const FeaturedPlaylists = () => {
           View All
         </Link>
       </div>
-      <PlaylistsGrid playlists={playlists}/>
 
+      <div className=" px-3 sm:px-6 ">
+        <PlaylistsGrid playlists={playlists} height={285} />
+      </div>
     </div>
   );
 };

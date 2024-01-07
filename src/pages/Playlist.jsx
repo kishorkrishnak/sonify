@@ -6,11 +6,12 @@ import SongsTable from "../components/sections/SongsTable";
 import { apiRequest } from "../services";
 
 import formatMilliseconds from "../utils/formatMilliseconds";
+import Heart from "react-heart";
 const Playlist = () => {
   const [playlist, setPlaylist] = useState(null);
   const [loading, setLoading] = useState(true);
   const minutes = playlist?.tracks?.items?.reduce((total, { track }) => {
-    return total + Number(track.duration_ms);
+    return total + Number(track?.duration_ms);
   }, 0);
   const { id } = useParams();
   const { loadingRef } = useAppContext();
@@ -66,7 +67,7 @@ const Playlist = () => {
             </div>
           </div>
 
-          <SongsTable songs={playlist?.tracks?.items} />
+          <SongsTable songs={playlist?.tracks?.items} showHead />
         </div>
       )}
     </PageLayout>

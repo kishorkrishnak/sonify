@@ -6,7 +6,6 @@ import Playlist from "../components/cards/Playlist";
 import PageLayout from "../components/layout/PageLayout";
 import { apiRequest } from "../services";
 
-
 const Category = () => {
   const [category, setCategory] = useState(null);
   const { id } = useParams();
@@ -19,9 +18,10 @@ const Category = () => {
 
       try {
         const category = await apiRequest({
-          url: `https://api.spotify.com/v1/browse/categories/${id}/playlists`,
+          url: `/browse/categories/${id}/playlists`,
         });
         setCategory(category?.playlists?.items);
+        console.log(category?.playlists?.items);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {

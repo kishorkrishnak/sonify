@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import { useAppContext } from "../../App";
 import { useIsVisible } from "../../hooks";
 import { apiRequest } from "../../services/api";
-import Playlist from "../cards/Playlist";
+import PlaylistsGrid from "./PlaylistsGrid";
 
 const PlaylistCarousel = ({ id, title }) => {
   const elemRef = useRef();
   const isVisible = useIsVisible(elemRef);
-
+  const { loadingRef } = useAppContext();
   const [playlists, setPlaylists] = useState(null);
 
   useEffect(() => {
     const fetchPlaylists = async () => {
+      loadingRef.current?.continuousStart();
+
       try {
         const response = await apiRequest({
           url: `/browse/categories/${id}/playlists`,
@@ -21,6 +23,8 @@ const PlaylistCarousel = ({ id, title }) => {
         setPlaylists(response?.playlists?.items || []);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
+      } finally {
+        loadingRef.current?.complete();
       }
     };
 
@@ -41,10 +45,8 @@ const PlaylistCarousel = ({ id, title }) => {
               View All
             </Link>
           </div>
-          <div className="h-[285px] overflow-hidden px-3 sm:px-6 grid grid-cols-2 justify-items-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-4">
-            {playlists.map((playlist) => (
-              <Playlist key={uuidv4()} playlist={playlist} />
-            ))}
+          <div className="px-3 sm:px-6">
+            <PlaylistsGrid playlists={playlists} height={285} />
           </div>
         </>
       )}

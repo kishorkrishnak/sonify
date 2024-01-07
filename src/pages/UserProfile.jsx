@@ -5,6 +5,7 @@ import { useAppContext } from "../App";
 import { TableSong, Artist } from "../components/cards";
 import { PageLayout } from "../components/layout";
 import { apiRequest } from "../services";
+import PlaylistsGrid from "../components/sections/PlaylistsGrid";
 
 const UserProfile = () => {
   const location = useLocation();
@@ -13,8 +14,23 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(false);
   const [topTracks, setTopTracks] = useState(null);
   const [topArtists, setTopArtists] = useState(null);
+  const [playlists, setPlaylists] = useState(null);
 
   const { loadingRef } = useAppContext();
+    const fetchUserPlaylists = async () => {
+      setLoading(true);
+      try {
+        const playlists = await apiRequest({
+          url: "/me/playlists",
+          authFlow: true,
+        });
+        setPlaylists(playlists?.items);
+      } catch (error) {
+        console.error("Error fetching data from Spotify API:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
   const fetchTopArtists = async () => {
     console.log(profile);
@@ -27,7 +43,7 @@ const UserProfile = () => {
         authFlow: true,
       });
       setTopArtists(artists?.items);
-      console.log(artists?.items);
+ 
     } catch (error) {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
@@ -38,7 +54,6 @@ const UserProfile = () => {
   };
 
   const fetchTopTracks = async () => {
-    console.log(profile);
     loadingRef.current?.continuousStart();
 
     setLoading(true);
@@ -59,7 +74,9 @@ const UserProfile = () => {
 
   useEffect(() => {
     fetchTopTracks();
+    fetchUserPlaylists()
     fetchTopArtists();
+    
   }, [profile]);
 
   return (
@@ -108,6 +125,25 @@ const UserProfile = () => {
             </tbody>
           </table>
         </div>
+
+        <div className="flex flex-col items-start mt-6 gap-5 sm:mb-2 lg:mb-7">
+          {playlists && (
+            <div className="w-[100%] flex flex-col gap-4">
+              <h1 className="text-black dark:text-white text-xl font-bold flex justify-between items-center">
+                Your Playlists
+                <Link
+                  className="text-black dark:text-[#B3B3B3] text-xs"
+                  to={`/stats/topartists`}
+                >
+                  View All
+                </Link>
+              </h1>
+             <PlaylistsGrid playlists={playlists}/>
+            </div>
+          )}
+        </div>
+
+
 
         <div className="flex flex-col items-start mt-6 gap-5 sm:mb-2 lg:mb-7">
           {topArtists && (

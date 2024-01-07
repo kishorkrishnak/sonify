@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 
 const LikedArtists = () => {
   const favoriteSongs = JSON.parse(localStorage.getItem("favoriteSongs")) || [];
-  console.log(favoriteSongs);
   const renderFavoriteSongs = () => {
     if (!favoriteSongs) {
       return <Loader size={40} />;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useAppContext } from "../../../App";
 import { LoginButton, LogoutButton } from "../../sections";
+import Profile from "../../sections/Profile/Profile";
 import ModeSwitch from "../Header/ModeSwitch";
 import Searchbar from "../Header/Searchbar";
-import Profile from "../../sections/Profile/Profile";
 
 const Header = () => {
   const { token } = useAppContext();
