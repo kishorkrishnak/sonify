@@ -3,7 +3,8 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { PageLayout } from "../../components/layout";
 import FeaturedArtists from "../../components/sections/FeaturedArtists";
-import { apiRequest } from "../../utils";
+import { apiRequest } from "../../services";
+
 const TopArtists = () => {
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);

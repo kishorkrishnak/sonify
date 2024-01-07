@@ -1,4 +1,4 @@
 import useDarkMode from "./useDarkMode";
 import { useOutsideAlerter } from "./useOutsideAlerter";
-
-export { useDarkMode, useOutsideAlerter };
+import useIsVisible from "./useIsVisible";
+export { useDarkMode, useOutsideAlerter, useIsVisible };

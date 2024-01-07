@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
-import { cleanHtmlTags } from "../../utils";
+import { cleanHtmlTags, truncateText } from "../../utils";
 
 const Playlist = ({ playlist }) => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Playlist = ({ playlist }) => {
           alt={`Playlist: ${playlist.name}`}
         />
         <p className="text-black dark:text-white text-sm mt-2 font-bold">
-          {playlist.name.substring(0, 15)} {playlist.name.length >= 10 && "..."}
+          {truncateText(playlist.name, 15)}
         </p>
         <TextTruncate
           line={2}

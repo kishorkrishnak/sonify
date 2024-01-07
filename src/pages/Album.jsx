@@ -3,7 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { useAppContext } from "../App";
 import { PageLayout } from "../components/layout";
 import SongsTable from "../components/sections/SongsTable";
-import { apiRequest } from "../utils";
+import { apiRequest } from "../services";
+
 import formatMilliseconds from "../utils/formatMilliseconds";
 const Album = () => {
   const [album, setAlbum] = useState(null);

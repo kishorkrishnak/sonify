@@ -4,7 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../App";
 import Playlist from "../components/cards/Playlist";
 import PageLayout from "../components/layout/PageLayout";
-import { apiRequest } from "../utils/api";
+import { apiRequest } from "../services";
+
 
 const Category = () => {
   const [category, setCategory] = useState(null);

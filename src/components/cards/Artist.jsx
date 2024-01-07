@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { apiRequest } from "../../utils/api";
+import { apiRequest } from "../../services/api";
 
 const Artist = ({ artist }) => {
   const [artistInfo, setArtistInfo] = useState(null);

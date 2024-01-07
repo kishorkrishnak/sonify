@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { PageLayout } from "../components/layout";
-import { apiRequest } from "../utils";
+import { apiRequest } from "../services";
+
 
 const PlaylistBuilderResults = () => {
   const location = useLocation();

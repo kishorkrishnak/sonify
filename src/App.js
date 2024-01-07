@@ -9,11 +9,11 @@ import { NowPlaying } from "./components/sections";
 import {
   Album,
   Artist,
-  Artists,
   Category,
   Discover,
   Home,
-  Songs,
+  LikedArtists,
+  LikedSongs,
   Track,
 } from "./pages";
 import Playlist from "./pages/Playlist";
@@ -76,8 +76,8 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/profile" element={<UserProfile />}></Route>
             <Route path="/discover" element={<Discover />}></Route>
-            <Route path="/artists" element={<Artists />}></Route>
-            <Route path="/songs" element={<Songs />}></Route>
+            <Route path="/artists" element={<LikedArtists />}></Route>
+            <Route path="/songs" element={<LikedSongs />}></Route>
             <Route path="/category/:id" element={<Category />}></Route>
             <Route path="/artist/:id" element={<Artist />}></Route>
             <Route path="/album/:id" element={<Album />}></Route>

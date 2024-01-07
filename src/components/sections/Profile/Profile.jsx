@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { apiRequest } from "../../../utils";
-import ToolTip from "../../misc/ToolTip";
+import { useEffect, useState } from "react";
+import { apiRequest } from "../../../services";
+
 import { Link } from "react-router-dom";
+import ToolTip from "../../misc/ToolTip";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -12,7 +13,7 @@ const Profile = () => {
           url: "/me",
           authFlow: true,
         });
-        if (response && !response.status) setProfile(response);
+        if (response && response?.type === "user") setProfile(response);
         else setProfile(null);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);

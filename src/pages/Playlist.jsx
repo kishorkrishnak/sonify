@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { CiClock2 } from "react-icons/ci";
 import { useParams } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import TableSong from "../components/cards/TableSong";
-import { PageLayout } from "../components/layout";
 import { useAppContext } from "../App";
-import { apiRequest } from "../utils";
-import formatMilliseconds from "../utils/formatMilliseconds";
+import { PageLayout } from "../components/layout";
 import SongsTable from "../components/sections/SongsTable";
+import { apiRequest } from "../services";
+
+import formatMilliseconds from "../utils/formatMilliseconds";
 const Playlist = () => {
   const [playlist, setPlaylist] = useState(null);
   const [loading, setLoading] = useState(true);

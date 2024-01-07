@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppContext } from "../App";
 import { PageLayout } from "../components/layout";
-import { apiRequest } from "../utils/api";
+import { apiRequest } from "../services";
+
 
 const Artist = () => {
   const [artist, setArtist] = useState(null);

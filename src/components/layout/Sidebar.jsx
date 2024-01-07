@@ -1,17 +1,32 @@
-import { AiFillHome } from "react-icons/ai";
-import { BiSolidPlaylist } from "react-icons/bi";
-import { FaUserNinja } from "react-icons/fa6";
-import { PiMusicNotesPlus } from "react-icons/pi";
-import { TbMusicHeart } from "react-icons/tb";
 import { useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-
-import { FaChartBar } from "react-icons/fa";
 import { useAppContext } from "../../App";
+
+import { AiFillHome } from "react-icons/ai";
+import { BiSolidPlaylist } from "react-icons/bi";
+import { FaUserNinja, FaChartBar } from "react-icons/fa";
+import { PiMusicNotesPlus } from "react-icons/pi";
+import { TbMusicHeart } from "react-icons/tb";
+
+const SidebarLink = ({ link, pathname, colorTheme }) => (
+  <li key={uuidv4()} className="flex justify-start items-center gap-5">
+    {link.icon}
+    <a
+      className={`text-sm font-bold ${
+        pathname === link.path && colorTheme !== "light" ? "text-white" : ""
+      }`}
+      href={link.path}
+    >
+      {link.text}
+    </a>
+  </li>
+);
+
 const Sidebar = () => {
   const { colorTheme } = useAppContext();
   const iconColor = colorTheme === "dark" ? "#a7a7a7" : "black";
   const { pathname } = useLocation();
+
   const topLinks = [
     {
       path: "/",
@@ -34,6 +49,7 @@ const Sidebar = () => {
       icon: <TbMusicHeart color={iconColor} size={23} />,
     },
   ];
+
   const bottomLinks = [
     {
       path: "/stats",
@@ -46,49 +62,31 @@ const Sidebar = () => {
       icon: <BiSolidPlaylist color={iconColor} size={23} />,
     },
   ];
+
   return (
-    <nav className="ml-[6px] flex flex-col rounded-lg hidden sticky top-0 dark:text-[#a7a7a7] text-black bg-black h-[100vh] w-[290px] h-[100vh] lg:flex">
-      <nav className="gap-28 px-7 py-6 dark:bg-[#151515] bg-[#F3F3F5] rounded-md">
+    <nav className="hidden lg:flex flex-col h-[100vh] w-[290px] sticky top-0 bg-black text-black dark:text-[#a7a7a7] rounded-lg ml-[6px]">
+      <nav className="rounded-md bg-[#F3F3F5] dark:bg-[#151515] px-7 py-6 gap-28">
         <ul className="flex flex-col gap-5">
-          <li></li>
           {topLinks.map((link) => (
-            <li
+            <SidebarLink
               key={uuidv4()}
-              className="flex justify-start items-center gap-5"
-            >
-              {link.icon}
-              <a
-                className={`text-sm font-bold ${
-                  pathname === link.path && !colorTheme === "light"
-                    ? "text-white"
-                    : ""
-                }`}
-                href={link.path}
-              >
-                {link.text}
-              </a>
-            </li>
+              link={link}
+              pathname={pathname}
+              colorTheme={colorTheme}
+            />
           ))}
         </ul>
       </nav>
 
-      <nav className="gap-28  px-7 py-6 dark:bg-[#151515] bg-[#F3F3F5] rounded-md h-[100%] mt-[6px]">
+      <nav className="rounded-md bg-[#F3F3F5] dark:bg-[#151515] px-7 py-6 gap-28 h-[100%] mt-[6px]">
         <ul className="flex flex-col gap-5">
           {bottomLinks.map((link) => (
-            <li
+            <SidebarLink
               key={uuidv4()}
-              className="flex justify-start items-center gap-5"
-            >
-              {link?.icon}
-              <a
-                className={`text-sm font-bold ${
-                  pathname === link.path ? "text-white" : ""
-                }`}
-                href={link.path}
-              >
-                {link.text}
-              </a>
-            </li>
+              link={link}
+              pathname={pathname}
+              colorTheme={colorTheme}
+            />
           ))}
         </ul>
       </nav>

@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import useIsVisible from "../../hooks/useIsVisible";
-import { apiRequest } from "../../utils/api";
+import { useIsVisible } from "../../hooks";
+import { apiRequest } from "../../services/api";
 import Playlist from "../cards/Playlist";
 
 const PlaylistCarousel = ({ id, title }) => {
@@ -15,7 +15,7 @@ const PlaylistCarousel = ({ id, title }) => {
     const fetchPlaylists = async () => {
       try {
         const response = await apiRequest({
-          url: `https://api.spotify.com/v1/browse/categories/${id}/playlists`,
+          url: `/browse/categories/${id}/playlists`,
         });
 
         setPlaylists(response?.playlists?.items || []);
@@ -28,15 +28,19 @@ const PlaylistCarousel = ({ id, title }) => {
   }, [isVisible]);
 
   return (
-    <div ref={elemRef} className="pb-4 flex flex-col justify-center">
+    <div ref={elemRef} className="flex flex-col justify-center pb-4">
       {isVisible && playlists && (
         <>
-          <p className="flex justify-between items-end mb-2.5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
+          <div className="text-2xl font-bold mb-2.5 px-3 sm:px-6 flex justify-between items-end text-black dark:text-white">
             <span>{title}</span>
-            <Link className="text-black dark:text-[#B3B3B3] text-xs" to={"/view/all"}>
+            <Link
+              to={`/category/${id}`}
+              state={{ title: title }}
+              className="text-xs text-black dark:text-[#B3B3B3]"
+            >
               View All
             </Link>
-          </p>
+          </div>
           <div className="h-[285px] overflow-hidden px-3 sm:px-6 grid grid-cols-2 justify-items-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-4">
             {playlists.map((playlist) => (
               <Playlist key={uuidv4()} playlist={playlist} />

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../App";
 import { TableSong, Artist } from "../components/cards";
 import { PageLayout } from "../components/layout";
-import { apiRequest } from "../utils";
+import { apiRequest } from "../services";
 
 const UserProfile = () => {
   const location = useLocation();
@@ -116,7 +116,7 @@ const UserProfile = () => {
                 Your Top Artists
                 <Link
                   className="text-black dark:text-[#B3B3B3] text-xs"
-                  to={`/stats/toptracks`}
+                  to={`/stats/topartists`}
                 >
                   View All
                 </Link>

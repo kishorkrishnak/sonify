@@ -3,17 +3,20 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../../App";
 import { Pop } from "../../assets/images";
-import { apiRequest } from "../../utils/api";
+import { apiRequest } from "../../services/api";
 import { Song } from "../cards";
 import { Loader } from "../misc";
+
 const TopSongs = () => {
   const [topSongs, setTopSongs] = useState(null);
   const [loading, setLoading] = useState(false);
   const { loadingRef } = useAppContext();
+
   useEffect(() => {
     const fetchTopSongs = async () => {
       loadingRef.current?.continuousStart();
       setLoading(true);
+
       try {
         const response = await apiRequest({
           url: "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF",
@@ -24,7 +27,6 @@ const TopSongs = () => {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
         loadingRef.current?.complete();
-
         setLoading(false);
       }
     };
@@ -41,26 +43,24 @@ const TopSongs = () => {
   };
 
   return (
-    <div className="popular flex flex-col pb-9 gap-6 lg:gap-0 lg:flex-row justify-between px-3 sm:px-6">
-      <div className="w-full lg:w-[48%] flex flex-col items-start justify-start gap-5">
-        <p className="text-2xl text-black dark:text-white font-bold">Popular</p>
+    <div className="flex flex-col lg:flex-row justify-between gap-6 pb-9 px-3 sm:px-6 popular">
+      <div className="w-full lg:w-[48%] flex flex-col gap-5 items-start justify-start">
+        <p className="text-2xl font-bold text-black dark:text-white">Popular</p>
         <Link
           to={"/category/0JQ5DAqbMKFGvOw3O4nLAf"}
           state={{ title: "K-Pop" }}
-          style={{
-            backgroundImage: `url(${Pop})`,
-          }}
-          className="flex items-center justify-center cursor-pointer bg-cover bg-center rounded-lg min-h-[300px] sm:min-h-[500px] lg:min-h-[300px] h-[100%] w-full"
+          className="w-full h-full flex items-center justify-center cursor-pointer bg-cover bg-center rounded-lg min-h-[300px] sm:min-h-[500px] lg:min-h-[300px]"
+          style={{ backgroundImage: `url(${Pop})` }}
         >
           <p className="text-white font-bold text-5xl">K-Pop</p>
         </Link>
       </div>
 
       <div className="w-full lg:w-[48%] flex flex-col items-start justify-start gap-4">
-        <p className="text-2xl text-black dark:text-white font-bold">
+        <p className="text-2xl font-bold text-black dark:text-white">
           Top Songs
         </p>
-        <div className="flex flex-col justify-start items-center gap-1 relative h-full w-full">
+        <div className="w-full h-full flex flex-col items-center justify-start gap-1 relative">
           {renderTopSongs()}
         </div>
       </div>

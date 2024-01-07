@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../App";
 import PageLayout from "../components/layout/PageLayout";
-import { Loader } from "../components/misc";
-import { apiRequest } from "../utils/api";
+import { apiRequest } from "../services";
+
 
 const Discover = () => {
   const [loading, setLoading] = useState(true);

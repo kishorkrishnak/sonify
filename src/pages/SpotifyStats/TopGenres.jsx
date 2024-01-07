@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { PageLayout } from "../../components/layout";
-import { apiRequest } from "../../utils";
+import { apiRequest } from "../../services";
+
 const TopGenres = () => {
   const [loading, setLoading] = useState(false);
   const [timeFrame, setTimeframe] = useState("short_term");

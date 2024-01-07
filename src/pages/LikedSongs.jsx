@@ -1,28 +1,27 @@
-import React from "react";
+import { v4 as uuidv4 } from "uuid";
+import { Song } from "../components/cards";
 import { PageLayout } from "../components/layout";
 import { Loader } from "../components/misc";
-import { Song } from "../components/cards";
-import { v4 as uuidv4 } from "uuid";
 
-const Artists = () => {
+const LikedSongs = () => {
   const favoriteSongs = JSON.parse(localStorage.getItem("favoriteSongs")) || [];
-  console.log(favoriteSongs);
   const renderFavoriteSongs = () => {
     if (!favoriteSongs) {
       return <Loader size={40} />;
     }
 
-    return favoriteSongs.map((song, index) => (
+    return favoriteSongs.map((song) => (
       <div className="rounded-md px-3 bg-[#333333] w-full">
         <Song key={uuidv4()} song={song} />
       </div>
     ));
   };
+
   return (
     <PageLayout>
       <div className="carousel-container px-3 sm:px-6 pb-9 pt-2 flex flex-col justify-center">
-        <p className="mb-5 text-2xl text-black dark:text-white font-bold ">
-          Your Artists
+        <p className="mb-5 text-2xl text-black dark:text-white font-bold">
+          Your Songs
         </p>
 
         <div className="flex flex-col justify-start items-center gap-2  h-full w-full">
@@ -33,4 +32,4 @@ const Artists = () => {
   );
 };
 
-export default Artists;
+export default LikedSongs;

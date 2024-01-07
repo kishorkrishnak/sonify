@@ -5,8 +5,9 @@ import { IoPauseCircleSharp, IoPlayCircleSharp } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
 import { useAppContext } from "../App";
 import { PageLayout } from "../components/layout";
+import { apiRequest } from "../services";
+
 import { convertMsToMinSec, notifyLoginRequired } from "../utils";
-import { apiRequest } from "../utils/api";
 const Track = () => {
   const [track, setTrack] = useState(null);
   const [loading, setLoading] = useState(true);

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { apiRequest } from "../../utils/api";
-import { Artist } from "../cards";
 import useIsVisible from "../../hooks/useIsVisible";
+import { apiRequest } from "../../services/api";
+import { Artist } from "../cards";
 
 const FeaturedArtists = () => {
   const [popularArtists, setPopularArtists] = useState([]);

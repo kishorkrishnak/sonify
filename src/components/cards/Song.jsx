@@ -1,53 +1,9 @@
-import { useEffect, useState } from "react";
-import Heart from "react-heart";
-import { IconContext } from "react-icons";
-import { FaPause, FaPlay } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useAppContext } from "../../App";
-import { convertMsToMinSec, notifyLoginRequired } from "../../utils";
+import { convertMsToMinSec } from "../../utils";
 import HeartButton from "../sections/HeartButton";
+import PlayButton from "../sections/PlayButton";
 
 const Song = ({ song }) => {
-  const { colorTheme } = useAppContext();
-  const iconColor = colorTheme === "dark" ? "white" : "black";
-  const handleHeartClick = (song) => {
-    const previousFavorites =
-      JSON.parse(localStorage.getItem("favoriteSongs")) || [];
-
-    if (heartActive) {
-      const updatedFavorites = previousFavorites.filter(
-        (favorite) => favorite?.id !== song?.id
-      );
-      localStorage.setItem("favoriteSongs", JSON.stringify(updatedFavorites));
-      setHeartActive(false);
-    } else {
-      previousFavorites.push(song);
-      localStorage.setItem("favoriteSongs", JSON.stringify(previousFavorites));
-      setHeartActive(true);
-    }
-  };
-
-  const [heartActive, setHeartActive] = useState(false);
-  const { setPlayingTrack, playingTrack, isLoggedIn, setPlay, play } =
-    useAppContext();
-
-  useEffect(() => {
-    const isFavorite = (
-      JSON.parse(localStorage.getItem("favoriteSongs")) || []
-    ).some((favoriteSong) => favoriteSong?.id === song?.id);
-
-    if (isFavorite) setHeartActive(true);
-  }, [song.id]);
-
-  const handlePlayPauseClick = () => {
-    if (isLoggedIn) {
-      setPlayingTrack(song);
-      setPlay(!play);
-    } else {
-      notifyLoginRequired();
-    }
-  };
-
   return (
     <div className="w-full flex justify-between sm:pr-4 py-2">
       <div className="flex items-center justify-center gap-3">
@@ -77,29 +33,8 @@ const Song = ({ song }) => {
           {convertMsToMinSec(song?.duration_ms)}
         </p>
         <div className="flex items-center justify-center gap-3">
-          {play && song?.id === playingTrack?.id ? (
-            <IconContext.Provider
-              value={{ color: iconColor, className: "pauseIcon" }}
-            >
-              <FaPause
-                onClick={handlePlayPauseClick}
-                className="cursor-pointer"
-              />
-            </IconContext.Provider>
-          ) : (
-            <IconContext.Provider
-              value={{ color: iconColor, className: "playIcon" }}
-            >
-              <FaPlay
-                onClick={handlePlayPauseClick}
-                className="cursor-pointer"
-              />
-            </IconContext.Provider>
-          )}
-          <HeartButton
-            heartActive={heartActive}
-            handleHeartClick={() => handleHeartClick(song)}
-          />
+          <PlayButton song={song} />
+          <HeartButton song={song} />
         </div>
       </div>
     </div>

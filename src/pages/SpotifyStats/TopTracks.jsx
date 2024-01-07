@@ -5,7 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../../App";
 import TopTracksSong from "../../components/cards/TopTracksSong";
 import { PageLayout } from "../../components/layout";
-import { apiRequest } from "../../utils";
+import { apiRequest } from "../../services";
+
 
 const TIMEFRAMES = {
   SHORT_TERM: "short_term",

@@ -1,17 +1,16 @@
 import { Audio } from "react-loader-spinner";
-import React from "react";
 
-const AudioSpinner = ({ height, width, radius, color, wrapperStyle }) => {
+const AudioLoader = ({ height, width, radius, wrapperStyle }) => {
   return (
     <Audio
       height={height}
       width={width}
       radius={radius}
-      color={color}
+      color={"#AFB42B"}
       ariaLabel="loading"
       wrapperStyle={wrapperStyle}
     />
   );
 };
 
-export default AudioSpinner;
+export default AudioLoader;

@@ -9,7 +9,7 @@ import TopSongs from "../components/sections/TopSongs";
 
 const Home = () => {
   const playlistCategories = [
-    {id:"0JQ5DAqbMKFHOzuVTgTizF",title:"EDM"},
+    { id: "0JQ5DAqbMKFHOzuVTgTizF", title: "EDM" },
     { id: "toplists", title: "Top Playlists" },
     { id: "0JQ5DAqbMKFHCxg5H5PtqW", title: "Top Bollywood" },
     { id: "romance", title: "Romance" },
@@ -21,14 +21,13 @@ const Home = () => {
   ];
   return (
     <PageLayout>
-           <TrendingAlbums />
+      <TrendingAlbums />
       <TopSongs />
       <RecentlyPlayed />
- 
       <FeaturedPlaylists />
-      {playlistCategories.map((playlistCategory,index) => (
+      {playlistCategories.map((playlistCategory) => (
         <PlaylistCarousel
-        key={uuidv4()}
+          key={uuidv4()}
           id={playlistCategory.id}
           title={playlistCategory.title}
         />

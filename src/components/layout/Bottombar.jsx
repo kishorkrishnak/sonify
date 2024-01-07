@@ -1,9 +1,8 @@
 import {
-  FaBroadcastTower,
   FaChartBar,
   FaHeart,
   FaHome,
-  FaSearch,
+  FaSearch
 } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -35,7 +34,7 @@ const Bottombar = () => {
   ];
   return (
     <footer className="z-40 py-4 dark:bg-[#151515] bg-[#F3F3F5] fixed bottom-0 flex justify-around items-center px-3 w-[100%] text-white lg:hidden">
-      {links.map((link, index) => (
+      {links.map((link) => (
         <a
           key={uuidv4()}
           href={link.path}

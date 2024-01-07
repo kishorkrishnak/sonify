@@ -1,13 +1,14 @@
 import { useOutsideAlerter } from "../hooks/useOutsideAlerter";
-import { apiRequest } from "./api";
 import cleanHtmlTags from "./cleanHtmlTags";
 import convertMsToMinSec from "./convertMsToMinSec";
 import formatMilliseconds from "./formatMilliseconds";
 import { notifyLoginRequired } from "./notifyLoginRequired";
+import truncateText from "./truncateText";
 export {
-  apiRequest, cleanHtmlTags, convertMsToMinSec,
-
+  cleanHtmlTags,
+  convertMsToMinSec,
+  truncateText,
   formatMilliseconds,
-  notifyLoginRequired, useOutsideAlerter
+  notifyLoginRequired,
+  useOutsideAlerter,
 };
-
