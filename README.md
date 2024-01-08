@@ -16,7 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Try it out
 
-https://spotify-react-web-client.onrender.com/
+https://sonify-one.vercel.app/
 
 **Warning:** Spotify Playback requires users to authenticate with a valid Spotify Premium subscription.
 
