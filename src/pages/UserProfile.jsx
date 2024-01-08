@@ -17,20 +17,20 @@ const UserProfile = () => {
   const [playlists, setPlaylists] = useState(null);
 
   const { loadingRef } = useAppContext();
-    const fetchUserPlaylists = async () => {
-      setLoading(true);
-      try {
-        const playlists = await apiRequest({
-          url: "/me/playlists",
-          authFlow: true,
-        });
-        setPlaylists(playlists?.items);
-      } catch (error) {
-        console.error("Error fetching data from Spotify API:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchUserPlaylists = async () => {
+    setLoading(true);
+    try {
+      const playlists = await apiRequest({
+        url: "/me/playlists",
+        authFlow: true,
+      });
+      setPlaylists(playlists?.items);
+    } catch (error) {
+      console.error("Error fetching data from Spotify API:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchTopArtists = async () => {
     console.log(profile);
@@ -43,7 +43,6 @@ const UserProfile = () => {
         authFlow: true,
       });
       setTopArtists(artists?.items);
- 
     } catch (error) {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
@@ -74,9 +73,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     fetchTopTracks();
-    fetchUserPlaylists()
+    fetchUserPlaylists();
     fetchTopArtists();
-    
   }, [profile]);
 
   return (
@@ -132,20 +130,20 @@ const UserProfile = () => {
               <h1 className="text-black dark:text-white text-xl font-bold flex justify-between items-center">
                 Your Playlists
                 <Link
+                  to={"/category/your-lists"}
+                  state={{ title: "Your Playlists", playlists: playlists }}
+                  playlists={playlists}
                   className="text-black dark:text-[#B3B3B3] text-xs"
-                  to={`/stats/topartists`}
                 >
                   View All
                 </Link>
               </h1>
-             <PlaylistsGrid playlists={playlists}/>
+              <PlaylistsGrid playlists={playlists.slice(0, 6)} />
             </div>
           )}
         </div>
 
-
-
-        <div className="flex flex-col items-start mt-6 gap-5 sm:mb-2 lg:mb-7">
+        <div className="flex flex-col items-start mt-3 gap-5 sm:mb-2 lg:mb-7">
           {topArtists && (
             <div className="w-[100%] flex flex-col gap-4">
               <h1 className="text-black dark:text-white text-xl font-bold flex justify-between items-center">

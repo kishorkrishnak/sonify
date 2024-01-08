@@ -10,24 +10,28 @@ const Category = () => {
   const [category, setCategory] = useState(null);
   const { id } = useParams();
   const location = useLocation();
-  const title = location?.state?.title;
+  const { title, playlists } = location?.state;
   const { loadingRef } = useAppContext();
-  useEffect(() => {
-    const fetchCategory = async () => {
-      loadingRef.current?.continuousStart();
 
-      try {
-        const category = await apiRequest({
-          url: `/browse/categories/${id}/playlists`,
-        });
-        setCategory(category?.playlists?.items);
-        console.log(category?.playlists?.items);
-      } catch (error) {
-        console.error("Error fetching data from Spotify API:", error);
-      } finally {
-        loadingRef.current?.complete();
-      }
-    };
+  const fetchCategory = async () => {
+    loadingRef.current?.continuousStart();
+    if (playlists) {
+      setCategory(playlists);
+      return;
+    }
+
+    try {
+      const category = await apiRequest({
+        url: `/browse/categories/${id}/playlists`,
+      });
+      setCategory(category?.playlists?.items);
+    } catch (error) {
+      console.error("Error fetching data from Spotify API:", error);
+    } finally {
+      loadingRef.current?.complete();
+    }
+  };
+  useEffect(() => {
     fetchCategory();
   }, []);
 

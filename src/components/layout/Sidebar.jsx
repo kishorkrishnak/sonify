@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../../App";
 
@@ -8,20 +8,21 @@ import { FaUserNinja, FaChartBar } from "react-icons/fa";
 import { PiMusicNotesPlus } from "react-icons/pi";
 import { TbMusicHeart } from "react-icons/tb";
 
-const SidebarLink = ({ link, pathname, colorTheme }) => (
-  <li key={uuidv4()} className="flex justify-start items-center gap-5">
-    {link.icon}
-    <a
-      className={`text-sm font-bold ${
-        pathname === link.path && colorTheme !== "light" ? "text-white" : ""
-      }`}
-      href={link.path}
-    >
-      {link.text}
-    </a>
-  </li>
-);
-
+const SidebarLink = ({ link, pathname, colorTheme }) => {
+  return (
+    <li key={uuidv4()} className="flex justify-start items-center gap-5">
+      {link.icon}
+      <Link
+        className={`text-sm font-bold ${
+          pathname === link.path && colorTheme !== "light" ? "text-white" : ""
+        }`}
+        to={link.path}
+      >
+        {link.text}
+      </Link>
+    </li>
+  );
+};
 const Sidebar = () => {
   const { colorTheme } = useAppContext();
   const iconColor = colorTheme === "dark" ? "#a7a7a7" : "black";

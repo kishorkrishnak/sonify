@@ -7,9 +7,9 @@ import HeartButton from "../sections/HeartButton";
 import PlayButton from "../sections/PlayButton";
 
 const TableSong = ({ index, track }) => {
-  const { playingTrack, play } = useAppContext();
+  const { play, currentTrackId } = useAppContext();
 
-  const isTrackPlaying = play && track?.id === playingTrack?.id;
+  const isTrackPlaying = play && track?.id === currentTrackId;
 
   return (
     <tr className="cursor-pointer hover:bg-[#E0E0E0] dark:hover:bg-[#3C3E4D]">

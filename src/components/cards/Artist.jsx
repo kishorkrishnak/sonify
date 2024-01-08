@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { apiRequest } from "../../services/api";
 
 const Artist = ({ artist }) => {
-  console.log(artist);
   const [artistInfo, setArtistInfo] = useState(null);
 
   useEffect(() => {
@@ -13,7 +12,6 @@ const Artist = ({ artist }) => {
           url: `/artists/${artist?.id}`,
         });
         setArtistInfo(artistInfo);
-        console.log(artistInfo);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       }

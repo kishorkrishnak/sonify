@@ -6,7 +6,7 @@ import { notifyLoginRequired } from "../../utils";
 const PlayButton = ({ song }) => {
   const {
     colorTheme,
-    setPlayingTrack,
+    setPlayingTracks,
     playingTrack,
     isLoggedIn,
     setPlay,
@@ -16,7 +16,7 @@ const PlayButton = ({ song }) => {
 
   const handlePlayPauseClick = () => {
     if (isLoggedIn) {
-      setPlayingTrack(song);
+      setPlayingTracks([song]);
       setPlay(!play);
     } else {
       notifyLoginRequired();

@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - Play full audio tracks.
 - Control playback (play, pause, volume, etc).
-- See your recently played tracks and your top artists.
+- See your recently played tracks,top artists and genres.
 - Follow and unfollow playlists and artists.
 - Add or remove tracks from your library.
 - Change the device in which you are currently playing.
@@ -19,4 +19,3 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 https://sonify-one.vercel.app/
 
 **Warning:** Spotify Playback requires users to authenticate with a valid Spotify Premium subscription.
-

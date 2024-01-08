@@ -7,6 +7,7 @@ import { apiRequest } from "../services";
 
 import formatMilliseconds from "../utils/formatMilliseconds";
 import Heart from "react-heart";
+import { PlaylistIcon } from "../assets/images";
 const Playlist = () => {
   const [playlist, setPlaylist] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -42,7 +43,7 @@ const Playlist = () => {
           <div className="rounded-md px-3 sm:px-6 py-6 flex flex-col gap-6 lg:gap-0 justify-between">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-5">
               <img
-                src={playlist?.images[0]?.url}
+                src={playlist?.images[0]?.url || PlaylistIcon}
                 className="h-[180px] w-[180px] rounded-lg"
                 alt={playlist?.name}
               />

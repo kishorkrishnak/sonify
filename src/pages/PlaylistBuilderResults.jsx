@@ -40,7 +40,6 @@ const PlaylistBuilderResults = () => {
                 const tracksResponse = await apiRequest({
                   url: playlist?.tracks?.href,
                 });
-
                 return tracksResponse.items;
               })
             );
@@ -51,17 +50,13 @@ const PlaylistBuilderResults = () => {
             ]);
 
             totalTracks += playlistTracks.flat().length;
-
             offset += 20;
-
             if (offset >= searchResults.playlists.total || totalTracks >= 100) {
               break;
             }
 
             await new Promise((resolve) => setTimeout(resolve, 1000));
           }
-
-         
         } catch (error) {
           console.error("Error fetching data from Spotify API:", error);
         } finally {

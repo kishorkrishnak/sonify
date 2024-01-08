@@ -29,10 +29,11 @@ const AppContext = createContext();
 
 function App() {
   const theme = localStorage.getItem("theme") || "dark";
-  const [playingTrack, setPlayingTrack] = useState(null);
+  const [playingTracks, setPlayingTracks] = useState(null);
   const [play, setPlay] = useState(false);
   const [token, setToken] = useState("");
   const [colorTheme, setColorTheme] = useState(theme);
+  const [currentTrackId, setCurrentTrackId] = useState(null);
 
   useEffect(() => {
     const getToken = async () => {
@@ -51,8 +52,9 @@ function App() {
   const loadingRef = useRef(null);
 
   const contextValues = {
-    playingTrack,
-    setPlayingTrack,
+    playingTracks,
+    setPlayingTracks,
+    currentTrackId,
     token,
     setToken,
     play,
@@ -65,12 +67,15 @@ function App() {
 
   return (
     <AppContext.Provider value={contextValues}>
-      {token && playingTrack ? (
-        <NowPlaying accessToken={token} playingTrack={playingTrack} />
-      ) : null}
-
       <LoadingBar color="#f11946" ref={loadingRef} />
       <Router>
+        {token && playingTracks ? (
+          <NowPlaying
+            setCurrentTrackId={setCurrentTrackId}
+            accessToken={token}
+            playingTracks={playingTracks}
+          />
+        ) : null}
         <ScrollToTop>
           <Routes>
             <Route path="/" element={<Home />}></Route>
@@ -98,7 +103,14 @@ function App() {
           </Routes>
         </ScrollToTop>
       </Router>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          className: "",
+          style: {
+            padding: "16px",
+          },
+        }}
+      />
     </AppContext.Provider>
   );
 }
