@@ -101,6 +101,8 @@ function App() {
             <Route path="/profile" element={<UserProfile />}></Route>
             <Route path="/discover" element={<Discover />}></Route>
             <Route path="/library/artists" element={<LikedArtists />}></Route>
+            <Route path="/library/playlists" element={<LikedArtists />}></Route>
+            <Route path="/library/albums" element={<LikedArtists />}></Route>
             <Route path="/library/songs" element={<LikedSongs />}></Route>
             <Route path="/category/:id" element={<Category />}></Route>
             <Route path="/artist/:id" element={<Artist />}></Route>

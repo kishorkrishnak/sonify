@@ -63,7 +63,7 @@ const TopTracks = () => {
 
   return (
     <PageLayout>
-      <div className="gap-3 py-14 flex flex-col items-center justify-stretch">
+      <div className="gap-3 py-14 flex flex-col items-center justify-center">
         <h1 className="text-3xl text-black dark:text-white font-bold ">
           Top Tracks {`(${TAB_TITLES[timeFrame]})`}
         </h1>

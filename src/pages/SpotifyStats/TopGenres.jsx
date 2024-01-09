@@ -22,7 +22,6 @@ const TopGenres = () => {
           url: `/me/top/genres?time_range=${timeFrame}&limit=25`,
           authFlow: true,
         });
-        console.log(genres);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {

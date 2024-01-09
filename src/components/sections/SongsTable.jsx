@@ -3,7 +3,6 @@ import { CiClock2 } from "react-icons/ci";
 import { v4 as uuidv4 } from "uuid";
 
 const SongsTable = ({ songs, showHead }) => {
-  console.log(songs);
   return (
     <table className="text-black dark:text-white">
       {showHead && (

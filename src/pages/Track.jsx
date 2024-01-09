@@ -8,49 +8,47 @@ import { useAppContext } from "../App";
 import { PageLayout } from "../components/layout";
 import { apiRequest } from "../services";
 
+import toast from "react-hot-toast";
 import { Album } from "../components/cards";
 import SongsTable from "../components/sections/SongsTable";
 import { convertMsToMinSec, notifyLoginRequired } from "../utils";
 const Track = () => {
+  const [saved, setSaved] = useState(false);
+
   const [track, setTrack] = useState(null);
+
   const [moreAlbums, setMoreAlbums] = useState(null);
-  const [loading, setLoading] = useState(true);
   const { loadingRef } = useAppContext();
   const { id } = useParams();
-  const [heartActive, setHeartActive] = useState(false);
-  const { setPlayingTrack, playingTrack, isLoggedIn, setPlay, play } =
+  const { setPlayingTracks, currentTrackId, isLoggedIn, setPlay, play } =
     useAppContext();
-  const handlePlayPauseClick = () => {
+  const isTrackPlaying = play && track?.id === currentTrackId;
+
+  const handlePlayClick = () => {
     if (isLoggedIn) {
-      setPlayingTrack(track);
-      setPlay(!play);
+      setPlayingTracks([track]);
+      setPlay(true);
     } else {
       notifyLoginRequired();
     }
   };
-  const handleHeartClick = (song) => {
-    const previousFavorites =
-      JSON.parse(localStorage.getItem("favoriteSongs")) || [];
 
-    if (heartActive) {
-      const updatedFavorites = previousFavorites.filter(
-        (favorite) => favorite.id !== song.id
-      );
-      localStorage.setItem("favoriteSongs", JSON.stringify(updatedFavorites));
-      setHeartActive(false);
-    } else {
-      previousFavorites.push(song);
-      localStorage.setItem("favoriteSongs", JSON.stringify(previousFavorites));
-      setHeartActive(true);
+  const handlePauseClick = () => {
+    if (isLoggedIn) setPlay(false);
+  };
+
+  const isSaved = async () => {
+    try {
+      const response = await apiRequest({
+        url: `/me/tracks/contains?&ids=${id}`,
+        authFlow: true,
+      });
+      setSaved(response[0]);
+    } catch (error) {
+      console.error("Error fetching data from Spotify API:", error);
+    } finally {
     }
   };
-  useEffect(() => {
-    const isFavorite = (
-      JSON.parse(localStorage.getItem("favoriteSongs")) || []
-    ).some((favoriteSong) => favoriteSong.id === track?.id);
-
-    if (isFavorite) setHeartActive(true);
-  }, [track?.id]);
   const fetchMoreAlbums = async () => {
     try {
       const response = await apiRequest({
@@ -66,12 +64,31 @@ const Track = () => {
     if (track) fetchMoreAlbums();
   }, [track]);
 
+  const handleHeartClick = async () => {
+    let toastMessage = "";
+
+    try {
+      await apiRequest({
+        url: `/me/tracks?ids=${id}`,
+        method: saved ? "DELETE" : "PUT",
+        authFlow: true,
+      });
+
+      toastMessage = saved
+        ? "Song removed from library"
+        : "Song added to library";
+      setSaved(!saved);
+    } catch (error) {
+      toastMessage = "Could't complete the action";
+    } finally {
+      toast(toastMessage);
+    }
+  };
+
   useEffect(() => {
     const fetchTrack = async () => {
-      setLoading(true);
       loadingRef.current?.continuousStart();
 
-      setLoading(true);
       try {
         const track = await apiRequest({
           url: `/tracks/${id}`,
@@ -81,11 +98,10 @@ const Track = () => {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
         loadingRef.current?.complete();
-
-        setLoading(false);
       }
     };
     fetchTrack();
+    isSaved();
     if (track) fetchMoreAlbums();
   }, [id]);
 
@@ -96,15 +112,13 @@ const Track = () => {
           <div className="flex items-center gap-6 py-10">
             <img
               src={track?.album?.images[0]?.url}
-              className="h-[200px] w-[200px] rounded-md"
+              className="h-[180px] w-[180px] md:h-[255px] md:w-[255px] rounded-md"
               alt={track?.artists[0]?.name}
             />
             <div className="flex flex-col">
-              <h1 className="text-white mt-4">
-                {track?.followers?.total} Song
-              </h1>
+              <h1 className="text-white mt-4">Song</h1>
 
-              <h1 className="text-white text-5xl font-bold mt-2">
+              <h1 className="text-white text-lg md:text-3xl font-bold mt-2">
                 {track?.name}
               </h1>
               <h1 className="text-white mt-5">
@@ -125,10 +139,10 @@ const Track = () => {
           </div>
           <div className="flex flex-col">
             <div className="flex items-center justify-start gap-5 mb-4">
-              {play && track?.id === playingTrack?.id ? (
+              {isTrackPlaying ? (
                 <IconContext.Provider value={{ color: "white" }}>
                   <IoPauseCircleSharp
-                    onClick={handlePlayPauseClick}
+                    onClick={handlePauseClick}
                     color="#1FDF64"
                     size={60}
                     className="cursor-pointer scale-100 hover:scale-105"
@@ -139,7 +153,7 @@ const Track = () => {
                   <IoPlayCircleSharp
                     color="#1FDF64"
                     size={60}
-                    onClick={handlePlayPauseClick}
+                    onClick={handlePlayClick}
                     className="cursor-pointer scale-100 hover:scale-105"
                   />
                 </IconContext.Provider>
@@ -150,11 +164,11 @@ const Track = () => {
                   inactiveColor="transparent"
                   style={{
                     height: "30px",
-                    fill: heartActive ? "red" : "transparent",
-                    stroke: heartActive ? "" : "grey",
+                    fill: saved ? "red" : "transparent",
+                    stroke: saved ? "" : "grey",
                   }}
-                  isActive={heartActive}
-                  onClick={() => handleHeartClick(track)}
+                  isActive={saved}
+                  onClick={() => handleHeartClick()}
                 />
               </div>
             </div>
@@ -165,7 +179,7 @@ const Track = () => {
               {moreAlbums && (
                 <div className="w-[100%] flex flex-col gap-4">
                   <h1 className="text-black dark:text-white text-xl font-bold flex justify-between items-center">
-                   More by {track?.artists[0].name}
+                    More by {track?.artists[0].name}
                     <Link
                       className="text-black dark:text-[#B3B3B3] text-xs"
                       to={`/stats/topartists`}

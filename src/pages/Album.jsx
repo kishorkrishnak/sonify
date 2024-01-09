@@ -10,21 +10,25 @@ import Heart from "react-heart";
 import { IoPauseCircleSharp, IoPlayCircleSharp } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import { notifyLoginRequired } from "../utils";
+import toast from "react-hot-toast";
 const Album = () => {
   const [album, setAlbum] = useState(null);
   const [loading, setLoading] = useState(true);
   const [tracks, setTracks] = useState(null);
+  const [saved, setSaved] = useState(false);
   const minutes = album?.tracks?.items?.reduce((total, current) => {
     return total + Number(current.duration_ms);
   }, 0);
+  const { id } = useParams();
+
   const { setPlayingTracks, playingTracks, isLoggedIn, setPlay, play } =
     useAppContext();
-  const [heartActive, setHeartActive] = useState(false);
 
   const { loadingRef } = useAppContext();
+
   const handlePlayClick = () => {
     if (isLoggedIn) {
-      const tracks = album?.tracks?.items.map((item) => item.track);
+      const tracks = album?.tracks?.items.map((item) => item);
       setPlayingTracks([...tracks]);
       setPlay(true);
     } else {
@@ -32,27 +36,31 @@ const Album = () => {
     }
   };
 
-  const handleHeartClick = (song) => {
-    const previousFavorites =
-      JSON.parse(localStorage.getItem("favoriteSongs")) || [];
+  const handleHeartClick = async () => {
+    let toastMessage = "";
 
-    if (heartActive) {
-      const updatedFavorites = previousFavorites.filter(
-        (favorite) => favorite.id !== song.id
-      );
-      localStorage.setItem("favoriteSongs", JSON.stringify(updatedFavorites));
-      setHeartActive(false);
-    } else {
-      previousFavorites.push(song);
-      localStorage.setItem("favoriteSongs", JSON.stringify(previousFavorites));
-      setHeartActive(true);
+    try {
+      await apiRequest({
+        url: `/me/albums?ids=${id}`,
+        method: saved ? "DELETE" : "PUT", // Use DELETE method if the album is already saved, otherwise use PUT to add it
+        authFlow: true,
+      });
+
+      toastMessage = saved
+        ? "Album removed from library"
+        : "Album added to library";
+      setSaved(!saved);
+    } catch (error) {
+      toastMessage = "Could't complete the action";
+    } finally {
+      toast(toastMessage);
     }
   };
+
   const handlePauseClick = () => {
     if (isLoggedIn) setPlay(false);
   };
 
-  const { id } = useParams();
   useEffect(() => {
     setLoading(true);
     const fetchArtist = async () => {
@@ -63,7 +71,6 @@ const Album = () => {
         const album = await apiRequest({
           url: `https://api.spotify.com/v1/albums/${id}`,
         });
-        console.log(album);
 
         const tracks = album?.tracks?.items?.map((track) => track);
         setTracks(tracks);
@@ -86,12 +93,12 @@ const Album = () => {
             <div className="flex items-center gap-5">
               <img
                 src={album?.images[0]?.url}
-                className="h-[180px] w-[170px] rounded-lg"
+                className="h-[180px] w-[180px] md:h-[255px] md:w-[255px] rounded-lg"
                 alt={album?.name}
               />
               <div className="flex flex-col">
                 <h1 className="text-white text-sm">Album</h1>
-                <h1 className="text-white text-4xl font-bold mt-2">
+                <h1 className="text-white text-lg md:text-3xl  font-bold mt-2">
                   {album?.name}
                 </h1>
 
@@ -138,10 +145,10 @@ const Album = () => {
                 inactiveColor="transparent"
                 style={{
                   height: "30px",
-                  fill: heartActive ? "red" : "transparent",
-                  stroke: heartActive ? "" : "grey",
+                  fill: saved ? "red" : "transparent",
+                  stroke: saved ? "" : "grey",
                 }}
-                isActive={heartActive}
+                isActive={saved}
                 onClick={() => handleHeartClick()}
               />
             </div>

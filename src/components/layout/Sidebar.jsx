@@ -55,11 +55,11 @@ const Sidebar = () => {
       text: "Artists",
     },
     {
-      path: "/playlists",
+      path: "/library/playlists",
       text: "Playlists",
     },
     {
-      path: "/albums",
+      path: "/library/albums",
       text: "Albums",
     },
     {

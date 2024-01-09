@@ -15,7 +15,6 @@ const RecentlyPlayed = () => {
           url: `/me/player/recently-played?limit=${1}`,
           authFlow: true,
         });
-        console.log(response);
 
         const lastPlayedTrack = response.items[0]?.track;
         setRecentlyPlayedTrack(lastPlayedTrack);
@@ -31,7 +30,7 @@ const RecentlyPlayed = () => {
     <>
       {recentlyPlayedTrack && (
         <div className="flex flex-col justify-center px-3 sm:px-6 pt-2 pb-9">
-          <p className="text-2xl font-bold mb-5 text-black dark:text-white">
+          <p className="text-2xl font-bold mb-2.5 text-black dark:text-white">
             Recently Played
           </p>
 

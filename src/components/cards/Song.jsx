@@ -2,8 +2,27 @@ import { Link } from "react-router-dom";
 import { convertMsToMinSec } from "../../utils";
 import HeartButton from "../sections/HeartButton";
 import PlayButton from "../sections/PlayButton";
+import { apiRequest } from "../../services";
+import { useEffect, useState } from "react";
 
 const Song = ({ song }) => {
+  const [saved, setSaved] = useState(false);
+  const isSaved = async () => {
+    try {
+      const response = await apiRequest({
+        url: `/me/tracks/contains?&ids=${song?.id}`,
+        authFlow: true,
+      });
+      setSaved(response[0]);
+    } catch (error) {
+      console.error("Error fetching data from Spotify API:", error);
+    } finally {
+    }
+  };
+
+  useEffect(() => {
+    isSaved();
+  }, []);
   return (
     <div className="w-full flex justify-between sm:pr-4 py-2">
       <div className="flex items-center justify-center gap-3">
@@ -15,7 +34,7 @@ const Song = ({ song }) => {
         <div className="flex flex-col items-start justify-center ml-1">
           <Link
             to={`track/${song?.id}`}
-            className="text-black dark:text-[white] text-md font-semibold"
+            className="text-black dark:text-[white] text-sm md:text-md font-semibold"
           >
             {song?.name}
           </Link>
@@ -34,7 +53,7 @@ const Song = ({ song }) => {
         </p>
         <div className="flex items-center justify-center gap-3">
           <PlayButton song={song} />
-          <HeartButton song={song} />
+          <HeartButton song={song}  />
         </div>
       </div>
     </div>

@@ -30,7 +30,7 @@ const TableSong = ({ index, track }) => {
           {track?.album?.images[0] && (
             <img
               className="w-[37px] h-[37px] rounded-md"
-              src={track.album.images[0].url}
+              src={track.album.images[0].url }
               alt="album"
             />
           )}

@@ -33,9 +33,7 @@ const UserProfile = () => {
   };
 
   const fetchTopArtists = async () => {
-    console.log(profile);
     loadingRef.current?.continuousStart();
-
     setLoading(true);
     try {
       const artists = await apiRequest({

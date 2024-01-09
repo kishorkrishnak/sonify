@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { IconContext } from "react-icons";
+import { IoPauseCircleSharp, IoPlayCircleSharp } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../App";
 import { Artist as ArtistCard } from "../components/cards";
+import Album from "../components/cards/Album";
 import { PageLayout } from "../components/layout";
 import SongsTable from "../components/sections/SongsTable";
 import { apiRequest } from "../services";
-import { IconContext } from "react-icons";
-import { IoPauseCircleSharp, IoPlayCircleSharp } from "react-icons/io5";
 import { notifyLoginRequired } from "../utils";
-import toast from "react-hot-toast";
-import Album from "../components/cards/Album";
 const Artist = () => {
   const [artist, setArtist] = useState(null);
   const [following, setFollowing] = useState(false);
-  const [loading, setLoading] = useState(true);
   const { loadingRef } = useAppContext();
   const { id } = useParams();
   const [topTracks, setTopTracks] = useState(null);
@@ -47,7 +46,7 @@ const Artist = () => {
     try {
       const method = following ? "DELETE" : "PUT";
 
-      const response = await apiRequest({
+      await apiRequest({
         url: `/me/following?type=artist&ids=${id}`,
         method: method,
         authFlow: true,
@@ -56,13 +55,12 @@ const Artist = () => {
       toastMessage = following ? "Artist unfollowed" : "Artist followed";
       setFollowing(!following);
     } catch (error) {
-      toastMessage = "Couldn't follow artist";
+      toastMessage = "Couldn't complete the action";
     } finally {
       toast(toastMessage);
     }
   };
   const followsArtist = async () => {
-    setLoading(true);
     try {
       const response = await apiRequest({
         url: `/me/following/contains?type=artist&ids=${id}`,
@@ -72,31 +70,25 @@ const Artist = () => {
     } catch (error) {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
-      setLoading(false);
     }
   };
 
   const fetchRelatedArtists = async () => {
     loadingRef.current?.continuousStart();
 
-    setLoading(true);
     try {
       const response = await apiRequest({
         url: `/artists/${id}/related-artists`,
       });
-      console.log(response);
       setRelatedArtists(response?.artists);
     } catch (error) {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
       loadingRef.current?.complete();
-
-      setLoading(false);
     }
   };
 
   const fetchTopTracks = async () => {
-    setLoading(true);
     try {
       const tracks = await apiRequest({
         url: `/artists/${id}/top-tracks?market=IN`,
@@ -105,39 +97,30 @@ const Artist = () => {
     } catch (error) {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
-      setLoading(false);
     }
   };
 
   const fetchTopAlbums = async () => {
-    setLoading(true);
     try {
       const albums = await apiRequest({
         url: `/artists/${id}/albums`,
       });
-      console.log(albums);
       setAlbums(albums?.items);
     } catch (error) {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
-      setLoading(false);
     }
   };
 
   const fetchArtist = async () => {
-    setLoading(true);
-
-    setLoading(true);
     try {
       const artist = await apiRequest({
         url: `/artists/${id}`,
       });
       setArtist(artist);
-      console.log(artist);
     } catch (error) {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
-      setLoading(false);
     }
   };
   useEffect(() => {
@@ -155,11 +138,15 @@ const Artist = () => {
           <div className="flex pt-8 pb-5 items-center gap-5">
             <img
               src={artist?.images[0]?.url}
-              className="h-[255px] w-[255px] rounded-md"
+              className="h-[180px] w-[180px] md:h-[255px] md:w-[255px] rounded-md"
               alt={artist?.name}
             />
             <div className="flex flex-col">
-              <p className="text-white text-3xl font-bold">{artist?.name}</p>
+              <h1 className="text-white mt-4">Artist</h1>
+
+              <p className="text-white text-lg md:text-3xl font-bold mt-2">
+                {artist?.name}
+              </p>
               <p className="text-white mt-4">
                 {artist?.followers?.total} Followers
               </p>

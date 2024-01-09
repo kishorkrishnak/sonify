@@ -25,6 +25,7 @@ const Searchbar = ({ searchQuery, setSearchQuery }) => {
               className="text-black dark:text-white placeholder:text-sm placeholder:text-black dark:placeholder:text-[grey] pl-2.5 outline-none dark:bg-[#2A2A2A] bg-[#F6F6F6] w-[100%] sm:w-[300px]"
               placeholder="Search Artist, Albums, Songs"
               type="text"
+              id="searchbar"
               onChange={handleInputChange}
               value={searchQuery}
             />

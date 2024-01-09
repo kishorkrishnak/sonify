@@ -1,41 +1,51 @@
 import Heart from "react-heart";
+import toast from "react-hot-toast";
 import { useAppContext } from "../../App";
+import { apiRequest } from "../../services";
 import { useEffect, useState } from "react";
 
 const HeartButton = ({ song }) => {
-  const [heartActive, setHeartActive] = useState(false);
-
-  const { colorTheme } = useAppContext();
-  useEffect(() => {
-    const isFavorite = (
-      JSON.parse(localStorage.getItem("favoriteSongs")) || []
-    ).some((favoriteSong) => favoriteSong.id === song.id);
-
-    if (isFavorite) setHeartActive(true);
-  }, [song.id]);
-
-  const iconColor = colorTheme === "dark" ? "white" : "black";
-  const handleHeartClick = () => {
-    const previousFavorites =
-      JSON.parse(localStorage.getItem("favoriteSongs")) || [];
-
-    if (heartActive) {
-      const updatedFavorites = previousFavorites.filter(
-        (favorite) => favorite.id !== song.id
-      );
-      localStorage.setItem("favoriteSongs", JSON.stringify(updatedFavorites));
-      setHeartActive(false);
-    } else {
-      if (song) {
-        previousFavorites.push(song);
-        localStorage.setItem(
-          "favoriteSongs",
-          JSON.stringify(previousFavorites)
-        );
-        setHeartActive(true);
-      }
+  const [saved, setSaved] = useState(false);
+  const isSaved = async () => {
+    try {
+      const response = await apiRequest({
+        url: `/me/tracks/contains?&ids=${song?.id}`,
+        authFlow: true,
+      });
+      setSaved(response[0]);
+    } catch (error) {
+      console.error("Error fetching data from Spotify API:", error);
+    } finally {
     }
   };
+
+  useEffect(() => {
+    isSaved();
+  }, []);
+  const handleHeartClick = async () => {
+    let toastMessage = "";
+
+    try {
+      await apiRequest({
+        url: `/me/tracks?ids=${song?.id}`,
+        method: saved ? "DELETE" : "PUT",
+        authFlow: true,
+      });
+
+      toastMessage = saved
+        ? "Song removed from library"
+        : "Song added to library";
+      setSaved(!saved);
+    } catch (error) {
+      toastMessage = "Could't complete the action";
+    } finally {
+      toast(toastMessage);
+    }
+  };
+
+  const { colorTheme } = useAppContext();
+
+  const iconColor = colorTheme === "dark" ? "white" : "black";
 
   return (
     <div style={{ width: "2rem" }}>
@@ -44,10 +54,10 @@ const HeartButton = ({ song }) => {
         inactiveColor="white"
         style={{
           height: "17px",
-          fill: heartActive ? "red" : iconColor,
+          fill: saved ? "red" : iconColor,
           border: "none",
         }}
-        isActive={heartActive}
+        isActive={saved}
         onClick={handleHeartClick}
       />
     </div>
