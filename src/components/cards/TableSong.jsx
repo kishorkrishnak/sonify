@@ -13,7 +13,7 @@ const TableSong = ({ index, track }) => {
 
   return (
     <tr className="cursor-pointer hover:bg-[#E0E0E0] dark:hover:bg-[#3C3E4D]">
-      <td className="py-4 pl-3 sm:pl-6 rounded-l-md w-[60px]">
+      <td className="py-4 pl-3 rounded-l-md w-[40px] text-xs sm:text-sm md:text-md">
         {isTrackPlaying ? (
           <AudioLoader
             height={20}
@@ -36,7 +36,10 @@ const TableSong = ({ index, track }) => {
           )}
 
           <div>
-            <Link to={`/track/${track?.id}`} className="text-sm sm:text-md">
+            <Link
+              to={`/track/${track?.id}`}
+              className="text-xs sm:text-sm md:text-md"
+            >
               {track?.name}
             </Link>
 
@@ -51,7 +54,7 @@ const TableSong = ({ index, track }) => {
           </div>
         </div>
       </td>
-      <td className="rounded-r-sm pr-3 sm:pr-6 text-md text-sm sm:text-md">
+      <td className="rounded-r-sm pr-3 sm:pr-6 text-xs sm:text-sm md:text-md">
         {convertMsToMinSec(track?.duration_ms)}
       </td>
 

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../App";
-import { TableSong, Artist } from "../components/cards";
+import { Artist, TableSong } from "../components/cards";
 import { PageLayout } from "../components/layout";
-import { apiRequest } from "../services";
 import PlaylistsGrid from "../components/sections/PlaylistsGrid";
+import { apiRequest } from "../services";
 
 const UserProfile = () => {
   const location = useLocation();

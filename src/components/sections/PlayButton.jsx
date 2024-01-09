@@ -7,33 +7,37 @@ const PlayButton = ({ song }) => {
   const {
     colorTheme,
     setPlayingTracks,
-    playingTrack,
+    currentTrackId,
     isLoggedIn,
     setPlay,
     play,
   } = useAppContext();
   const iconColor = colorTheme === "dark" ? "white" : "black";
-
-  const handlePlayPauseClick = () => {
+  const isTrackPlaying = play && song?.id === currentTrackId;
+  const handlePlayClick = () => {
     if (isLoggedIn) {
       setPlayingTracks([song]);
-      setPlay(!play);
+      setPlay(true);
     } else {
       notifyLoginRequired();
     }
   };
 
+  const handlePauseClick = () => {
+    if (isLoggedIn) setPlay(false);
+  };
+
   const iconStyle = {
     color: iconColor,
-    className: play && song?.id === playingTrack?.id ? "pauseIcon" : "playIcon",
+    className: isTrackPlaying ? "pauseIcon" : "playIcon",
   };
 
   return (
     <IconContext.Provider value={iconStyle}>
-      {play && song?.id === playingTrack?.id ? (
-        <FaPause onClick={handlePlayPauseClick} className="cursor-pointer" />
+      {isTrackPlaying ? (
+        <FaPause onClick={handlePauseClick} className="cursor-pointer" />
       ) : (
-        <FaPlay onClick={handlePlayPauseClick} className="cursor-pointer" />
+        <FaPlay onClick={handlePlayClick} className="cursor-pointer" />
       )}
     </IconContext.Provider>
   );

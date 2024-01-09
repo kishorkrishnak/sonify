@@ -14,11 +14,11 @@ const Category = () => {
   const { loadingRef } = useAppContext();
 
   const fetchCategory = async () => {
-    loadingRef.current?.continuousStart();
     if (playlists) {
       setCategory(playlists);
       return;
     }
+    loadingRef.current?.continuousStart();
 
     try {
       const category = await apiRequest({

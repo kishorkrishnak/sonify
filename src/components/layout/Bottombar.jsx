@@ -1,14 +1,13 @@
-import {
-  FaChartBar,
-  FaHeart,
-  FaHome,
-  FaSearch
-} from "react-icons/fa";
+import { BiLibrary } from "react-icons/bi";
+import { FaChartBar, FaHome, FaSearch } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { useAppContext } from "../../App";
 
 const Bottombar = () => {
   const { pathname } = useLocation();
+  const { colorTheme } = useAppContext();
+  const iconColor = colorTheme === "dark" ? "#a7a7a7" : "black";
   const links = [
     {
       path: "/",
@@ -23,7 +22,11 @@ const Bottombar = () => {
       icon: <FaSearch color="white" />,
     },
 
-    { path: "/favorites", text: "Favorites", icon: <FaHeart color="white" /> },
+    {
+      path: "/library",
+      text: "Library",
+      icon: <BiLibrary color={iconColor} size={23} />,
+    },
 
     {
       path: "/stats",

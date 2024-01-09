@@ -1,19 +1,31 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../../App";
+import { apiRequest } from "../../services";
 import HeartButton from "./HeartButton";
 import PlayButton from "./PlayButton";
 
 const RecentlyPlayed = () => {
-  const { playingTrack } = useAppContext();
+  const { currentTrackId } = useAppContext();
   const [recentlyPlayedTrack, setRecentlyPlayedTrack] = useState();
-
   useEffect(() => {
-    let recentlyPlayed = JSON.parse(
-      localStorage.getItem("recentlyPlayedTrack")
-    );
-    if (recentlyPlayed) setRecentlyPlayedTrack(recentlyPlayed);
-  }, [playingTrack]);
+    const fetchRecentlyPlayed = async (limit) => {
+      try {
+        const response = await apiRequest({
+          url: `/me/player/recently-played?limit=${1}`,
+          authFlow: true,
+        });
+        console.log(response);
+
+        const lastPlayedTrack = response.items[0]?.track;
+        setRecentlyPlayedTrack(lastPlayedTrack);
+      } catch (error) {
+        console.error("Error fetching recently played tracks:", error);
+      }
+    };
+
+    fetchRecentlyPlayed();
+  }, [currentTrackId]);
 
   return (
     <>

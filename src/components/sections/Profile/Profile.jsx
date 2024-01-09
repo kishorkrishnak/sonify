@@ -3,24 +3,10 @@ import { apiRequest } from "../../../services";
 
 import { Link } from "react-router-dom";
 import ToolTip from "../../misc/ToolTip";
+import { useAppContext } from "../../../App";
 
 const Profile = () => {
-  const [profile, setProfile] = useState(null);
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const response = await apiRequest({
-          url: "/me",
-          authFlow: true,
-        });
-        if (response && response?.type === "user") setProfile(response);
-        else setProfile(null);
-      } catch (error) {
-        console.error("Error fetching data from Spotify API:", error);
-      }
-    };
-    fetchUserProfile();
-  }, []);
+const {profile} = useAppContext()
   return (
     <>
       {profile && (

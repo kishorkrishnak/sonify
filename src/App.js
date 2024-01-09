@@ -24,17 +24,34 @@ import TopArtists from "./pages/SpotifyStats/TopArtists";
 import TopGenres from "./pages/SpotifyStats/TopGenres";
 import TopTracks from "./pages/SpotifyStats/TopTracks";
 import UserProfile from "./pages/UserProfile";
+import { apiRequest } from "./services";
 
 const AppContext = createContext();
 
 function App() {
   const theme = localStorage.getItem("theme") || "dark";
+
   const [playingTracks, setPlayingTracks] = useState(null);
   const [play, setPlay] = useState(false);
   const [token, setToken] = useState("");
   const [colorTheme, setColorTheme] = useState(theme);
   const [currentTrackId, setCurrentTrackId] = useState(null);
+  const [profile, setProfile] = useState(null);
 
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await apiRequest({
+          url: "/me",
+          authFlow: true,
+        });
+        if (response && response?.type === "user") setProfile(response);
+      } catch (error) {
+        console.error("Error fetching data from Spotify API:", error);
+      }
+    };
+    fetchUserProfile();
+  }, []);
   useEffect(() => {
     const getToken = async () => {
       try {
@@ -52,6 +69,8 @@ function App() {
   const loadingRef = useRef(null);
 
   const contextValues = {
+    isLoggedIn: token ? true : false,
+    profile,
     playingTracks,
     setPlayingTracks,
     currentTrackId,
@@ -61,7 +80,6 @@ function App() {
     setPlay,
     colorTheme,
     setColorTheme,
-    isLoggedIn: token ? true : false,
     loadingRef,
   };
 
@@ -76,13 +94,14 @@ function App() {
             playingTracks={playingTracks}
           />
         ) : null}
+
         <ScrollToTop>
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/profile" element={<UserProfile />}></Route>
             <Route path="/discover" element={<Discover />}></Route>
-            <Route path="/artists" element={<LikedArtists />}></Route>
-            <Route path="/songs" element={<LikedSongs />}></Route>
+            <Route path="/library/artists" element={<LikedArtists />}></Route>
+            <Route path="/library/songs" element={<LikedSongs />}></Route>
             <Route path="/category/:id" element={<Category />}></Route>
             <Route path="/artist/:id" element={<Artist />}></Route>
             <Route path="/album/:id" element={<Album />}></Route>
@@ -105,7 +124,7 @@ function App() {
       </Router>
       <Toaster
         toastOptions={{
-          className: "",
+          position: "bottom-center",
           style: {
             padding: "16px",
           },

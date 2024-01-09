@@ -6,13 +6,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Features
 
-- Play full audio tracks.
-- Control playback (play, pause, volume, etc).
-- See your recently played tracks,top artists and genres.
-- Follow and unfollow playlists and artists.
-- Add or remove tracks from your library.
-- Change the device in which you are currently playing.
 - Search tracks, albums, artists and playlists.
+- Play full audio tracks, albums, playlists.
+- Control playback (play, pause, volume, change track etc).
+- Follow and unfollow playlists and artists.
+- Add or remove tracks and albums from your library.
+- See your recently played tracks,top artists and genres.
+- Change the device in which you are currently playing.
 
 ## Try it out
 
