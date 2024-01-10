@@ -6,7 +6,7 @@ import HeartButton from "./HeartButton";
 import PlayButton from "./PlayButton";
 
 const RecentlyPlayed = () => {
-  const { currentTrackId } = useAppContext();
+  const { currentTrackId, isLoggedIn } = useAppContext();
   const [recentlyPlayedTrack, setRecentlyPlayedTrack] = useState();
   useEffect(() => {
     const fetchRecentlyPlayed = async (limit) => {
@@ -28,7 +28,7 @@ const RecentlyPlayed = () => {
 
   return (
     <>
-      {recentlyPlayedTrack && (
+      {recentlyPlayedTrack && isLoggedIn && (
         <div className="flex flex-col justify-center px-3 sm:px-6 pt-2 pb-9">
           <p className="text-2xl font-bold mb-2.5 text-black dark:text-white">
             Recently Played

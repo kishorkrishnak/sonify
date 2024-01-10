@@ -4,8 +4,10 @@ import HeartButton from "../sections/HeartButton";
 import PlayButton from "../sections/PlayButton";
 import { apiRequest } from "../../services";
 import { useEffect, useState } from "react";
+import { useAppContext } from "../../App";
 
 const Song = ({ song }) => {
+  const { isLoggedIn } = useAppContext();
   const [saved, setSaved] = useState(false);
   const isSaved = async () => {
     try {
@@ -21,7 +23,7 @@ const Song = ({ song }) => {
   };
 
   useEffect(() => {
-    isSaved();
+    if (isLoggedIn) isSaved();
   }, []);
   return (
     <div className="w-full flex justify-between sm:pr-4 py-2">
@@ -53,7 +55,7 @@ const Song = ({ song }) => {
         </p>
         <div className="flex items-center justify-center gap-3">
           <PlayButton song={song} />
-          <HeartButton song={song}  />
+          <HeartButton song={song} />
         </div>
       </div>
     </div>

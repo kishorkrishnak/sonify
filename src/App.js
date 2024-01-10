@@ -17,14 +17,15 @@ import {
   Track,
 } from "./pages";
 import Playlist from "./pages/Playlist";
-import PlaylistBuilder from "./pages/PlaylistBuilder";
-import PlaylistBuilderResults from "./pages/PlaylistBuilderResults";
+import PlaylistBuilder from "./pages/PlaylistBuilder/PlaylistBuilder";
+import PlaylistBuilderResults from "./pages/PlaylistBuilder/PlaylistBuilderResults";
 import SpotifyStats from "./pages/SpotifyStats/SpotifyStats";
 import TopArtists from "./pages/SpotifyStats/TopArtists";
 import TopGenres from "./pages/SpotifyStats/TopGenres";
 import TopTracks from "./pages/SpotifyStats/TopTracks";
 import UserProfile from "./pages/UserProfile";
 import { apiRequest } from "./services";
+import LibraryMobileView from "./pages/LibraryMobileView";
 
 const AppContext = createContext();
 
@@ -100,6 +101,7 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/profile" element={<UserProfile />}></Route>
             <Route path="/discover" element={<Discover />}></Route>
+            <Route path="/library" element={<LibraryMobileView />}></Route>
             <Route path="/library/artists" element={<LikedArtists />}></Route>
             <Route path="/library/playlists" element={<LikedArtists />}></Route>
             <Route path="/library/albums" element={<LikedArtists />}></Route>

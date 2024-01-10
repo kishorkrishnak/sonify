@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../App";
-import { PageLayout } from "../components/layout";
-import { notifyLoginRequired } from "../utils";
+import { useAppContext } from "../../App";
+import { PageLayout } from "../../components/layout";
+import { notifyLoginRequired } from "../../utils";
 
 const PlaylistBuilder = () => {
   const [query, setQuery] = useState("");

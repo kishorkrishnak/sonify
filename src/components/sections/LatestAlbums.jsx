@@ -11,7 +11,7 @@ const LatestAlbums = () => {
     const fetchLatestAlbums = async () => {
       try {
         const albums = await apiRequest({
-          url: "https://api.spotify.com/v1/browse/new-releases",
+          url: "browse/new-releases",
         });
         setAlbums(albums?.albums?.items);
       } catch (error) {
@@ -21,22 +21,26 @@ const LatestAlbums = () => {
     fetchLatestAlbums();
   }, []);
   return (
-    <div className="pb-7 flex flex-col justify-center">
-      <div className="flex justify-between items-end mb-2.5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
-        <span>Latest Albums</span>
-        <Link
-          className="text-black dark:text-[#B3B3B3] text-xs"
-          to={"/view/all"}
-        >
-          View All
-        </Link>
-      </div>
-      <div className="h-[270px] overflow-hidden px-3 sm:px-6 grid grid-cols-2 justify-items-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-4">
-        {albums?.map((album) => (
-          <Album key={uuidv4()} album={album}></Album>
-        ))}
-      </div>
-    </div>
+    <>
+      {albums && (
+        <div className="pb-7 flex flex-col justify-center">
+          <div className="flex justify-between items-end mb-2.5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
+            <span>Latest Albums</span>
+            <Link
+              className="text-black dark:text-[#B3B3B3] text-xs"
+              to={"/view/all"}
+            >
+              View All
+            </Link>
+          </div>
+          <div className="h-[270px] overflow-hidden px-3 sm:px-6 grid grid-cols-2 justify-items-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-4">
+            {albums?.map((album) => (
+              <Album key={uuidv4()} album={album}></Album>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 export default LatestAlbums;

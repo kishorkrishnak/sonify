@@ -13,7 +13,6 @@ const LogoutButton = () => {
       try {
         const response = await axios.get(`${backendUrl}/auth/logout`);
         if (response.data.message) {
-          console.log(response.data.message);
           setToken("");
           navigate("/");
           resolve("Successfully logged out");

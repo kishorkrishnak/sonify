@@ -42,7 +42,7 @@ const Album = () => {
     try {
       await apiRequest({
         url: `/me/albums?ids=${id}`,
-        method: saved ? "DELETE" : "PUT", // Use DELETE method if the album is already saved, otherwise use PUT to add it
+        method: saved ? "DELETE" : "PUT",
         authFlow: true,
       });
 

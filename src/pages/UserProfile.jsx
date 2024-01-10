@@ -11,14 +11,12 @@ const UserProfile = () => {
   const location = useLocation();
   const profile = location.state?.profile;
 
-  const [loading, setLoading] = useState(false);
   const [topTracks, setTopTracks] = useState(null);
   const [topArtists, setTopArtists] = useState(null);
   const [playlists, setPlaylists] = useState(null);
 
   const { loadingRef } = useAppContext();
   const fetchUserPlaylists = async () => {
-    setLoading(true);
     try {
       const playlists = await apiRequest({
         url: "/me/playlists",
@@ -27,14 +25,11 @@ const UserProfile = () => {
       setPlaylists(playlists?.items);
     } catch (error) {
       console.error("Error fetching data from Spotify API:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
   const fetchTopArtists = async () => {
     loadingRef.current?.continuousStart();
-    setLoading(true);
     try {
       const artists = await apiRequest({
         url: `/me/top/artists?time_range=long_term&limit=6`,
@@ -45,15 +40,12 @@ const UserProfile = () => {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
       loadingRef.current?.complete();
-
-      setLoading(false);
     }
   };
 
   const fetchTopTracks = async () => {
     loadingRef.current?.continuousStart();
 
-    setLoading(true);
     try {
       const tracks = await apiRequest({
         url: `/me/top/tracks?time_range=short_term&limit=4`,
@@ -64,8 +56,6 @@ const UserProfile = () => {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
       loadingRef.current?.complete();
-
-      setLoading(false);
     }
   };
 
