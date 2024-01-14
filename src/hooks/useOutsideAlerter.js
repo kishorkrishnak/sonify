@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export function useOutsideAlerter(ref, cb) {
+const useOutsideAlerter = (ref, cb) => {
   useEffect(() => {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -12,4 +12,6 @@ export function useOutsideAlerter(ref, cb) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref]);
-}
+};
+
+export default useOutsideAlerter;

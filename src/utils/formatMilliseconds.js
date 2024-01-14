@@ -1,4 +1,4 @@
-export default function formatMilliseconds(milliseconds) {
+const formatMilliseconds = (milliseconds) => {
   if (isNaN(milliseconds) || milliseconds < 0) {
     return "Invalid input";
   }
@@ -14,4 +14,6 @@ export default function formatMilliseconds(milliseconds) {
     const remainingMinutes = minutes % 60;
     return `${hours} hr ${remainingMinutes}`;
   }
-}
+};
+
+export default formatMilliseconds;

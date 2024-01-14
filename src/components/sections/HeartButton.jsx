@@ -1,27 +1,10 @@
+import { useEffect, useState } from "react";
 import Heart from "react-heart";
 import toast from "react-hot-toast";
 import { useAppContext } from "../../App";
 import { apiRequest } from "../../services";
-import { useEffect, useState } from "react";
 
 const HeartButton = ({ song }) => {
-  const [saved, setSaved] = useState(false);
-  const isSaved = async () => {
-    try {
-      const response = await apiRequest({
-        url: `/me/tracks/contains?&ids=${song?.id}`,
-        authFlow: true,
-      });
-      setSaved(response[0]);
-    } catch (error) {
-      console.error("Error fetching data from Spotify API:", error);
-    } finally {
-    }
-  };
-
-  useEffect(() => {
-    isSaved();
-  }, []);
   const handleHeartClick = async () => {
     let toastMessage = "";
 
@@ -45,13 +28,32 @@ const HeartButton = ({ song }) => {
 
   const { colorTheme } = useAppContext();
 
-  const iconColor = colorTheme === "dark" ? "white" : "black";
+  const iconColor = colorTheme === "dark" ? "transparent" : "black";
+  const { isLoggedIn } = useAppContext();
+  const [saved, setSaved] = useState(false);
+  const isSaved = async () => {
+    try {
+      const response = await apiRequest({
+        url: `/me/tracks/contains?&ids=${song?.id}`,
+        authFlow: true,
+      });
+      setSaved(response[0]);
+    } catch (error) {
+      console.error("Error fetching data from Spotify API:", error);
+    } finally {
+    }
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) isSaved();
+  }, []);
 
   return (
-    <div style={{ width: "2rem" }}>
+    <div className="w-8">
       <Heart
         animationScale={1.25}
         inactiveColor="white"
+        className={`h-[17px] border-none`}
         style={{
           height: "17px",
           fill: saved ? "red" : iconColor,

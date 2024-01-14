@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../App";
-import { PageLayout } from "../../components/layout";
+import PageLayout from "../../components/PageLayout/PageLayout";
+
 import { notifyLoginRequired } from "../../utils";
 
 const PlaylistBuilder = () => {

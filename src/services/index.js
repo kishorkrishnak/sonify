@@ -1,2 +1,2 @@
 import { apiRequest } from "../services/api";
-export {apiRequest}
+export { apiRequest };

@@ -23,7 +23,7 @@ const RecentlyPlayed = () => {
       }
     };
 
-    fetchRecentlyPlayed();
+    if (isLoggedIn) fetchRecentlyPlayed();
   }, [currentTrackId]);
 
   return (

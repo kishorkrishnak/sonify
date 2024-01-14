@@ -2,29 +2,8 @@ import { Link } from "react-router-dom";
 import { convertMsToMinSec } from "../../utils";
 import HeartButton from "../sections/HeartButton";
 import PlayButton from "../sections/PlayButton";
-import { apiRequest } from "../../services";
-import { useEffect, useState } from "react";
-import { useAppContext } from "../../App";
 
 const Song = ({ song }) => {
-  const { isLoggedIn } = useAppContext();
-  const [saved, setSaved] = useState(false);
-  const isSaved = async () => {
-    try {
-      const response = await apiRequest({
-        url: `/me/tracks/contains?&ids=${song?.id}`,
-        authFlow: true,
-      });
-      setSaved(response[0]);
-    } catch (error) {
-      console.error("Error fetching data from Spotify API:", error);
-    } finally {
-    }
-  };
-
-  useEffect(() => {
-    if (isLoggedIn) isSaved();
-  }, []);
   return (
     <div className="w-full flex justify-between sm:pr-4 py-2">
       <div className="flex items-center justify-center gap-3">

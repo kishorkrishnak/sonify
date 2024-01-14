@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useAppContext } from "../../App";
-import { PageLayout } from "../../components/layout";
-import SongsTable from "../../components/sections/SongsTable";
+import SongsTable from "../../components/SongsTable/SongsTable";
+import PageLayout from "../../components/PageLayout/PageLayout";
+
 import { apiRequest } from "../../services";
 
 const PlaylistBuilderResults = () => {
@@ -12,6 +13,7 @@ const PlaylistBuilderResults = () => {
   const [tracks, setTracks] = useState([]);
   const [playlists, setPlaylists] = useState([]);
   const { loadingRef } = useAppContext();
+
   useEffect(() => {
     const fetchPlaylistsAndTracks = async () => {
       loadingRef.current?.continuousStart();
@@ -19,7 +21,6 @@ const PlaylistBuilderResults = () => {
       if (query) {
         setPlaylists([]);
         setTracks([]);
-        setLoading(true);
         try {
           let offset = 0;
           let totalTracks = 0;
@@ -60,7 +61,6 @@ const PlaylistBuilderResults = () => {
         } catch (error) {
           console.error("Error fetching data from Spotify API:", error);
         } finally {
-          setLoading(false);
           loadingRef.current?.complete();
         }
       }
@@ -98,7 +98,9 @@ const PlaylistBuilderResults = () => {
           </button>
         </div>
 
-        {tracks && <SongsTable songs={tracks.slice(0, 100)} />}
+        {tracks && (
+          <SongsTable songs={tracks.slice(0, 100)} itemsPerPage={20} />
+        )}
       </div>
     </PageLayout>
   );

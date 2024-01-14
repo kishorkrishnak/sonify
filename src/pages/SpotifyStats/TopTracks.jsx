@@ -3,10 +3,10 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../../App";
-import TopTracksSong from "../../components/cards/TopTracksSong";
-import { PageLayout } from "../../components/layout";
-import { apiRequest } from "../../services";
+import PageLayout from "../../components/PageLayout/PageLayout";
 
+import { apiRequest } from "../../services";
+import TopTracksSong from "./TopTracksSong";
 
 const TIMEFRAMES = {
   SHORT_TERM: "short_term",

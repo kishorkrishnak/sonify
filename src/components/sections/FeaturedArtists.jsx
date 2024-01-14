@@ -6,12 +6,11 @@ import { Artist } from "../cards";
 
 const FeaturedArtists = () => {
   const [popularArtists, setPopularArtists] = useState([]);
-  const [loading, setLoading] = useState(false);
   const elemRef = useRef();
   const isVisible = useIsVisible(elemRef);
+
   useEffect(() => {
     const fetchFeaturedArtists = async () => {
-      setLoading(true);
       try {
         const artists = await apiRequest({
           url: "/playlists/37i9dQZEVXbMDoHDwVN2tF/tracks",
@@ -29,8 +28,6 @@ const FeaturedArtists = () => {
         setPopularArtists(popularArtists.slice(0, 12));
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
-      } finally {
-        setLoading(false);
       }
     };
     if (isVisible) fetchFeaturedArtists();

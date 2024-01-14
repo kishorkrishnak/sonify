@@ -15,9 +15,9 @@ const Playlist = ({ playlist }) => {
       {playlist && (
         <div
           onClick={handlePlaylistClick}
-          className="grow flex items-center justify-center w-[100%] p-4 pb-6 bg-[#F6F6F6] dark:bg-[#212121] hover:bg-[#999999] dark:hover:bg-[#333333] rounded-md cursor-pointer"
+          className="grow flex items-center justify-center w-[100%] p-4 pb-6 bg-[#F6F6F6] dark:bg-[#212121] hover:bg-[#999999] dark:hover:bg-[#333333] transition-all rounded-md cursor-pointer"
         >
-          <div className="flex flex-col justify-center items-start gap-2 w-[145px] duration-200 transition-all z-20">
+          <div className="flex flex-col justify-center items-start gap-2 w-[145px] z-20">
             <img
               className="h-[145px] w-[145px] rounded-md"
               src={playlist?.images[0]?.url || PlaylistIcon}

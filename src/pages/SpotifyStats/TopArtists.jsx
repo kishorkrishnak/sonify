@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { PageLayout } from "../../components/layout";
+import PageLayout from "../../components/PageLayout/PageLayout";
+
 import FeaturedArtists from "../../components/sections/FeaturedArtists";
 import { apiRequest } from "../../services";
 

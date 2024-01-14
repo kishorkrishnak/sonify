@@ -7,7 +7,6 @@ const NowPlaying = ({ accessToken, playingTracks, setCurrentTrackId }) => {
     if (playingTracks && playingTracks.length > 0) {
       if (playingTracks.length === 1) return [playingTracks[0].uri];
       else {
-        console.log(playingTracks);
         let trackUris = playingTracks.map((track) => track.uri);
         return trackUris;
       }

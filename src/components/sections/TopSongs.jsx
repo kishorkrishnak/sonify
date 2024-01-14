@@ -5,17 +5,15 @@ import { useAppContext } from "../../App";
 import { Pop } from "../../assets/images";
 import { apiRequest } from "../../services/api";
 import { Song } from "../cards";
-import { Loader } from "../misc";
+import { MoonLoader } from "../loaders";
 
 const TopSongs = () => {
   const [topSongs, setTopSongs] = useState(null);
-  const [loading, setLoading] = useState(false);
   const { loadingRef } = useAppContext();
 
   useEffect(() => {
     const fetchTopSongs = async () => {
       loadingRef.current?.continuousStart();
-      setLoading(true);
 
       try {
         const response = await apiRequest({
@@ -27,7 +25,6 @@ const TopSongs = () => {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
         loadingRef.current?.complete();
-        setLoading(false);
       }
     };
 
@@ -36,7 +33,7 @@ const TopSongs = () => {
 
   const renderTopSongs = () => {
     if (!topSongs) {
-      return <Loader size={40} />;
+      return <MoonLoader size={40} />;
     }
 
     return topSongs?.map((song) => <Song key={uuidv4()} song={song.track} />);

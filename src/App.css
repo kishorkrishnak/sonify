@@ -12,28 +12,16 @@
 html {
   scroll-behavior: smooth;
 }
+
 body {
   background-color: #000000;
   font-family: "Inter", sans-serif;
 }
 
-@keyframes placeHolderShimmer {
-  0% {
-    background-position: -468px 0;
-  }
-  100% {
-    background-position: 468px 0;
-  }
-}
-
 .playIcon:hover,
 .pauseIcon:hover {
-  transition: all 100ms ease-in;
+  transition: all 150ms ease-in;
   fill: rgb(175, 171, 171);
-}
-
-iframe {
-  display: none;
 }
 
 ::-webkit-scrollbar-track {

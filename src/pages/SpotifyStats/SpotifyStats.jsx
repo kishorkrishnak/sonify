@@ -3,7 +3,8 @@ import { MdOutlineFeaturedPlayList } from "react-icons/md";
 import { TbPlayerTrackPrevFilled } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../../App";
-import { PageLayout } from "../../components/layout";
+import PageLayout from "../../components/PageLayout/PageLayout";
+
 import { notifyLoginRequired } from "../../utils";
 const Intro = ({ image, title, description }) => {
   return (

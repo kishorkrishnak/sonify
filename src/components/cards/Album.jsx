@@ -9,7 +9,7 @@ const Album = ({ album }) => {
   };
 
   return (
-    <div className="w-full p-4 pb-6 bg-[#F6F6F6] dark:bg-[#212121] hover:bg-[#999999] dark:hover:bg-[#333333] rounded-md cursor-pointer grow flex justify-center items-center">
+    <div className="w-full p-4 pb-6 bg-[#F6F6F6] dark:bg-[#212121] hover:bg-[#999999] dark:hover:bg-[#333333] rounded-md cursor-pointer grow flex justify-center transition-all items-center">
       <div
         className="w-[145px] duration-200 transition-all flex flex-col justify-center items-start gap-2 z-20"
         onClick={handleAlbumClick}
