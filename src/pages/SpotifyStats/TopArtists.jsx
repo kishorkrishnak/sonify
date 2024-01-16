@@ -3,12 +3,13 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import PageLayout from "../../components/PageLayout/PageLayout";
 
-import FeaturedArtists from "../../components/sections/FeaturedArtists";
+import ArtistsGrid from "../../components/sections/ArtistsGrid";
 import { apiRequest } from "../../services";
+import { useAppContext } from "../../App";
 
 const TopArtists = () => {
-  const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const { loadingRef } = useAppContext();
   const [timeFrame, setTimeframe] = useState("short_term");
   const title =
     timeFrame === "short_term"
@@ -18,20 +19,27 @@ const TopArtists = () => {
       : "(all time)";
 
   useEffect(() => {
-    const fetchTopTracks = async () => {
-      setLoading(true);
+    const fetchTopArtists = async () => {
+      setArtists(null)
+      loadingRef.current?.continuousStart();
+
       try {
-        const artists = await apiRequest({
+        const response = await apiRequest({
           url: `/me/top/artists?time_range=${timeFrame}`,
           authFlow: true,
         });
+        const artists = response?.items?.map((item, index) => ({
+          ...item,
+          name: `${index + 1}. ${item.name}`,
+        }));
+        setArtists(artists);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
       } finally {
-        setLoading(false);
+        loadingRef.current?.complete();
       }
     };
-    fetchTopTracks();
+    fetchTopArtists();
   }, [timeFrame]);
 
   return (
@@ -79,20 +87,15 @@ const TopArtists = () => {
           </TabList>
 
           <TabPanel className="w-[90%]">
-            <table className="text-black dark:text-white mt-2 w-[100%] ">
-              <tbody className="w-[100%]">
-                <FeaturedArtists />
-              </tbody>
-            </table>
+            <div className="mt-4">
+              <ArtistsGrid artists={artists} />
+            </div>
           </TabPanel>
-          <TabPanel>
-            <h2>Any content 2</h2>
+          <TabPanel className="w-[90%]">
+            <ArtistsGrid artists={artists} />
           </TabPanel>
-          <TabPanel>
-            <h2>Any content 2</h2>
-          </TabPanel>
-          <TabPanel>
-            <h2>Any content 2</h2>
+          <TabPanel className="w-[90%]">
+            <ArtistsGrid artists={artists} />
           </TabPanel>
         </Tabs>
       </div>

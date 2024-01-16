@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import useIsVisible from "../../hooks/useIsVisible";
 import { apiRequest } from "../../services/api";
-import { Artist } from "../cards";
+import ArtistsGrid from "./ArtistsGrid";
 
 const FeaturedArtists = () => {
   const [popularArtists, setPopularArtists] = useState([]);
@@ -43,11 +42,7 @@ const FeaturedArtists = () => {
           <p className="text-2xl text-black dark:text-white font-bold">
             Featured Artists
           </p>
-          <div className="w-[100%] grid grid-cols-2 justify-items-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-y-10">
-            {popularArtists?.map((artist) => {
-              return <Artist artist={artist} key={uuidv4()} />;
-            })}
-          </div>
+          <ArtistsGrid artists={popularArtists} />
         </>
       )}
     </div>

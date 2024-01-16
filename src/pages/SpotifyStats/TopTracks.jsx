@@ -33,7 +33,6 @@ const TopTracksSongList = ({ tracks }) => {
 };
 
 const TopTracks = () => {
-  const [loading, setLoading] = useState(false);
   const [tracks, setTracks] = useState([]);
   const [timeFrame, setTimeframe] = useState(TIMEFRAMES.SHORT_TERM);
   const { loadingRef } = useAppContext();
@@ -41,7 +40,6 @@ const TopTracks = () => {
   const fetchTopTracks = async () => {
     loadingRef.current?.continuousStart();
 
-    setLoading(true);
     try {
       const tracks = await apiRequest({
         url: `/me/top/tracks?time_range=${timeFrame}&limit=25`,
@@ -52,8 +50,6 @@ const TopTracks = () => {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
       loadingRef.current?.complete();
-
-      setLoading(false);
     }
   };
 

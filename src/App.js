@@ -8,7 +8,7 @@ import { ScrollToTop } from "./components/others";
 import { NowPlaying } from "./components/sections";
 import { Album, Artist, Category, Discover, Home, Track } from "./pages";
 import { AlbumsLibrary, ArtistsLibrary, SongsLibrary } from "./pages/Library";
-import LibraryMobileView from "./pages/LibraryMobileView/LibraryMobileView";
+import LibraryMobileView from "./pages/Library/Library";
 import Playlist from "./pages/Playlist/Playlist";
 import PlaylistBuilder from "./pages/PlaylistBuilder/PlaylistBuilder";
 import PlaylistBuilderResults from "./pages/PlaylistBuilder/PlaylistBuilderResults";
@@ -18,6 +18,7 @@ import TopArtists from "./pages/SpotifyStats/TopArtists";
 import TopGenres from "./pages/SpotifyStats/TopGenres";
 import TopTracks from "./pages/SpotifyStats/TopTracks";
 import { apiRequest } from "./services";
+import RecentlyPlayed from "./pages/SpotifyStats/RecentlyPlayed";
 
 const AppContext = createContext();
 
@@ -119,6 +120,11 @@ function App() {
             <Route path="/stats/toptracks" element={<TopTracks />}></Route>
             <Route path="/stats/topartists" element={<TopArtists />}></Route>
             <Route path="/stats/topgenres" element={<TopGenres />}></Route>
+            <Route
+              path="/stats/recentlyplayed"
+              element={<RecentlyPlayed />}
+            ></Route>
+
             <Route
               path="/playlistbuilder"
               element={<PlaylistBuilder />}

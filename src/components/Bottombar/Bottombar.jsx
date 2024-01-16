@@ -11,27 +11,28 @@ const Bottombar = () => {
     {
       path: "/",
       text: "Home",
-
       icon: <FaHome color={iconColor} />,
+      loginRequired: false,
     },
     {
       path: "/discover",
       text: "Discover",
-
       icon: <FaSearch color={iconColor} />,
+      loginRequired: false,
     },
 
     {
       path: "/library",
       text: "Library",
       icon: <BiLibrary color={iconColor} size={23} />,
+      loginRequired: false,
     },
 
     {
       path: "/stats",
       text: "Stats",
-
       icon: <FaChartBar color={iconColor} />,
+      loginRequired: false,
     },
   ];
   return (

@@ -55,6 +55,12 @@ const SpotifyStats = () => {
           >
             Top Genres
           </Link>
+          <Link
+            onClick={(e) => handleButtonClick(e, "recentlyplayed")}
+            className="rounded-md bg-green-700 p-2 text-white w-[300px] flex justify-center items-center"
+          >
+            Recently Played
+          </Link>
         </div>
       </div>
 

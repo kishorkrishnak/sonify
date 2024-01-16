@@ -110,10 +110,10 @@ const Playlist = () => {
       {playlist && tracks && (
         <div className="rounded-md flex flex-col px-3 sm:px-6">
           <div className="rounded-md py-6 flex flex-col gap-6 lg:gap-0 justify-between">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-5">
+            <div className="flex flex-row items-start md:items-center gap-5">
               <img
                 src={playlist?.images[0]?.url || PlaylistIcon}
-                className="h-[180px] w-[180px] rounded-lg"
+                className="h-[120px] w-[120px] sm:h-[180px] sm:w-[180px] rounded-lg"
                 alt={playlist?.name}
               />
               <div className="flex flex-col">
@@ -123,7 +123,7 @@ const Playlist = () => {
                   {playlist?.name}
                 </h1>
 
-                <h1 className="text-white mt-3">{playlist?.description}</h1>
+                <h1 className="hidden sm:block text-white mt-3">{playlist?.description}</h1>
 
                 <h1 className="text-white text-sm mt-1">
                   {playlist?.tracks?.total} Songs •{" "}
@@ -161,7 +161,7 @@ const Playlist = () => {
 
             <button
               onClick={handleFollowClick}
-              className="rounded-2xl cursor-pointer scale:100 hover:scale-105 border border-grey  bg-transparent w-fit py-1 px-4 text-white"
+              className="rounded-2xl cursor-pointer scale:100 hover:scale-105 border border-black dark:border-white bg-transparent w-fit py-1 px-4 text-black dark:text-white"
             >
               {following ? "Following" : "Follow"}
             </button>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import {
   AlbumLibrary,
@@ -8,8 +7,11 @@ import {
   TrackLibrary,
 } from "../../assets/images";
 import PageLayout from "../../components/PageLayout/PageLayout";
+import LibraryType from "./LibraryType";
 
 const LibraryMobileView = () => {
+
+
   const types = [
     {
       name: "Artists",
@@ -39,19 +41,7 @@ const LibraryMobileView = () => {
       </h1>
       <div className="grid grid-cols-2 justify-items-center pt-5 px-3 sm:px-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-10">
         {types.map((type) => (
-          <Link
-            key={uuidv4()}
-            to={"/library" + type?.path}
-            className="flex flex-col w-[100%] items-center justify-center gap-3"
-          >
-            <div
-              style={{ backgroundImage: `url(${type?.imgUrl})` }}
-              className={`brightness-75 text-white bg-no-repeat bg-cover bg-center rounded-lg flex items-center justify-center w-[100%] h-[220px]`}
-            >
-              {" "}
-              <p className="z-40 brightness-100">{type.name}</p>
-            </div>
-          </Link>
+          <LibraryType key={uuidv4()} type={type} />
         ))}
       </div>
     </PageLayout>

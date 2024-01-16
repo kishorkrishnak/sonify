@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 
 const SearchSuggestionCategory = ({ title, items, loading }) => {
   return (
-    <div>
-      <h1 className="text-white text-lg font-bold ml-1 mt-2">{title}</h1>
+    <div className="text-black dark:text-white">
+      <h1 className="text-lg font-bold ml-1 mt-2">{title}</h1>
       <div className="py-3 flex flex-col gap-1">
         {items?.length > 0 ? (
           items

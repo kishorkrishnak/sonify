@@ -122,7 +122,7 @@ const Artist = () => {
   };
   useEffect(() => {
     fetchArtist();
-    followsArtist();
+    if (isLoggedIn) followsArtist();
     fetchTopTracks();
     fetchTopAlbums();
     fetchRelatedArtists();
@@ -135,7 +135,7 @@ const Artist = () => {
           <div className="flex pt-8 pb-5 items-center gap-5">
             <img
               src={artist?.images[0]?.url}
-              className="h-[180px] w-[180px] md:h-[255px] md:w-[255px] rounded-md"
+              className="h-[120px] w-[120px] sm:h-[255px] sm:w-[255px] rounded-md"
               alt={artist?.name}
             />
             <div className="flex flex-col">
@@ -175,7 +175,7 @@ const Artist = () => {
 
             <button
               onClick={handleFollowClick}
-              className="rounded-2xl cursor-pointer scale:100 hover:scale-105 border border-grey  bg-transparent w-fit py-1 px-4 text-white"
+              className="rounded-2xl cursor-pointer scale:100 hover:scale-105 border border-black dark:border-white bg-transparent w-fit py-1 px-4 text-black dark:text-white"
             >
               {following ? "Following" : "Follow"}
             </button>

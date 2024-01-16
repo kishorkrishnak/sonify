@@ -1,6 +1,6 @@
-import { MoonLoader } from "react-spinners";
+import { MoonLoader as Loader } from "react-spinners";
 
-const Loader = ({ size }) => {
+const MoonLoader = ({ size }) => {
   const override = {
     position: "absolute",
     left: 0,
@@ -11,7 +11,7 @@ const Loader = ({ size }) => {
     borderColor: "red",
   };
   return (
-    <MoonLoader
+    <Loader
       color={"greenyellow"}
       loading
       cssOverride={override}
@@ -22,4 +22,4 @@ const Loader = ({ size }) => {
   );
 };
 
-export default Loader;
+export default MoonLoader;

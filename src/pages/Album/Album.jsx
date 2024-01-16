@@ -107,7 +107,7 @@ const Album = () => {
             <div className="flex items-center gap-5">
               <img
                 src={album?.images[0]?.url}
-                className="h-[180px] w-[180px] md:h-[255px] md:w-[255px] rounded-lg"
+                className="h-[120px] w-[120px] sm:h-[180px] sm:w-[180px] md:h-[255px] md:w-[255px] rounded-lg"
                 alt={album?.name}
               />
               <div className="flex flex-col">

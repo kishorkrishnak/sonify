@@ -6,7 +6,8 @@ import { Link, useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../../App";
 import { Logo } from "../../assets/images";
-import SidebarLink from "./SidebarLink";
+import SidebarBottomLink from "./SidebarBottomLink";
+import SidebarLink from "./SidebarTopLink";
 
 const Sidebar = () => {
   const { colorTheme } = useAppContext();
@@ -40,18 +41,22 @@ const Sidebar = () => {
     {
       path: "/library/artists",
       text: "Artists",
+      loginRequired: true,
     },
     {
       path: "/library/playlists",
       text: "Playlists",
+      loginRequired: true,
     },
     {
       path: "/library/albums",
       text: "Albums",
+      loginRequired: true,
     },
     {
       path: "/library/songs",
       text: "Songs",
+      loginRequired: true,
     },
   ];
 
@@ -60,12 +65,12 @@ const Sidebar = () => {
       <nav className="rounded-md bg-[#F3F3F5] dark:bg-[#151515] px-7 py-6 gap-28">
         <ul className="flex flex-col gap-5">
           <li>
-            <a href="/">
+            <Link to="/">
               <div className="cursor-pointer flex justify-start items-center gap-2">
                 <img className="h-[32px] w-[32px]" src={Logo} alt="" />
                 <p className="text-lg">Sonify</p>
               </div>
-            </a>
+            </Link>
           </li>
           {topLinks.map((link) => (
             <SidebarLink
@@ -79,28 +84,15 @@ const Sidebar = () => {
       </nav>
 
       <nav className="rounded-md bg-[#F3F3F5] dark:bg-[#151515] px-7 py-6 gap-28 h-[100%] mt-[6px]">
-        <div className="mb-4 w-fit flex gap-3 items-center justify-center">
-          <BiLibrary color={iconColor} size={23} />
-          <h1 className="font-bold">Your Library</h1>
-        </div>
+        <Link to={"/library"}>
+          <div className="mb-4 w-fit flex gap-3 items-center justify-center">
+            <BiLibrary color={iconColor} size={23} />
+            <h1 className="font-bold">Your Library</h1>
+          </div>
+        </Link>
         <ul className="flex gap-2 flex-wrap">
           {bottomLinks.map((link) => (
-            <li
-              key={uuidv4()}
-              className={`flex grow justify-center items-center gap-5 ${
-                pathname === link.path ? "bg-white" : "bg-[#212121]"
-              }  w-fit rounded-lg py-1.5 px-3`}
-            >
-              {link.icon}
-              <Link
-                className={`text-sm  ${
-                  pathname === link.path ? "text-black" : "text-white"
-                }`}
-                to={link.path}
-              >
-                {link.text}
-              </Link>
-            </li>
+            <SidebarBottomLink key={uuidv4()} link={link} pathname={pathname} />
           ))}
         </ul>
       </nav>
