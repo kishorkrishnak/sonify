@@ -100,7 +100,7 @@ const Album = () => {
   }, [isLoggedIn]);
 
   return (
-    <PageLayout>
+    <>
       {album && tracks && (
         <div className="flex flex-col px-3 sm:px-6">
           <div className="popular flex flex-col py-6 gap-6 lg:gap-0 justify-between">
@@ -170,7 +170,7 @@ const Album = () => {
           <SongsTable songs={tracks} itemsPerPage={20} showHead />
         </div>
       )}
-    </PageLayout>
+    </>
   );
 };
 

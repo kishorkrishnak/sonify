@@ -106,7 +106,7 @@ const Playlist = () => {
   }, [userId]);
 
   return (
-    <PageLayout>
+    <>
       {playlist && tracks && (
         <div className="rounded-md flex flex-col px-3 sm:px-6">
           <div className="rounded-md py-6 flex flex-col gap-6 lg:gap-0 justify-between">
@@ -169,7 +169,7 @@ const Playlist = () => {
           <SongsTable songs={tracks} itemsPerPage={20} showHead />
         </div>
       )}
-    </PageLayout>
+    </>
   );
 };
 

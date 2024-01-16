@@ -21,7 +21,7 @@ const Home = () => {
     { id: "0JQ5DAqbMKFAXlCG6QvYQ4", title: "Workout" },
   ];
   return (
-    <PageLayout>
+    <>
       <TrendingAlbums />
       <TopSongs />
       <RecentlyPlayed />
@@ -34,7 +34,7 @@ const Home = () => {
         />
       ))}
       <FeaturedArtists />
-    </PageLayout>
+    </>
   );
 };
 

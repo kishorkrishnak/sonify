@@ -35,7 +35,7 @@ const LibraryMobileView = () => {
     },
   ];
   return (
-    <PageLayout>
+    <>
       <h1 className="text-black dark:text-white text-2xl ml-6 font-bold">
         Library
       </h1>
@@ -44,7 +44,7 @@ const LibraryMobileView = () => {
           <LibraryType key={uuidv4()} type={type} />
         ))}
       </div>
-    </PageLayout>
+    </>
   );
 };
 

@@ -16,7 +16,7 @@ const TopSongs = () => {
 
       try {
         const response = await apiRequest({
-          url: "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF",
+          url: "/playlists/37i9dQZEVXbMDoHDwVN2tF",
         });
 
         setTopSongs(response?.tracks?.items?.slice(0, 6));
@@ -43,7 +43,7 @@ const TopSongs = () => {
       <PopularGenre />
 
       <div className="w-full lg:w-[48%] flex flex-col items-start justify-start gap-4">
-        <p className="text-2xl font-bold text-black dark:text-white">
+        <p className="text-xl sm:text-2xl font-bold text-black dark:text-white">
           Top Songs
         </p>
         <div className="w-full h-full flex flex-col items-center justify-start gap-1 relative">

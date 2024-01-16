@@ -129,7 +129,7 @@ const Artist = () => {
   }, [id]);
 
   return (
-    <PageLayout>
+    <>
       {artist && topTracks && (
         <div className="popular flex flex-col gap- lg:gap-0 justify-between px-3 sm:px-6">
           <div className="flex pt-8 pb-5 items-center gap-5">
@@ -228,7 +228,7 @@ const Artist = () => {
           </div>
         </div>
       )}
-    </PageLayout>
+    </>
   );
 };
 

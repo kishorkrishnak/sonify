@@ -36,7 +36,7 @@ const Category = () => {
   }, []);
 
   return (
-    <PageLayout>
+    <>
       <h1 className="text-white text-2xl ml-6 font-bold">{title}</h1>
       <div className="grid grid-cols-2 justify-items-center pt-5 px-3 sm:px-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 gap-y-10">
         {category &&
@@ -44,7 +44,7 @@ const Category = () => {
             <Playlist playlist={playlist} key={uuidv4()} />
           ))}
       </div>
-    </PageLayout>
+    </>
   );
 };
 

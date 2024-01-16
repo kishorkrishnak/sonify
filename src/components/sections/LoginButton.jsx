@@ -4,9 +4,8 @@ const LoginButton = () => {
   return (
     <a
       href={`${backendUrl}/auth/login`}
-      className="bg-[#3C3E4D] text-sm lg:text-md text-white w-fit px-3 py-1 rounded-md"
+      className="bg-[#3C3E4D] text-md lg:text-md text-white w-fit px-3 py-1 rounded-md"
     >
-      {" "}
       Login
     </a>
   );

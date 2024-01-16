@@ -94,7 +94,7 @@ const TopGenres = () => {
   return (
     <PageLayout>
       <div className="gap-3 py-14 flex flex-col items-center justify-stretch">
-        <h1 className="text-3xl text-black dark:text-white font-bold ">
+        <h1 className="text-xl sm:text-3xl text-black dark:text-white font-bold ">
           Top Genres {title}
         </h1>
       </div>
@@ -117,19 +117,19 @@ const TopGenres = () => {
           >
             <Tab
               onClick={() => setTimeframe("short_term")}
-              className="outline-none flex-1 border-x cursor-pointer p-2 flex items-center justify-center"
+              className="text-sm outline-none flex-1 border-x cursor-pointer p-2 flex items-center justify-center"
             >
               Last 4 weeks
             </Tab>
             <Tab
               onClick={() => setTimeframe("medium_term")}
-              className="outline-none flex-1 border-x cursor-pointer p-2 flex items-center justify-center"
+              className="text-sm outline-none flex-1 border-x cursor-pointer p-2 flex items-center justify-center"
             >
               Last 6 months
             </Tab>
             <Tab
               onClick={() => setTimeframe("long_term")}
-              className="outline-none flex-1 border-x cursor-pointer p-2 flex items-center justify-center"
+              className="text-sm outline-none flex-1 border-x cursor-pointer p-2 flex items-center justify-center"
             >
               All time
             </Tab>

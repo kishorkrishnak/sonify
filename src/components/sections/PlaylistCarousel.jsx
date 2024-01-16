@@ -35,8 +35,8 @@ const PlaylistCarousel = ({ id, title }) => {
     <div ref={elemRef} className="flex flex-col justify-center pb-4">
       {isVisible && playlists && (
         <>
-          <div className="text-2xl font-bold mb-2.5 px-3 sm:px-6 flex justify-between items-end text-black dark:text-white">
-            <span>{title}</span>
+          <div className="font-bold mb-2.5 px-3 sm:px-6 flex justify-between items-end text-black dark:text-white">
+            <p className="text-xl sm:text-2xl">{title}</p>
             <Link
               to={`/category/${id}`}
               state={{ title: title }}

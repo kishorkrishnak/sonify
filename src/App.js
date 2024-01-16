@@ -19,6 +19,8 @@ import TopGenres from "./pages/SpotifyStats/TopGenres";
 import TopTracks from "./pages/SpotifyStats/TopTracks";
 import { apiRequest } from "./services";
 import RecentlyPlayed from "./pages/SpotifyStats/RecentlyPlayed";
+import Sidebar from "./components/Sidebar/Sidebar";
+import PageLayout from "./components/PageLayout/PageLayout";
 
 const AppContext = createContext();
 
@@ -99,41 +101,46 @@ function App() {
         ) : null}
 
         <ScrollToTop>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/profile" element={<UserProfile />}></Route>
-            <Route path="/discover" element={<Discover />}></Route>
-            <Route path="/library" element={<LibraryMobileView />}></Route>
-            <Route path="/library/artists" element={<ArtistsLibrary />}></Route>
-            <Route
-              path="/library/playlists"
-              element={<ArtistsLibrary />}
-            ></Route>
-            <Route path="/library/albums" element={<AlbumsLibrary />}></Route>
-            <Route path="/library/songs" element={<SongsLibrary />}></Route>
-            <Route path="/category/:id" element={<Category />}></Route>
-            <Route path="/artist/:id" element={<Artist />}></Route>
-            <Route path="/album/:id" element={<Album />}></Route>
-            <Route path="/track/:id" element={<Track />}></Route>
-            <Route path="/playlist/:id" element={<Playlist />}></Route>
-            <Route path="/stats" element={<SpotifyStats />}></Route>
-            <Route path="/stats/toptracks" element={<TopTracks />}></Route>
-            <Route path="/stats/topartists" element={<TopArtists />}></Route>
-            <Route path="/stats/topgenres" element={<TopGenres />}></Route>
-            <Route
-              path="/stats/recentlyplayed"
-              element={<RecentlyPlayed />}
-            ></Route>
+          <PageLayout>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/profile" element={<UserProfile />}></Route>
+              <Route path="/discover" element={<Discover />}></Route>
+              <Route path="/library" element={<LibraryMobileView />}></Route>
+              <Route
+                path="/library/artists"
+                element={<ArtistsLibrary />}
+              ></Route>
+              <Route
+                path="/library/playlists"
+                element={<ArtistsLibrary />}
+              ></Route>
+              <Route path="/library/albums" element={<AlbumsLibrary />}></Route>
+              <Route path="/library/songs" element={<SongsLibrary />}></Route>
+              <Route path="/category/:id" element={<Category />}></Route>
+              <Route path="/artist/:id" element={<Artist />}></Route>
+              <Route path="/album/:id" element={<Album />}></Route>
+              <Route path="/track/:id" element={<Track />}></Route>
+              <Route path="/playlist/:id" element={<Playlist />}></Route>
+              <Route path="/stats" element={<SpotifyStats />}></Route>
+              <Route path="/stats/toptracks" element={<TopTracks />}></Route>
+              <Route path="/stats/topartists" element={<TopArtists />}></Route>
+              <Route path="/stats/topgenres" element={<TopGenres />}></Route>
+              <Route
+                path="/stats/recentlyplayed"
+                element={<RecentlyPlayed />}
+              ></Route>
 
-            <Route
-              path="/playlistbuilder"
-              element={<PlaylistBuilder />}
-            ></Route>
-            <Route
-              path="/playlistbuilder/results"
-              element={<PlaylistBuilderResults />}
-            ></Route>
-          </Routes>
+              <Route
+                path="/playlistbuilder"
+                element={<PlaylistBuilder />}
+              ></Route>
+              <Route
+                path="/playlistbuilder/results"
+                element={<PlaylistBuilderResults />}
+              ></Route>
+            </Routes>
+          </PageLayout>
         </ScrollToTop>
       </BrowserRouter>
       <Toaster toastOptions={toastOptions} />

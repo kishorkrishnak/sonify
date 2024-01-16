@@ -8,6 +8,7 @@ import { useAppContext } from "../../App";
 import { Logo } from "../../assets/images";
 import SidebarBottomLink from "./SidebarBottomLink";
 import SidebarLink from "./SidebarTopLink";
+import Playlists from "./Playlists";
 
 const Sidebar = () => {
   const { colorTheme } = useAppContext();
@@ -61,14 +62,16 @@ const Sidebar = () => {
   ];
 
   return (
-    <nav className="hidden lg:flex flex-col h-[100vh] w-[290px] sticky top-0 bg-black text-black dark:text-[#a7a7a7] rounded-lg ml-[6px]">
-      <nav className="rounded-md bg-[#F3F3F5] dark:bg-[#151515] px-7 py-6 gap-28">
+    <nav className="hidden lg:flex flex-col h-[100vh] w-[320px] sticky top-0 bg-black text-black dark:text-[#a7a7a7]">
+      <nav className="bg-[#F3F3F5] dark:bg-[#151515] px-5 py-5 gap-28">
         <ul className="flex flex-col gap-5">
           <li>
             <Link to="/">
               <div className="cursor-pointer flex justify-start items-center gap-2">
                 <img className="h-[32px] w-[32px]" src={Logo} alt="" />
-                <p className="text-lg">Sonify</p>
+                <p className="text-lg font-bold text-black dark:text-white">
+                  Sonify
+                </p>
               </div>
             </Link>
           </li>
@@ -83,7 +86,7 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      <nav className="rounded-md bg-[#F3F3F5] dark:bg-[#151515] px-7 py-6 gap-28 h-[100%] mt-[6px]">
+      <nav className="overflow-y-auto bg-[#F3F3F5] dark:bg-[#151515] px-5 py-5 gap-28 h-[100%] mt-[2px]">
         <Link to={"/library"}>
           <div className="mb-4 w-fit flex gap-3 items-center justify-center">
             <BiLibrary color={iconColor} size={23} />
@@ -95,6 +98,8 @@ const Sidebar = () => {
             <SidebarBottomLink key={uuidv4()} link={link} pathname={pathname} />
           ))}
         </ul>
+      
+        <Playlists />
       </nav>
     </nav>
   );

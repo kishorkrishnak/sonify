@@ -30,7 +30,7 @@ const RecentlyPlayed = () => {
     <>
       {recentlyPlayedTrack && isLoggedIn && (
         <div className="flex flex-col justify-center px-3 sm:px-6 pt-2 pb-9">
-          <p className="text-2xl font-bold mb-2.5 text-black dark:text-white">
+          <p className="text-xl sm:text-2xl font-bold mb-2.5 text-black dark:text-white">
             Recently Played
           </p>
 
@@ -44,7 +44,7 @@ const RecentlyPlayed = () => {
               <div className="ml-1 flex flex-col items-start justify-center">
                 <Link
                   to={`/track/${recentlyPlayedTrack?.id}`}
-                  className="text-md font-semibold text-black dark:text-white"
+                  className="text-sm md:text-md font-semibold text-black dark:text-white"
                 >
                   {recentlyPlayedTrack?.name}
                 </Link>

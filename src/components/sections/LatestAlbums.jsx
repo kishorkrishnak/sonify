@@ -24,8 +24,8 @@ const LatestAlbums = () => {
     <>
       {albums && (
         <div className="pb-7 flex flex-col justify-center">
-          <div className="flex justify-between items-end mb-2.5 px-3 sm:px-6 text-2xl text-black dark:text-white font-bold ">
-            <span>Latest Albums</span>
+          <div className="flex justify-between items-end mb-2.5 px-3 sm:px-6 text-black dark:text-white font-bold ">
+            <p className="text-xl sm:text-2xl">Latest Albums</p>
             <Link
               className="text-black dark:text-[#B3B3B3] text-xs"
               to={"/view/all"}

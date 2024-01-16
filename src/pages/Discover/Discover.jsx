@@ -27,7 +27,7 @@ const Discover = () => {
   }, []);
 
   return (
-    <PageLayout>
+    <>
       <h1 className="text-black dark:text-white text-2xl ml-6 font-bold">
         Categories
       </h1>
@@ -49,7 +49,7 @@ const Discover = () => {
           </Link>
         ))}
       </div>
-    </PageLayout>
+    </>
   );
 };
 
