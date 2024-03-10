@@ -13,7 +13,7 @@ const SearchResult = ({ data, imageSrc }) => {
       className="flex justify-start items-center gap-2 ml-1 hover:bg-[#3C3E4D] hover:text-white  cursor-pointer"
     >
       <img
-        className="h-[42px] w-[55px] rounded-md"
+        className="h-[42px] w-[42px] rounded-md"
         src={imageSrc || NoImage}
         alt={data?.type}
       />

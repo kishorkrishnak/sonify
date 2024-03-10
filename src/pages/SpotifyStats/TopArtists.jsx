@@ -43,7 +43,7 @@ const TopArtists = () => {
   }, [timeFrame]);
 
   return (
-    <PageLayout>
+    <>
       <div className="gap-3 py-14 flex flex-col items-center justify-stretch">
         <h1 className="text-3xl text-black dark:text-white font-bold ">
           Top Artists {title}
@@ -99,7 +99,7 @@ const TopArtists = () => {
           </TabPanel>
         </Tabs>
       </div>
-    </PageLayout>
+    </>
   );
 };
 

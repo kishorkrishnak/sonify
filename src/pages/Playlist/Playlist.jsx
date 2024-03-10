@@ -12,6 +12,7 @@ import { apiRequest } from "../../services";
 import { notifyLoginRequired } from "../../utils";
 import formatMilliseconds from "../../utils/formatMilliseconds";
 import formatNumberWithCommas from "../../utils/formatNumberWithCommas";
+import Recommendations from "../../components/Recommendations/Recommendations";
 
 const Playlist = () => {
   const {
@@ -36,7 +37,6 @@ const Playlist = () => {
 
   const handlePlayClick = () => {
     if (isLoggedIn) {
-      const tracks = playlist?.tracks?.items.map((item) => item.track);
       setPlayingTracks([...tracks]);
       setPlay(true);
     } else {
@@ -123,7 +123,9 @@ const Playlist = () => {
                   {playlist?.name}
                 </h1>
 
-                <h1 className="hidden sm:block text-white mt-3">{playlist?.description}</h1>
+                <h1 className="hidden sm:block text-white mt-3">
+                  {playlist?.description}
+                </h1>
 
                 <h1 className="text-white text-sm mt-1">
                   {playlist?.tracks?.total} Songs •{" "}
@@ -158,15 +160,19 @@ const Playlist = () => {
                 />
               </IconContext.Provider>
             )}
-
-            <button
-              onClick={handleFollowClick}
-              className="rounded-2xl cursor-pointer scale:100 hover:scale-105 border border-black dark:border-white bg-transparent w-fit py-1 px-4 text-black dark:text-white"
-            >
-              {following ? "Following" : "Follow"}
-            </button>
+            {playlist.owner.id !== profile.id && (
+              <button
+                onClick={handleFollowClick}
+                className="rounded-2xl cursor-pointer scale:100 hover:scale-105 border border-black dark:border-white bg-transparent w-fit py-1 px-4 text-black dark:text-white"
+              >
+                {following ? "Following" : "Follow"}
+              </button>
+            )}
           </div>
           <SongsTable songs={tracks} itemsPerPage={20} showHead />
+          {tracks.length > 0 && (
+            <Recommendations basedOn={"Playlist"} seedTrack={tracks[0]?.id} />
+          )}
         </div>
       )}
     </>

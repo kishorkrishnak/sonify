@@ -16,7 +16,7 @@ const PlaylistBuilder = () => {
   };
 
   return (
-    <PageLayout>
+    <>
       <div className="mt-7 carousel-container gap-3 px-3 sm:px-6 pb-12 flex flex-col justify-center items-center">
         <p className="mb-5 text-4xl md:text-5xl text-black dark:text-white font-bold ">
           Playlist Builder
@@ -40,7 +40,7 @@ const PlaylistBuilder = () => {
           Find Playlists
         </button>
       </div>
-    </PageLayout>
+    </>
   );
 };
 

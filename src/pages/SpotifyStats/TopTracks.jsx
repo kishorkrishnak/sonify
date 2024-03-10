@@ -58,7 +58,7 @@ const TopTracks = () => {
   }, [timeFrame]);
 
   return (
-    <PageLayout>
+    <>
       <div className="gap-3 py-14 flex flex-col items-center justify-center">
         <h1 className="text-3xl text-black dark:text-white font-bold ">
           Top Tracks {`(${TAB_TITLES[timeFrame]})`}
@@ -100,7 +100,7 @@ const TopTracks = () => {
       <button className="bg-green-600 hover:bg-green-800 text-white w-fit mx-auto mt-3 p-4 py-2 rounded-md">
         Create Playlist
       </button>
-    </PageLayout>
+    </>
   );
 };
 

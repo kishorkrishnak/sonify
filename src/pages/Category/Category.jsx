@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../../App";
-import PageLayout from "../../components/PageLayout/PageLayout";
 import Playlist from "../../components/cards/Playlist";
 import { apiRequest } from "../../services";
 
@@ -18,11 +17,16 @@ const Category = () => {
       setCategory(playlists);
       return;
     }
+
     loadingRef.current?.continuousStart();
 
     try {
+      const url =
+        id === "featured"
+          ? "browse/featured-playlists"
+          : `/browse/categories/${id}/playlists`;
       const category = await apiRequest({
-        url: `/browse/categories/${id}/playlists`,
+        url,
       });
       setCategory(category?.playlists?.items);
     } catch (error) {

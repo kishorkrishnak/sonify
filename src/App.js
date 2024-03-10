@@ -4,23 +4,24 @@ import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 import "./App.css";
+import PageLayout from "./components/PageLayout/PageLayout";
 import { ScrollToTop } from "./components/others";
 import { NowPlaying } from "./components/sections";
 import { Album, Artist, Category, Discover, Home, Track } from "./pages";
+import ArtistAlbums from "./pages/Albums/Albums";
 import { AlbumsLibrary, ArtistsLibrary, SongsLibrary } from "./pages/Library";
 import LibraryMobileView from "./pages/Library/Library";
 import Playlist from "./pages/Playlist/Playlist";
 import PlaylistBuilder from "./pages/PlaylistBuilder/PlaylistBuilder";
 import PlaylistBuilderResults from "./pages/PlaylistBuilder/PlaylistBuilderResults";
 import UserProfile from "./pages/Profile/Profile";
+import Related from "./pages/Related/Related";
+import RecentlyPlayed from "./pages/SpotifyStats/RecentlyPlayed";
 import SpotifyStats from "./pages/SpotifyStats/SpotifyStats";
 import TopArtists from "./pages/SpotifyStats/TopArtists";
 import TopGenres from "./pages/SpotifyStats/TopGenres";
 import TopTracks from "./pages/SpotifyStats/TopTracks";
 import { apiRequest } from "./services";
-import RecentlyPlayed from "./pages/SpotifyStats/RecentlyPlayed";
-import Sidebar from "./components/Sidebar/Sidebar";
-import PageLayout from "./components/PageLayout/PageLayout";
 
 const AppContext = createContext();
 
@@ -119,6 +120,12 @@ function App() {
               <Route path="/library/songs" element={<SongsLibrary />}></Route>
               <Route path="/category/:id" element={<Category />}></Route>
               <Route path="/artist/:id" element={<Artist />}></Route>
+              <Route path="/artist/:id/related" element={<Related />}></Route>
+              <Route
+                path="/artist/:id/albums"
+                element={<ArtistAlbums />}
+              ></Route>
+              <Route path="/albums/:id" element={<ArtistAlbums />}></Route>
               <Route path="/album/:id" element={<Album />}></Route>
               <Route path="/track/:id" element={<Track />}></Route>
               <Route path="/playlist/:id" element={<Playlist />}></Route>

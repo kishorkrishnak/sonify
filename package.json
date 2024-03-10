@@ -12,6 +12,7 @@
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
+    "react-elastic-carousel": "^0.11.5",
     "react-heart": "^1.0.6",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.11.0",

@@ -7,6 +7,7 @@ import TrendingAlbums from "../../components/sections/LatestAlbums";
 import PlaylistCarousel from "../../components/sections/PlaylistCarousel";
 import RecentlyPlayed from "../../components/sections/RecentlyPlayed";
 import TopSongs from "../../components/sections/TopSongs";
+import Hero from "../../components/sections/Hero";
 
 const Home = () => {
   const playlistCategories = [
@@ -22,6 +23,7 @@ const Home = () => {
   ];
   return (
     <>
+      <Hero />
       <TrendingAlbums />
       <TopSongs />
       <RecentlyPlayed />

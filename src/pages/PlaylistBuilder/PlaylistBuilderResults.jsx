@@ -9,7 +9,6 @@ import { apiRequest } from "../../services";
 const PlaylistBuilderResults = () => {
   const location = useLocation();
   const [query, setQuery] = useState(location.state.query || null);
-  const [loading, setLoading] = useState(false);
   const [tracks, setTracks] = useState([]);
   const [playlists, setPlaylists] = useState([]);
   const { loadingRef } = useAppContext();
@@ -70,7 +69,7 @@ const PlaylistBuilderResults = () => {
   }, [query]);
 
   return (
-    <PageLayout>
+    <>
       <div className="carousel-container gap-3 px-3 sm:px-6 pb-8 flex flex-col justify-center">
         <div className="flex flex-col items-center justify-center">
           <p className="mb-5 text-4xl text-black dark:text-white font-bold">
@@ -102,7 +101,7 @@ const PlaylistBuilderResults = () => {
           <SongsTable songs={tracks.slice(0, 100)} itemsPerPage={20} />
         )}
       </div>
-    </PageLayout>
+    </>
   );
 };
 

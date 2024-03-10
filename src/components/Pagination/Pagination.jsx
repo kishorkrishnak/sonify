@@ -26,7 +26,7 @@ const Pagination = ({
   return (
     <>
       {renderItems(currentItems)}
-      {showPagination && (
+      {showPagination && pageCount > 1 && (
         <ReactPaginate
           className="react-paginate mt-5"
           breakLabel="..."

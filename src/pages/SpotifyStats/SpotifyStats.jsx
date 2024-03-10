@@ -28,7 +28,7 @@ const SpotifyStats = () => {
     navigate(`/stats/${path}`);
   };
   return (
-    <PageLayout>
+    <>
       <div className="border-b border-[#a7a7a7] gap-3 py-14 flex flex-col items-center justify-center">
         <p className="text-3xl text-black dark:text-white font-bold ">
           Stats for Spotify
@@ -87,7 +87,7 @@ const SpotifyStats = () => {
           description={"Check out your recently played tracks with timestamps"}
         />
       </div>
-    </PageLayout>
+    </>
   );
 };
 

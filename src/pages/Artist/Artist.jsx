@@ -5,7 +5,6 @@ import { IoPauseCircleSharp, IoPlayCircleSharp } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../../App";
-import PageLayout from "../../components/PageLayout/PageLayout";
 import SongsTable from "../../components/SongsTable/SongsTable";
 import { Artist as ArtistCard } from "../../components/cards";
 import Album from "../../components/cards/Album";
@@ -128,6 +127,12 @@ const Artist = () => {
     fetchRelatedArtists();
   }, [id]);
 
+  useEffect(() => {
+    if (isLoggedIn) followsArtist();
+  }, [id,isLoggedIn]);
+
+
+
   return (
     <>
       {artist && topTracks && (
@@ -194,7 +199,7 @@ const Artist = () => {
               <span>Albums</span>
               <Link
                 className="text-black dark:text-[#B3B3B3] text-xs"
-                to={"/view/all"}
+                to={`/artist/${id}/albums`}
               >
                 View All
               </Link>
@@ -213,7 +218,7 @@ const Artist = () => {
                   Fans Also Like
                   <Link
                     className="text-black dark:text-[#B3B3B3] text-xs"
-                    to={`/stats/topartists`}
+                    to={`/artist/${id}/related`}
                   >
                     View All
                   </Link>

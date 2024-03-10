@@ -36,3 +36,11 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #7b7b7b;
 }
+.rec-dot_active {
+  background-color: #3c3e4d !important;
+}
+
+.rec-dot{
+  display: hidden !important;
+}
+

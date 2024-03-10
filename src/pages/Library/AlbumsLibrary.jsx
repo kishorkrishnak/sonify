@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from "uuid";
-import PageLayout from "../../components/PageLayout/PageLayout";
 import { Album } from "../../components/cards";
 
 const AlbumsLibrary = ({ title, albums }) => {

@@ -12,7 +12,6 @@ const PopularGenre = () => {
   useEffect(() => {
     const randomImageNumber = Math.floor(Math.random() * (2 - 1 + 1) + 1);
     const randomGenre = genres[randomImageNumber - 1];
-    console.log(randomImageNumber);
     setGenre(randomGenre);
   }, []);
   return (
@@ -28,7 +27,7 @@ const PopularGenre = () => {
             className="w-full h-full flex items-center justify-center cursor-pointer bg-cover bg-center rounded-lg min-h-[300px] sm:min-h-[500px] lg:min-h-[300px]"
             style={{ backgroundImage: `url(${genre.image})` }}
           >
-            <p className="text-white font-bold text-3xl sm:text-5xl">
+            <p className="text-white font-bold text-3xl sm:text-4xl">
               {genre.name}
             </p>
           </Link>

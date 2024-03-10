@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAppContext } from "../../App";
 import SongsTable from "../../components/SongsTable/SongsTable";
-import PageLayout from "../../components/PageLayout/PageLayout";
 
+import { v4 as uuidv4 } from "uuid";
 import { apiRequest } from "../../services";
 
 import Heart from "react-heart";
@@ -12,10 +12,13 @@ import { IconContext } from "react-icons";
 import { IoPauseCircleSharp, IoPlayCircleSharp } from "react-icons/io5";
 import { notifyLoginRequired } from "../../utils";
 import formatMilliseconds from "../../utils/formatMilliseconds";
+import { Album as AlbumCard } from "../../components/cards";
+import Recommendations from "../../components/Recommendations/Recommendations";
 const Album = () => {
   const [album, setAlbum] = useState(null);
   const [tracks, setTracks] = useState(null);
   const [saved, setSaved] = useState(false);
+  const [moreAlbums, setMoreAlbums] = useState([]);
   const minutes = album?.tracks?.items?.reduce((total, current) => {
     return total + Number(current.duration_ms);
   }, 0);
@@ -79,7 +82,7 @@ const Album = () => {
         loadingRef.current?.continuousStart();
 
         const album = await apiRequest({
-          url: `https://api.spotify.com/v1/albums/${id}`,
+          url: `/albums/${id}`,
         });
 
         const tracks = album?.tracks?.items?.map((track) => track);
@@ -94,11 +97,24 @@ const Album = () => {
 
     fetchArtist();
   }, [id]);
+  const fetchMoreAlbums = async () => {
+    try {
+      const response = await apiRequest({
+        url: `/artists/${album?.artists[0]?.id}/albums`,
+      });
 
+      setMoreAlbums(response?.items);
+    } catch (error) {
+      console.error("Error fetching data from Spotify API:", error);
+    }
+  };
   useEffect(() => {
     if (isLoggedIn) isSaved();
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    if (album) fetchMoreAlbums();
+  }, [album]);
   return (
     <>
       {album && tracks && (
@@ -168,6 +184,31 @@ const Album = () => {
             </div>
           </div>
           <SongsTable songs={tracks} itemsPerPage={20} showHead />
+
+          <Recommendations
+            basedOn="Album"
+            seedTrack={album?.tracks?.items[0]?.id}
+          />
+          <div className="flex flex-col items-start mt-6 gap-5 sm:mb-2 lg:mb-7">
+            {moreAlbums && (
+              <div className="w-[100%] flex flex-col gap-4">
+                <h1 className="text-black dark:text-white text-xl font-bold flex justify-between items-center">
+                  More by {album?.artists[0].name}
+                  <Link
+                    className="text-black dark:text-[#B3B3B3] text-xs"
+                    to={`/artist/${album?.artists[0].id}/albums`}
+                  >
+                    View All
+                  </Link>
+                </h1>
+                <div className="w-[100%] grid grid-cols-2 justify-items-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-y-10">
+                  {moreAlbums?.slice(0, 6).map((album) => (
+                    <AlbumCard key={uuidv4()} album={album}></AlbumCard>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>

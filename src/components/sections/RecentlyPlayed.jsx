@@ -12,19 +12,20 @@ const RecentlyPlayed = () => {
     const fetchRecentlyPlayed = async (limit) => {
       try {
         const response = await apiRequest({
-          url: `/me/player/recently-played?limit=${1}`,
+          url: `/me/player/recently-played?limit=${limit}`,
           authFlow: true,
         });
 
         const lastPlayedTrack = response.items[0]?.track;
         setRecentlyPlayedTrack(lastPlayedTrack);
+        console.log(lastPlayedTrack);
       } catch (error) {
         console.error("Error fetching recently played tracks:", error);
       }
     };
 
-    if (isLoggedIn) fetchRecentlyPlayed();
-  }, [currentTrackId]);
+    if (isLoggedIn) fetchRecentlyPlayed(1);
+  }, [currentTrackId, isLoggedIn]);
 
   return (
     <>

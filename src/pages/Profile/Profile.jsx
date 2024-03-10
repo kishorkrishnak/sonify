@@ -68,7 +68,7 @@ const UserProfile = () => {
   }, [profile]);
 
   return (
-    <PageLayout>
+    <>
       {topArtists && topTracks && playlists && (
         <div className="flex flex-col px-3 sm:px-6">
           <div className="gap-7 py-14 flex items-center justify-start">
@@ -144,7 +144,7 @@ const UserProfile = () => {
           </div>
         </div>
       )}
-    </PageLayout>
+    </>
   );
 };
 

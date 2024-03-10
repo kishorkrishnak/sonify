@@ -5,17 +5,17 @@ import { IoPauseCircleSharp, IoPlayCircleSharp } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../../App";
-import PageLayout from "../../components/PageLayout/PageLayout";
 import { apiRequest } from "../../services";
-
 import toast from "react-hot-toast";
 import SongsTable from "../../components/SongsTable/SongsTable";
-import { Album } from "../../components/cards";
+import { Album, Artist } from "../../components/cards";
 import { convertMsToMinSec, notifyLoginRequired } from "../../utils";
+import Recommendations from "../../components/Recommendations/Recommendations";
 const Track = () => {
   const [saved, setSaved] = useState(false);
 
   const [track, setTrack] = useState(null);
+  const [relatedArtists, setRelatedArtists] = useState(null);
 
   const [moreAlbums, setMoreAlbums] = useState(null);
   const { loadingRef } = useAppContext();
@@ -37,14 +37,26 @@ const Track = () => {
     if (isLoggedIn) setPlay(false);
   };
 
+  const fetchRelatedArtists = async () => {
+    loadingRef.current?.continuousStart();
+
+    try {
+      const response = await apiRequest({
+        url: `/artists/${track?.artists[0].id}/related-artists`,
+      });
+      setRelatedArtists(response?.artists);
+    } catch (error) {
+      console.error("Error fetching data from Spotify API:", error);
+    } finally {
+      loadingRef.current?.complete();
+    }
+  };
   const isSaved = async () => {
-    console.log("hit");
     try {
       const response = await apiRequest({
         url: `/me/tracks/contains?&ids=${id}`,
         authFlow: true,
       });
-      console.log(response);
 
       setSaved(response[0]);
     } catch (error) {
@@ -63,9 +75,6 @@ const Track = () => {
       console.error("Error fetching data from Spotify API:", error);
     }
   };
-  useEffect(() => {
-    if (track) fetchMoreAlbums();
-  }, [track]);
 
   const handleHeartClick = async () => {
     if (!isLoggedIn) return notifyLoginRequired();
@@ -105,15 +114,18 @@ const Track = () => {
       }
     };
     fetchTrack();
-    if (track) fetchMoreAlbums();
   }, [id]);
+  useEffect(() => {
+    if (track) fetchMoreAlbums();
+    if (track) fetchRelatedArtists();
+  }, [track]);
 
   useEffect(() => {
     if (isLoggedIn) isSaved();
   }, [isLoggedIn]);
 
   return (
-    <PageLayout>
+    <>
       {track && (
         <div className="flex flex-col gap-6 lg:gap-0 justify-between px-3 sm:px-6">
           <div className="flex items-center gap-6 py-10">
@@ -181,15 +193,15 @@ const Track = () => {
             </div>
 
             <SongsTable songs={[track]} itemsPerPage={1} showHead />
-
+            <Recommendations basedOn={"song"} seedTrack={track?.id} />
             <div className="flex flex-col items-start mt-4 gap-5 sm:mb-2 lg:mb-7">
               {moreAlbums && (
                 <div className="w-[100%] flex flex-col gap-4">
                   <h1 className="text-black dark:text-white text-xl font-bold flex justify-between items-center">
-                    More by {track?.artists[0].name}
+                    Popular Albums by {track?.artists[0].name}
                     <Link
                       className="text-black dark:text-[#B3B3B3] text-xs"
-                      to={`/stats/topartists`}
+                      to={`/artist/${track?.artists[0].id}/albums`}
                     >
                       View All
                     </Link>
@@ -202,10 +214,31 @@ const Track = () => {
                 </div>
               )}
             </div>
+
+            <div className="flex flex-col items-start mt-6 gap-5 sm:mb-2 lg:mb-7">
+              {relatedArtists && (
+                <div className="w-[100%] flex flex-col gap-4">
+                  <h1 className="text-black dark:text-white text-xl font-bold flex justify-between items-center">
+                    Fans Also Like
+                    <Link
+                      className="text-black dark:text-[#B3B3B3] text-xs"
+                      to={`/artist/${track?.artists[0]?.id}/related`}
+                    >
+                      View All
+                    </Link>
+                  </h1>
+                  <div className="w-[100%] grid grid-cols-2 justify-items-center sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-y-10">
+                    {relatedArtists?.slice(0, 6).map((artist) => {
+                      return <Artist artist={artist} key={uuidv4()} />;
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
-    </PageLayout>
+    </>
   );
 };
 

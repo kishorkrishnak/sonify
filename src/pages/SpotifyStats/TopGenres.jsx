@@ -92,7 +92,7 @@ const TopGenres = () => {
     },
   };
   return (
-    <PageLayout>
+    <>
       <div className="gap-3 py-14 flex flex-col items-center justify-stretch">
         <h1 className="text-xl sm:text-3xl text-black dark:text-white font-bold ">
           Top Genres {title}
@@ -158,7 +158,7 @@ const TopGenres = () => {
           </TabPanel>
         </Tabs>
       </div>
-    </PageLayout>
+    </>
   );
 };
 

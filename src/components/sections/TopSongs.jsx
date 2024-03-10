@@ -44,7 +44,7 @@ const TopSongs = () => {
 
       <div className="w-full lg:w-[48%] flex flex-col items-start justify-start gap-4">
         <p className="text-xl sm:text-2xl font-bold text-black dark:text-white">
-          Top Songs
+         Global Top 
         </p>
         <div className="w-full h-full flex flex-col items-center justify-start gap-1 relative">
           {renderTopSongs()}

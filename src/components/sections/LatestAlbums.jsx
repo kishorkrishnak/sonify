@@ -11,7 +11,7 @@ const LatestAlbums = () => {
     const fetchLatestAlbums = async () => {
       try {
         const albums = await apiRequest({
-          url: "browse/new-releases",
+          url: "browse/new-releases?country=IN",
         });
         setAlbums(albums?.albums?.items);
       } catch (error) {
@@ -28,7 +28,7 @@ const LatestAlbums = () => {
             <p className="text-xl sm:text-2xl">Latest Albums</p>
             <Link
               className="text-black dark:text-[#B3B3B3] text-xs"
-              to={"/view/all"}
+              to={"/albums/latest"}
             >
               View All
             </Link>
