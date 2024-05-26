@@ -4,6 +4,7 @@ import { PlaylistIcon } from "../../assets/images";
 import { cleanHtmlTags, truncateText } from "../../utils";
 
 const Playlist = ({ playlist }) => {
+  console.log(playlist);
   const navigate = useNavigate();
 
   const handlePlaylistClick = () => {
@@ -20,7 +21,7 @@ const Playlist = ({ playlist }) => {
           <div className="flex flex-col justify-center items-start gap-2 w-[145px] z-20">
             <img
               className="h-[145px] w-[145px] rounded-md"
-              src={playlist?.images[0]?.url || PlaylistIcon}
+              src={playlist?.images ? playlist?.images[0]?.url : PlaylistIcon}
               alt={`Playlist: ${playlist?.name}`}
             />
             <p className="text-black dark:text-white text-sm mt-2 font-bold">

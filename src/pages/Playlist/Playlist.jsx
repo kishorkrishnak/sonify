@@ -105,17 +105,23 @@ const Playlist = () => {
     if (userId) followsPlaylist();
   }, [userId]);
 
+  console.log(playlist);
   return (
     <>
       {playlist && tracks && (
         <div className="rounded-md flex flex-col px-3 sm:px-6">
           <div className="rounded-md py-6 flex flex-col gap-6 lg:gap-0 justify-between">
             <div className="flex flex-row items-start md:items-center gap-5">
-              <img
-                src={playlist?.images[0]?.url || PlaylistIcon}
-                className="h-[120px] w-[120px] sm:h-[180px] sm:w-[180px] rounded-lg"
-                alt={playlist?.name}
-              />
+              {playlist?.images && (
+                <img
+                  className="h-[120px] w-[120px] sm:h-[180px] sm:w-[180px] rounded-lg"
+                  src={
+                    playlist?.images ? playlist?.images[0]?.url : PlaylistIcon
+                  }
+                  alt=""
+                />
+              )}
+
               <div className="flex flex-col">
                 <h1 className="text-white text-sm">Playlist</h1>
 
@@ -151,16 +157,18 @@ const Playlist = () => {
                 />
               </IconContext.Provider>
             ) : (
-              <IconContext.Provider value={{ color: "white" }}>
-                <IoPlayCircleSharp
-                  color="#1FDF64"
-                  size={60}
-                  onClick={handlePlayClick}
-                  className="cursor-pointer scale-100 hover:scale-105"
-                />
-              </IconContext.Provider>
+              tracks.length > 0 && (
+                <IconContext.Provider value={{ color: "white" }}>
+                  <IoPlayCircleSharp
+                    color="#1FDF64"
+                    size={60}
+                    onClick={handlePlayClick}
+                    className="cursor-pointer scale-100 hover:scale-105"
+                  />
+                </IconContext.Provider>
+              )
             )}
-            {playlist.owner.id !== profile.id && (
+            {playlist.owner.id !== userId && (
               <button
                 onClick={handleFollowClick}
                 className="rounded-2xl cursor-pointer scale:100 hover:scale-105 border border-black dark:border-white bg-transparent w-fit py-1 px-4 text-black dark:text-white"

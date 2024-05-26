@@ -24,8 +24,9 @@ const Playlists = () => {
     if (isLoggedIn) fetchUserPlaylists();
     else setPlaylists(null);
   }, [isLoggedIn]);
+
   return (
-    <div className="bg-[#F3F3F5] py-3 dark:bg-[#151515] transition-all px-5 flex flex-col gap-4 overflow-y-hidden hover:overflow-y-auto">
+    <div className="py-3 transition-all px-5 flex flex-col gap-4 overflow-y-hidden hover:overflow-y-auto">
       {playlists &&
         playlists.map((playlist) => (
           <Link
@@ -35,7 +36,7 @@ const Playlists = () => {
           >
             <img
               className="h-[45px] w-[45px] rounded-md"
-              src={playlist?.images[0]?.url || PlaylistIcon}
+              src={playlist?.images ? playlist?.images[0]?.url : PlaylistIcon}
               alt=""
             />
 

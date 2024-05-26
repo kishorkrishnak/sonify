@@ -63,7 +63,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <nav className="bg-[#F3F3F5] dark:bg-[#151515] hidden lg:flex flex-col h-[100vh] w-[330px] sticky top-0 bg-black text-black dark:text-[#a7a7a7]">
+    <nav className=" bg-[#F3F3F5] dark:bg-[#151515] hidden lg:flex flex-col h-[100vh] w-[330px] sticky top-0 text-black dark:text-[#a7a7a7]">
       <ul className="py-5 flex flex-col gap-5 px-5 bg-[#F3F3F5] dark:bg-[#151515]">
         <li>
           <Link to="/">
@@ -88,22 +88,9 @@ const Sidebar = () => {
         ))}
       </ul>
 
-      {/* <div className="bg-[#F3F3F5] dark:bg-[#151515]">
-        <Link
-          to={"/library"}
-          className="mt-3 px-5 mb-2 w-fit flex gap-3 items-center justify-center"
-        >
-          <h1 className="font-bold">Your Library</h1>
-        </Link>
-        <ul className="flex gap-2 flex-wrap px-5 py-2">
-          {bottomLinks.map((link) => (
-            <SidebarBottomLink key={uuidv4()} link={link} pathname={pathname} />
-          ))}
-        </ul>
-      </div> */}
       <Link
         to={"/library"}
-        className="mt-3 px-5 mb-2 w-fit flex gap-3 items-center justify-center"
+        className="mt-3  px-5 mb-2 w-fit flex gap-3 items-center justify-center"
       >
         <h1 className="font-bold">Your Playlists</h1>
       </Link>
