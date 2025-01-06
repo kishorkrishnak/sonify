@@ -3,9 +3,11 @@ import Heart from "react-heart";
 import toast from "react-hot-toast";
 import { useAppContext } from "../../App";
 import { apiRequest } from "../../services";
+import { notifyLoginRequired } from "../../utils";
 
 const HeartButton = ({ song }) => {
   const handleHeartClick = async () => {
+    if (!isLoggedIn) return notifyLoginRequired();
     let toastMessage = "";
 
     try {

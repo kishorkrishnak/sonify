@@ -7,9 +7,9 @@ import { apiRequest } from "../../services";
 
 const Category = () => {
   const [category, setCategory] = useState(null);
-  const { id } = useParams();
+  const { id } = useParams(); // `id` now represents the category name.
   const location = useLocation();
-  const { title, playlists } = location?.state;
+  const { title, playlists } = location?.state || {};
   const { loadingRef } = useAppContext();
 
   const fetchCategory = async () => {
@@ -21,20 +21,18 @@ const Category = () => {
     loadingRef.current?.continuousStart();
 
     try {
-      const url =
-        id === "featured"
-          ? "browse/featured-playlists"
-          : `/browse/categories/${id}/playlists`;
-      const category = await apiRequest({
-        url,
+      const response = await apiRequest({
+        url: `/search?q=${id}&type=playlist&limit=24`,
       });
-      setCategory(category?.playlists?.items);
+
+      setCategory(response?.playlists?.items || []);
     } catch (error) {
       console.error("Error fetching data from Spotify API:", error);
     } finally {
       loadingRef.current?.complete();
     }
   };
+
   useEffect(() => {
     fetchCategory();
   }, []);

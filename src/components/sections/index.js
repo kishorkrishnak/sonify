@@ -1,5 +1,4 @@
 import FeaturedArtists from "./FeaturedArtists";
-import FeaturedPlaylists from "./FeaturedPlaylists";
 import LatestAlbums from "./LatestAlbums";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
@@ -10,8 +9,12 @@ import TopSongs from "./TopSongs";
 
 export {
     FeaturedArtists,
-    FeaturedPlaylists,
-    LatestAlbums, LoginButton, LogoutButton, NowPlaying, PlaylistCarousel, RecentlyPlayed,
+    LatestAlbums,
+    LoginButton,
+    LogoutButton,
+    NowPlaying,
+    PlaylistCarousel,
+    RecentlyPlayed,
     TopSongs
 };
 

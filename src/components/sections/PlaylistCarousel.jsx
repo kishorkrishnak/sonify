@@ -5,7 +5,7 @@ import { useIsVisible } from "../../hooks";
 import { apiRequest } from "../../services/api";
 import PlaylistsGrid from "./PlaylistsGrid";
 
-const PlaylistCarousel = ({ id, title }) => {
+const PlaylistCarousel = ({ name }) => {
   const elemRef = useRef();
   const isVisible = useIsVisible(elemRef);
   const { loadingRef } = useAppContext();
@@ -17,9 +17,10 @@ const PlaylistCarousel = ({ id, title }) => {
 
       try {
         const response = await apiRequest({
-          url: `/browse/categories/${id}/playlists`,
+          url: `/search?q=${name}&type=playlist`,
         });
 
+        console.log(response?.playlists?.items);
         setPlaylists(response?.playlists?.items || []);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
@@ -29,17 +30,17 @@ const PlaylistCarousel = ({ id, title }) => {
     };
 
     if (isVisible) fetchPlaylists();
-  }, [isVisible]);
+  }, [isVisible, name]);
 
   return (
     <div ref={elemRef} className="flex flex-col justify-center pb-4">
       {isVisible && playlists && (
         <>
           <div className="font-bold mb-2.5 px-3 sm:px-6 flex justify-between items-end text-black dark:text-white">
-            <p className="text-xl sm:text-2xl">{title}</p>
+            <p className="text-xl sm:text-2xl">{name}</p>
             <Link
-              to={`/category/${id}`}
-              state={{ title: title }}
+              to={`/category/${name}`}
+              state={{ title: name }}
               className="text-xs text-black dark:text-[#B3B3B3]"
             >
               View All

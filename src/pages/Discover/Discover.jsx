@@ -16,6 +16,7 @@ const Discover = () => {
         const categories = await apiRequest({
           url: "/browse/categories",
         });
+        console.log(categories)
         setCategories(categories.categories.items);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);
@@ -35,7 +36,7 @@ const Discover = () => {
         {categories.map((category) => (
           <Link
             key={uuidv4()}
-            to={"/category/" + category.id}
+            to={"/category/" + category.name}
             state={{ title: category.name }}
             className="flex flex-col grow w-[100%] items-center justify-center gap-3"
           >

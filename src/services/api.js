@@ -19,6 +19,7 @@ export const apiRequest = async ({ url, data, method, authFlow }) => {
       accessToken = tokenResponse.data.access_token;
     }
 
+    console.log(accessToken);
     const result = await API(url, {
       method: method || "GET",
       data: data,

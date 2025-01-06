@@ -9,8 +9,6 @@ import { ScrollToTop } from "./components/others";
 import { NowPlaying } from "./components/sections";
 import { Album, Artist, Category, Discover, Home, Track } from "./pages";
 import ArtistAlbums from "./pages/Albums/Albums";
-import { AlbumsLibrary, ArtistsLibrary, SongsLibrary } from "./pages/Library";
-import LibraryMobileView from "./pages/Library/Library";
 import Playlist from "./pages/Playlist/Playlist";
 import PlaylistBuilder from "./pages/PlaylistBuilder/PlaylistBuilder";
 import PlaylistBuilderResults from "./pages/PlaylistBuilder/PlaylistBuilderResults";
@@ -107,17 +105,7 @@ function App() {
               <Route path="/" element={<Home />}></Route>
               <Route path="/profile" element={<UserProfile />}></Route>
               <Route path="/discover" element={<Discover />}></Route>
-              <Route path="/library" element={<LibraryMobileView />}></Route>
-              <Route
-                path="/library/artists"
-                element={<ArtistsLibrary />}
-              ></Route>
-              <Route
-                path="/library/playlists"
-                element={<ArtistsLibrary />}
-              ></Route>
-              <Route path="/library/albums" element={<AlbumsLibrary />}></Route>
-              <Route path="/library/songs" element={<SongsLibrary />}></Route>
+
               <Route path="/category/:id" element={<Category />}></Route>
               <Route path="/artist/:id" element={<Artist />}></Route>
               <Route path="/artist/:id/related" element={<Related />}></Route>

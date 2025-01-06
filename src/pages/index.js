@@ -3,8 +3,6 @@ import Artist from "./Artist/Artist";
 import Category from "./Category/Category";
 import Discover from "./Discover/Discover";
 import Home from "./Home/Home";
-import LikedArtists from "./Library/ArtistsLibrary";
-import LikedSongs from "./Library/SongsLibrary";
 import Playlist from "./Playlist/Playlist";
 import Track from "./Track/Track";
 export {
@@ -13,8 +11,6 @@ export {
   Category,
   Discover,
   Home,
-  LikedArtists,
-  LikedSongs,
   Playlist,
   Track,
 };
