@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useAppContext } from "../../App";
-import SongsTable from "../../components/SongsTable/SongsTable";
 import { Artist } from "../../components/cards";
-import PageLayout from "../../components/PageLayout/PageLayout";
+import SongsTable from "../../components/SongsTable/SongsTable";
 
 import PlaylistsGrid from "../../components/sections/PlaylistsGrid";
 import { apiRequest } from "../../services";

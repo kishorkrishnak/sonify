@@ -88,12 +88,9 @@ const Sidebar = () => {
         ))}
       </ul>
 
-      <Link
-        to={"/library"}
-        className="mt-3  px-5 mb-2 w-fit flex gap-3 items-center justify-center"
-      >
+      <div className="mt-3 px-5 mb-2 w-fit flex gap-3 items-center justify-center">
         <h1 className="font-bold">Your Playlists</h1>
-      </Link>
+      </div>
       <Playlists />
     </nav>
   );

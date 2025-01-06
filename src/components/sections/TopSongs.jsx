@@ -16,7 +16,7 @@ const TopSongs = () => {
 
       try {
         const response = await apiRequest({
-          url: "/playlists/37i9dQZEVXbMDoHDwVN2tF",
+          url: "/playlists/0sDahzOkMWOmLXfTMf2N4N",
         });
 
         setTopSongs(response?.tracks?.items?.slice(0, 6));
