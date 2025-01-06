@@ -4,7 +4,6 @@ import { PlaylistIcon } from "../../assets/images";
 import { cleanHtmlTags, truncateText } from "../../utils";
 
 const Playlist = ({ playlist }) => {
-  console.log(playlist);
   const navigate = useNavigate();
 
   const handlePlaylistClick = () => {

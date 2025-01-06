@@ -16,7 +16,6 @@ const Discover = () => {
         const categories = await apiRequest({
           url: "/browse/categories",
         });
-        console.log(categories)
         setCategories(categories.categories.items);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);

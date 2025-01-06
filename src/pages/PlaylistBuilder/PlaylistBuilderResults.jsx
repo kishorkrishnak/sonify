@@ -83,13 +83,7 @@ const PlaylistBuilderResults = () => {
             Here are the top 100 workout tracks. You can save these as your own
             Spotify playlist by clicking the button.
           </p>
-          <button
-            onClick={() => {
-              console.log(tracks);
-              console.log(playlists);
-            }}
-            className="rounded-md bg-[#232323]  w-fit p-3 text-white mt-3"
-          >
+          <button className="rounded-md bg-[#232323]  w-fit p-3 text-white mt-3">
             Log
           </button>
           <button className="rounded-md bg-green-600 hover:bg-green-700 w-fit py-3 px-5 text-white mt-3">

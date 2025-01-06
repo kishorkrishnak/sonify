@@ -18,7 +18,6 @@ const ArtistAlbums = () => {
       const albums = await apiRequest({
         url,
       });
-      console.log(albums);
       setAlbums(albums?.items || albums?.albums?.items);
     } catch (error) {
       console.error("Error fetching data from Spotify API:", error);

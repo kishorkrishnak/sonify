@@ -18,7 +18,6 @@ const RecentlyPlayed = () => {
 
         const lastPlayedTrack = response.items[0]?.track;
         setRecentlyPlayedTrack(lastPlayedTrack);
-        console.log(lastPlayedTrack);
       } catch (error) {
         console.error("Error fetching recently played tracks:", error);
       }

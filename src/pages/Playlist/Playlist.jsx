@@ -105,7 +105,6 @@ const Playlist = () => {
     if (userId) followsPlaylist();
   }, [userId]);
 
-  console.log(playlist);
   return (
     <>
       {playlist && tracks && (

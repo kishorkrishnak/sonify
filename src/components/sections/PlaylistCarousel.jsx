@@ -20,7 +20,6 @@ const PlaylistCarousel = ({ name }) => {
           url: `/search?q=${name}&type=playlist`,
         });
 
-        console.log(response?.playlists?.items);
         setPlaylists(response?.playlists?.items || []);
       } catch (error) {
         console.error("Error fetching data from Spotify API:", error);

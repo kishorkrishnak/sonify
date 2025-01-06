@@ -17,7 +17,6 @@ const LogoutButton = () => {
           navigate("/");
           resolve("Successfully logged out");
         } else {
-          console.log("Unexpected response:", response);
           reject("Unexpected response");
         }
       } catch (error) {
